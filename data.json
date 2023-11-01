@@ -1,0 +1,116 @@
+{
+  "products": [
+    {
+      "category": "Processors",
+      "name": "Intel Core i9-10900K 10-Core Processor",
+      "price": 499.99,
+      "description": "High-performance 10-core, 20-thread processor from Intel, designed for gamers and content creators.",
+      "image": "https://www.example.com/image_processor3.jpg"
+    },
+    {
+      "category": "Processors",
+      "name": "AMD Ryzen 9 5900X 12-Core Processor",
+      "price": 549.99,
+      "description": "Top-tier 12-core, 24-thread processor by AMD, optimized for gaming and productivity tasks.",
+      "image": "https://www.example.com/image_processor4.jpg"
+    },
+    {
+      "category": "Graphics Cards",
+      "name": "NVIDIA GeForce RTX 3090",
+      "price": 999.99,
+      "description": "Flagship NVIDIA graphics card for extreme gaming and real-time ray tracing performance.",
+      "image": "https://www.example.com/image_gpu3.jpg"
+    },
+    {
+      "category": "Graphics Cards",
+      "name": "AMD Radeon RX 6900 XT",
+      "price": 799.99,
+      "description": "High-end AMD gaming graphics card, built for stunning visuals and competitive gaming.",
+      "image": "https://www.example.com/image_gpu4.jpg"
+    },
+    {
+      "category": "Hard Drives",
+      "name": "Western Digital 2TB NVMe SSD",
+      "price": 199.99,
+      "description": "2TB NVMe solid-state drive by Western Digital, offering fast data transfer and application loading.",
+      "image": "https://www.example.com/image_ssd2.jpg"
+    },
+    {
+      "category": "Hard Drives",
+      "name": "Seagate FireCuda 2TB SSHD",
+      "price": 149.99,
+      "description": "Hybrid 2TB SSHD with SSD-like speed for improved performance and storage capacity.",
+      "image": "https://www.example.com/image_ssd3.jpg"
+    },
+    {
+      "category": "Processors",
+      "name": "AMD Ryzen 5 5600X 6-Core Processor",
+      "price": 299.99,
+      "description": "6-core, 12-thread processor for excellent gaming and multitasking performance.",
+      "image": "https://www.example.com/image_processor5.jpg"
+    },
+    {
+      "category": "Processors",
+      "name": "Intel Core i7-10700K 8-Core Processor",
+      "price": 369.99,
+      "description": "8-core, 16-thread processor for high-performance computing and gaming.",
+      "image": "https://www.example.com/image_processor6.jpg"
+    },
+    {
+      "category": "Graphics Cards",
+      "name": "NVIDIA GeForce GTX 1660 Super",
+      "price": 249.99,
+      "description": "Mid-range graphics card for smooth 1080p gaming and content creation.",
+      "image": "https://www.example.com/image_gpu5.jpg"
+    },
+    {
+      "category": "Graphics Cards",
+      "name": "AMD Radeon RX 6700 XT",
+      "price": 499.99,
+      "description": "High-performance AMD graphics card for demanding gaming and 1440p resolutions.",
+      "image": "https://www.example.com/image_gpu6.jpg"
+    },
+    {
+      "category": "Hard Drives",
+      "name": "Crucial MX500 1TB SATA SSD",
+      "price": 109.99,
+      "description": "1TB SATA SSD for fast storage and system responsiveness.",
+      "image": "https://www.example.com/image_ssd4.jpg"
+    },
+    {
+      "category": "Hard Drives",
+      "name": "Toshiba P300 3TB HDD",
+      "price": 79.99,
+      "description": "Large 3TB hard disk drive for ample storage capacity.",
+      "image": "https://www.example.com/image_hdd2.jpg"
+    },
+    {
+      "category": "Memory",
+      "name": "Corsair Vengeance LPX 16GB DDR4 RAM",
+      "price": 79.99,
+      "description": "High-quality 16GB DDR4 memory kit for improved system performance.",
+      "image": "https://www.example.com/image_memory1.jpg"
+    },
+    {
+      "category": "Memory",
+      "name": "G.Skill Trident Z RGB 32GB DDR4 RAM",
+      "price": 149.99,
+      "description": "32GB DDR4 memory with RGB lighting for gaming and productivity setups.",
+      "image": "https://www.example.com/image_memory2.jpg"
+    },
+    {
+      "category": "Motherboards",
+      "name": "ASUS ROG Strix B450-F Gaming Motherboard",
+      "price": 129.99,
+      "description": "Highly-rated gaming motherboard with RGB lighting and support for AMD processors.",
+      "image": "https://www.example.com/image_motherboard1.jpg"
+    },
+    {
+      "category": "Motherboards",
+      "name": "MSI MAG Z590 Tomahawk Motherboard",
+      "price": 249.99,
+      "description": "Premium motherboard with support for Intel's latest processors and advanced features.",
+      "image": "https://www.example.com/image_motherboard2.jpg"
+    }
+  ]
+}

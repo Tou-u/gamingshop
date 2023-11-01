@@ -33,3 +33,21 @@ model Key {
 
   @@index([user_id])
 }
+
+model Product {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  description String
+  image       String
+  price       Int
+  stock       Int
+  category_id String
+  category    Category @relation(references: [id], fields: [category_id])
+}
+
+model Category {
+  id       String    @id @default(cuid())
+  name     String    @unique
+  products Product[]
+}

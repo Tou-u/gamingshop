@@ -12,9 +12,13 @@ import {
 import { Link } from "@nextui-org/link";
 import { Button } from "@nextui-org/button";
 import { useState } from "react";
+import { Session } from "lucia";
+import NextLink from "next/link";
+import Form from "./form";
 
-export const NavBar = () => {
+export const NavBar = ({ session }: { session: Session | null }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const user = session?.user;
 
   const menuItems = [
     "Profile",
@@ -29,7 +33,12 @@ export const NavBar = () => {
     "Log Out",
   ];
   return (
-    <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
+    <Navbar
+      isBordered
+      isMenuOpen={isMenuOpen}
+      onMenuOpenChange={setIsMenuOpen}
+      disableAnimation
+    >
       <NavbarContent className="sm:hidden" justify="start">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -39,7 +48,9 @@ export const NavBar = () => {
       <NavbarContent className="sm:hidden pr-3" justify="center">
         <NavbarBrand>
           {/* <AcmeLogo /> */}
-          <p className="font-bold text-inherit">ACME</p>
+          <Link href="/" as={NextLink} className="font-bold text-inherit">
+            ACME
+          </Link>
         </NavbarBrand>
       </NavbarContent>
 
@@ -66,13 +77,18 @@ export const NavBar = () => {
       </NavbarContent>
 
       <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
-        </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="warning" href="#" variant="flat">
-            Sign Up
-          </Button>
+          {user ? (
+            <Form action="/api/logout">
+              <Button type="submit" color="danger" variant="flat">
+                Log Out
+              </Button>
+            </Form>
+          ) : (
+            <Button as={Link} color="warning" href="/login" variant="flat">
+              Login
+            </Button>
+          )}
         </NavbarItem>
       </NavbarContent>
 
