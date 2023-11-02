@@ -1,20 +1,21 @@
-import { Providers } from "./providers";
 import "./globals.css";
-import { NavBar } from "@/components/navbar";
-import { getPageSession } from "@/auth/lucia";
+import { Suspense } from "react";
+import { Providers } from "./providers";
+import Header from "@/components/Header";
+import NavBarSkeleton from "@/components/NavBarSkeleton";
 
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getPageSession();
-
   return (
     <html lang="en" className="dark">
       <body>
         <Providers>
-          <NavBar session={session} />
+          <Suspense fallback={<NavBarSkeleton />}>
+            <Header />
+          </Suspense>
           {children}
         </Providers>
       </body>

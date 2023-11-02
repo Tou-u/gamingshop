@@ -16,22 +16,21 @@ import { Session } from "lucia";
 import NextLink from "next/link";
 import Form from "./form";
 
-export const NavBar = ({ session }: { session: Session | null }) => {
+type Categories = {
+  id: string;
+  name: string;
+}[];
+
+export const NavBar = ({
+  session,
+  categories,
+}: {
+  session: Session | null;
+  categories: Categories;
+}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const user = session?.user;
 
-  const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out",
-  ];
   return (
     <Navbar
       isBordered
@@ -93,21 +92,16 @@ export const NavBar = ({ session }: { session: Session | null }) => {
       </NavbarContent>
 
       <NavbarMenu>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
+        {categories.map((category) => (
+          <NavbarMenuItem key={category.id}>
             <Link
-              className="w-full"
-              color={
-                index === 2
-                  ? "warning"
-                  : index === menuItems.length - 1
-                  ? "danger"
-                  : "foreground"
-              }
-              href="#"
+              className="w-full capitalize"
+              as={NextLink}
+              href={`/category/${category.name.replace(" ", "_")}`}
               size="lg"
+              onClick={() => setIsMenuOpen(false)}
             >
-              {item}
+              {category.name}
             </Link>
           </NavbarMenuItem>
         ))}
