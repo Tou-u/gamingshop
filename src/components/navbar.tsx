@@ -14,7 +14,7 @@ import { Button } from "@nextui-org/button";
 import { useState } from "react";
 import { Session } from "lucia";
 import NextLink from "next/link";
-import Form from "./form";
+import Form from "./Form";
 
 type Categories = {
   id: string;
