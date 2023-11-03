@@ -14,7 +14,7 @@ import { Button } from "@nextui-org/button";
 import { useState } from "react";
 import { Session } from "lucia";
 import NextLink from "next/link";
-import Form from "./Form";
+import UserDropdown from "./ui/UserDropdown";
 
 type Categories = {
   id: string;
@@ -78,11 +78,7 @@ export const NavBar = ({
       <NavbarContent justify="end">
         <NavbarItem>
           {user ? (
-            <Form action="/api/logout">
-              <Button type="submit" color="danger" variant="flat">
-                Log Out
-              </Button>
-            </Form>
+            <UserDropdown user={user} />
           ) : (
             <Button as={Link} color="warning" href="/login" variant="flat">
               Login
