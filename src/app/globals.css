@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.customdot {
+  .react-multi-carousel-dot--active button {
+    background-color: white;
+  }
+}
