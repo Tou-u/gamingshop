@@ -2,7 +2,7 @@ import "./globals.css";
 import { Suspense } from "react";
 import { Providers } from "./providers";
 import Header from "@/components/Header";
-import NavBarSkeleton from "@/components/NavBarSkeleton";
+import NavBarSkeleton from "@/components/skeletons/NavBarSkeleton";
 
 export default async function RootLayout({
   children,

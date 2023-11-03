@@ -1,7 +1,8 @@
 import { getPageSession } from "@/auth/lucia";
-import Loading from "@/components/Loading";
+import Loading from "@/components/skeletons/Loading";
 import ProductList from "@/components/ProductList";
 import { Suspense } from "react";
+import Carousel from "@/components/ui/Carousel";
 
 const Page = async () => {
   // const session = await getPageSession();
