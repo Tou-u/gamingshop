@@ -2,7 +2,31 @@ import prisma from "./prisma";
 
 export async function getProducts() {
   try {
-    const products = await prisma.product.findMany();
+    const products = await prisma.product.findMany({
+      select: {
+        name: true,
+        category: true,
+        slug: true,
+        image: true,
+        price: true,
+      },
+    });
+
+    return products;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function getSixProducts() {
+  try {
+    const products = await prisma.category.findMany({
+      include: {
+        products: {
+          take: 6,
+        },
+      },
+    });
     return products;
   } catch (error) {
     throw error;
