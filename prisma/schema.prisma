@@ -42,11 +42,20 @@ model Product {
   image       String
   price       Int
   stock       Int
+  active      Boolean  @default(false)
   category_id String
+  brand_id    String
   category    Category @relation(references: [id], fields: [category_id])
+  brand       Brand    @relation(references: [id], fields: [brand_id])
 }
 
 model Category {
+  id       String    @id @default(cuid())
+  name     String    @unique
+  products Product[]
+}
+
+model Brand {
   id       String    @id @default(cuid())
   name     String    @unique
   products Product[]
