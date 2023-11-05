@@ -1,4 +1,4 @@
-import prisma from "./prisma";
+import prisma from './prisma'
 
 export async function getProducts() {
   try {
@@ -8,13 +8,13 @@ export async function getProducts() {
         category: true,
         slug: true,
         image: true,
-        price: true,
-      },
-    });
+        price: true
+      }
+    })
 
-    return products;
+    return products
   } catch (error) {
-    throw error;
+    throw error
   }
 }
 
@@ -23,22 +23,22 @@ export async function getSixProducts() {
     const products = await prisma.category.findMany({
       include: {
         products: {
-          take: 6,
-        },
-      },
-    });
-    return products;
+          take: 6
+        }
+      }
+    })
+    return products
   } catch (error) {
-    throw error;
+    throw error
   }
 }
 
 export async function getCategories() {
   try {
-    const categories = await prisma.category.findMany();
-    return categories;
+    const categories = await prisma.category.findMany()
+    return categories
   } catch (error) {
-    throw error;
+    throw error
   }
 }
 
@@ -46,23 +46,39 @@ export async function getProductsPerCategory(name: string) {
   try {
     const products = await prisma.product.findMany({
       where: {
-        category: { name },
+        category: { name }
       },
-    });
+      include: {
+        brand: true
+      }
+    })
 
-    return products;
+    return products
   } catch (error) {
-    throw error;
+    throw error
   }
 }
 
 export async function getProductBySlug(slug: string) {
   try {
     const product = await prisma.product.findUnique({
-      where: { slug },
-    });
-    return product;
+      where: { slug }
+    })
+    return product
   } catch (error) {
-    throw error;
+    throw error
+  }
+}
+
+export async function getProductsByName(value: string) {
+  try {
+    const products = await prisma.product.findMany({
+      where: {
+        name: { contains: value, mode: 'insensitive' }
+      }
+    })
+    return products
+  } catch (error) {
+    throw error
   }
 }
