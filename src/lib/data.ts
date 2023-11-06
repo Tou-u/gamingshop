@@ -1,23 +1,6 @@
 import prisma from './prisma'
 
-// export async function getProducts() {
-//   try {
-//     const products = await prisma.product.findMany({
-//       select: {
-//         name: true,
-//         category: true,
-//         slug: true,
-//         image: true,
-//         price: true
-//       }
-//     })
-
-//     return products
-//   } catch (error) {
-//     throw error
-//   }
-// }
-
+// Shop Site
 export async function getMainProducts() {
   try {
     const products = await prisma.category.findMany({
@@ -114,6 +97,16 @@ export async function getProductsByName(name: string) {
         image: true
       }
     })
+    return { data: products }
+  } catch (error) {
+    return { error: 'Error obtaining the products' }
+  }
+}
+
+// Dashboard Site
+export async function getProducts() {
+  try {
+    const products = await prisma.product.findMany()
     return { data: products }
   } catch (error) {
     return { error: 'Error obtaining the products' }
