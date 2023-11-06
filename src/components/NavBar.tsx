@@ -16,7 +16,7 @@ import { FormEvent, useState } from 'react'
 import { Session } from 'lucia'
 import NextLink from 'next/link'
 import UserDropdown from './ui/UserDropdown'
-import SearchIcon from '@/icons/SearchIcon'
+import { SearchIcon } from '@/icons/SearchIcon'
 import { useRouter } from 'next/navigation'
 import { Categories } from '@/types'
 
@@ -35,8 +35,11 @@ export const NavBar = ({
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
-    const searchValue = formData.get('search')
-    router.push(`/search/${searchValue}`)
+    const searchValue = formData.get('search') as string
+
+    if (!searchValue.trim()) return
+
+    router.push(`/search/${searchValue.trim()}`)
   }
 
   return (
@@ -46,7 +49,7 @@ export const NavBar = ({
         <NavbarBrand>
           {/* <AcmeLogo /> */}
           <Link href="/" as={NextLink} className="font-bold text-inherit">
-            ACME
+            GamingShop
           </Link>
         </NavbarBrand>
       </NavbarContent>
@@ -54,7 +57,7 @@ export const NavBar = ({
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarBrand>
           {/* <AcmeLogo /> */}
-          <p className="font-bold text-inherit">ACME</p>
+          <p className="font-bold text-inherit">GamingShop</p>
         </NavbarBrand>
         <NavbarItem>
           <Link color="foreground" href="#">

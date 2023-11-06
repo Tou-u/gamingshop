@@ -7,10 +7,9 @@ export default async function Header() {
   const session = await getPageSession()
   const categories = await getCategories()
 
-  return (
-    <>
-      {categories.error && <NavBarSkeleton />}
-      {categories.data && <NavBar session={session} categories={categories.data} />}
-    </>
-  )
+  if (categories.error) {
+    return <NavBarSkeleton />
+  }
+
+  return <>{categories.data && <NavBar session={session} categories={categories.data} />}</>
 }

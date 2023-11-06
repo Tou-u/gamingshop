@@ -1,4 +1,3 @@
-'use client'
 import { Product } from '@/types'
 import { Card, CardBody, CardFooter } from '@nextui-org/card'
 import { Image } from '@nextui-org/image'

@@ -1,8 +1,8 @@
 import { getProductsPerCategory } from '@/lib/data'
-import FilterCategory from './FilterCategory'
-import Error from './Error'
+import Error from '@/components/Error'
+import CategoryList from './list'
 
-export default async function CategoryList({ category }: { category: string }) {
+export default async function GetData({ category }: { category: string }) {
   const products = await getProductsPerCategory(category)
 
   if (products.error) {
@@ -14,7 +14,7 @@ export default async function CategoryList({ category }: { category: string }) {
       {products.data?.length === 0 ? (
         <p>No products found</p>
       ) : (
-        <FilterCategory products={products.data!} />
+        <CategoryList products={products.data!} />
       )}
     </>
   )

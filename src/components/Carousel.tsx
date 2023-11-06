@@ -1,7 +1,7 @@
 'use client'
 import MultiCarousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
-import ProductCard from '../ProductCard'
+import ProductCard from './ProductCard'
 import { Products } from '@/types'
 
 const responsive = {

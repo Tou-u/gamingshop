@@ -1,11 +1,15 @@
 import { getMainProducts } from '@/lib/data'
-import Carousel from './ui/Carousel'
+import Error from '@/components/Error'
+import Carousel from '@/components/Carousel'
 import { Link } from '@nextui-org/link'
 import NextLink from 'next/link'
-import Error from './Error'
 
-export default async function ProductList() {
+export default async function GetData() {
   const products = await getMainProducts()
+
+  if (products.error) {
+    return <Error />
+  }
 
   const graphic_cards = products.data
     ?.filter((x) => x.name === 'graphics cards')
@@ -16,10 +20,9 @@ export default async function ProductList() {
     .flatMap((x) => x.products)
 
   return (
-    <section>
-      {products.error && <Error />}
+    <>
       {products.data && (
-        <>
+        <section>
           <Link
             as={NextLink}
             showAnchorIcon
@@ -38,8 +41,8 @@ export default async function ProductList() {
             </Link>
             <Carousel products={processors!} />
           </article>
-        </>
+        </section>
       )}
-    </section>
+    </>
   )
 }
