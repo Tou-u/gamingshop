@@ -4,23 +4,7 @@ import { useFilterStore } from '@/store/zustand'
 import SelectComponent from './ui/Select'
 import { Autocomplete, AutocompleteItem } from '@nextui-org/autocomplete'
 import { useState } from 'react'
-
-type Products = {
-  id: string
-  slug: string
-  name: string
-  description: string
-  image: string
-  price: number
-  stock: number
-  category_id: string
-  brand: Brand
-}[]
-
-type Brand = {
-  id: string
-  name: string
-}
+import { Products } from '@/types'
 
 export default function FilterCategory({ products }: { products: Products }) {
   const { option } = useFilterStore()
@@ -30,7 +14,7 @@ export default function FilterCategory({ products }: { products: Products }) {
   let filterProducts = sortProducts.slice()
 
   const brands = products
-    .map((item) => item.brand.name)
+    .map((item) => item.brand!.name)
     .filter((value, index, self) => self.indexOf(value) === index)
 
   if (option === 'higher') {
@@ -41,7 +25,7 @@ export default function FilterCategory({ products }: { products: Products }) {
 
   function handleChangeBrand(value: any) {
     if (value) {
-      setSortProducts(products.filter((x) => x.brand.name === value))
+      setSortProducts(products.filter((x) => x.brand!.name === value))
     } else {
       setSortProducts(products)
     }

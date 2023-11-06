@@ -18,11 +18,7 @@ import NextLink from 'next/link'
 import UserDropdown from './ui/UserDropdown'
 import SearchIcon from '@/icons/SearchIcon'
 import { useRouter } from 'next/navigation'
-
-type Categories = {
-  id: string
-  name: string
-}[]
+import { Categories } from '@/types'
 
 export const NavBar = ({
   session,
@@ -106,7 +102,7 @@ export const NavBar = ({
 
       <NavbarMenu>
         {categories.map((category) => (
-          <NavbarMenuItem key={category.id}>
+          <NavbarMenuItem key={category.name}>
             <Link
               className="w-full capitalize"
               as={NextLink}

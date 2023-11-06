@@ -1,24 +1,8 @@
 'use client'
+import { Product } from '@/types'
 import { Card, CardBody, CardFooter } from '@nextui-org/card'
 import { Image } from '@nextui-org/image'
 import NextLink from 'next/link'
-
-type Product = {
-  id: string
-  slug: string
-  name: string
-  description: string
-  image: string
-  price: number
-  stock: number
-  category_id: string
-  brand?: Brand
-}
-
-type Brand = {
-  id: string
-  name: string
-}
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
