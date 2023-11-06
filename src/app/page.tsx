@@ -1,8 +1,7 @@
-import { getPageSession } from "@/auth/lucia";
-import Loading from "@/components/skeletons/Loading";
-import ProductList from "@/components/ProductList";
-import { Suspense } from "react";
-import Carousel from "@/components/ui/Carousel";
+import { getPageSession } from '@/auth/lucia'
+import Loading from '@/components/skeletons/Loading'
+import ProductList from '@/components/ProductList'
+import { Suspense } from 'react'
 
 const Page = async () => {
   // const session = await getPageSession();
@@ -14,7 +13,7 @@ const Page = async () => {
         <ProductList />
       </Suspense>
     </main>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

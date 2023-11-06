@@ -1,14 +1,10 @@
-import "./globals.css";
-import { Suspense } from "react";
-import { Providers } from "./providers";
-import Header from "@/components/Header";
-import NavBarSkeleton from "@/components/skeletons/NavBarSkeleton";
+import './globals.css'
+import { Suspense } from 'react'
+import { Providers } from './providers'
+import Header from '@/components/Header'
+import NavBarSkeleton from '@/components/skeletons/NavBarSkeleton'
 
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="dark">
       <body>
@@ -20,5 +16,5 @@ export default async function RootLayout({
         </Providers>
       </body>
     </html>
-  );
+  )
 }
