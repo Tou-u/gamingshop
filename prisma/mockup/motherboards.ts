@@ -9,7 +9,8 @@ const mockup_motherboards: Products = [
     price: 129.99,
     slug: 'asusstrixb450f',
     stock: 10,
-    brand_id: 'brand-02'
+    brand_id: 'brand-02',
+    active: true
   },
   {
     name: 'MSI MAG Z590 Tomahawk Motherboard',
@@ -19,7 +20,8 @@ const mockup_motherboards: Products = [
     price: 249.99,
     slug: 'msiz590tomahawk',
     stock: 5,
-    brand_id: 'brand-01'
+    brand_id: 'brand-01',
+    active: true
   },
   {
     name: 'Gigabyte B450 AORUS PRO WIFI Motherboard',
@@ -29,7 +31,8 @@ const mockup_motherboards: Products = [
     price: 139.99,
     slug: 'gigabyteb450aorus',
     stock: 7,
-    brand_id: 'brand-03'
+    brand_id: 'brand-03',
+    active: true
   },
   {
     name: 'ASRock B550M Steel Legend Motherboard',
@@ -39,7 +42,8 @@ const mockup_motherboards: Products = [
     price: 109.99,
     slug: 'asrockb550m',
     stock: 8,
-    brand_id: 'brand-31'
+    brand_id: 'brand-31',
+    active: true
   },
   {
     name: 'ASUS TUF Gaming B460-Plus Motherboard',
@@ -49,7 +53,8 @@ const mockup_motherboards: Products = [
     price: 119.99,
     slug: 'asustufb460plus',
     stock: 6,
-    brand_id: 'brand-02'
+    brand_id: 'brand-02',
+    active: true
   },
   {
     name: 'MSI MPG Z590 Gaming Edge WiFi Motherboard',
@@ -59,7 +64,8 @@ const mockup_motherboards: Products = [
     price: 189.99,
     slug: 'msiz590gamingedge',
     stock: 4,
-    brand_id: 'brand-01'
+    brand_id: 'brand-01',
+    active: true
   },
   {
     name: 'Gigabyte X570 AORUS Master Motherboard',
@@ -69,7 +75,8 @@ const mockup_motherboards: Products = [
     price: 279.99,
     slug: 'gigabytex570master',
     stock: 3,
-    brand_id: 'brand-03'
+    brand_id: 'brand-03',
+    active: true
   },
   {
     name: 'ASRock H510M-HDV Motherboard',
@@ -79,7 +86,8 @@ const mockup_motherboards: Products = [
     price: 79.99,
     slug: 'asrockh510mhdv',
     stock: 9,
-    brand_id: 'brand-31'
+    brand_id: 'brand-31',
+    active: true
   },
   {
     name: 'ASUS Prime B550M-A/CSM Micro-ATX Motherboard',
@@ -89,7 +97,8 @@ const mockup_motherboards: Products = [
     price: 99.99,
     slug: 'asusprimeb550m',
     stock: 7,
-    brand_id: 'brand-02'
+    brand_id: 'brand-02',
+    active: true
   },
   {
     name: 'MSI B450 TOMAHAWK MAX Motherboard',
@@ -99,7 +108,8 @@ const mockup_motherboards: Products = [
     price: 109.99,
     slug: 'msib450tomahawk',
     stock: 8,
-    brand_id: 'brand-01'
+    brand_id: 'brand-01',
+    active: true
   }
 ]
 

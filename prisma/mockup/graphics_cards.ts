@@ -9,7 +9,8 @@ const mockup_graphics_cards: Products = [
     price: 999.99,
     slug: 'rtx3090',
     stock: 2,
-    brand_id: 'brand-01'
+    brand_id: 'brand-01',
+    active: true
   },
   {
     name: 'ASUS AMD Radeon RX 6900 XT',
@@ -19,7 +20,8 @@ const mockup_graphics_cards: Products = [
     price: 799.99,
     slug: 'rx6900xt',
     stock: 5,
-    brand_id: 'brand-02'
+    brand_id: 'brand-02',
+    active: true
   },
   {
     name: 'Gigabyte NVIDIA GeForce GTX 1660 Super',
@@ -28,7 +30,8 @@ const mockup_graphics_cards: Products = [
     price: 249.99,
     slug: 'gtx1660super',
     stock: 3,
-    brand_id: 'brand-03'
+    brand_id: 'brand-03',
+    active: true
   },
   {
     name: 'EVGA AMD Radeon RX 6700 XT',
@@ -37,7 +40,8 @@ const mockup_graphics_cards: Products = [
     price: 499.99,
     slug: 'rx6700xt',
     stock: 7,
-    brand_id: 'brand-04'
+    brand_id: 'brand-04',
+    active: true
   },
   {
     name: 'Zotac NVIDIA GeForce RTX 3080',
@@ -47,7 +51,8 @@ const mockup_graphics_cards: Products = [
     price: 699.99,
     slug: 'rtx3080',
     stock: 1,
-    brand_id: 'brand-21'
+    brand_id: 'brand-21',
+    active: true
   },
   {
     name: 'Sapphire AMD Radeon RX 6800 XT',
@@ -57,7 +62,8 @@ const mockup_graphics_cards: Products = [
     price: 649.99,
     slug: 'rx6800xt',
     stock: 4,
-    brand_id: 'brand-22'
+    brand_id: 'brand-22',
+    active: true
   },
   {
     name: 'MSI NVIDIA GeForce GTX 1650',
@@ -66,7 +72,8 @@ const mockup_graphics_cards: Products = [
     price: 169.99,
     slug: 'gtx1650',
     stock: 6,
-    brand_id: 'brand-01'
+    brand_id: 'brand-01',
+    active: true
   },
   {
     name: 'ASUS AMD Radeon RX 5700 XT',
@@ -75,7 +82,8 @@ const mockup_graphics_cards: Products = [
     price: 399.99,
     slug: 'rx5700xt',
     stock: 2,
-    brand_id: 'brand-02'
+    brand_id: 'brand-02',
+    active: true
   },
   {
     name: 'Gigabyte NVIDIA GeForce GTX 1660 Ti',
@@ -84,7 +92,8 @@ const mockup_graphics_cards: Products = [
     price: 279.99,
     slug: 'gtx1660ti',
     stock: 3,
-    brand_id: 'brand-03'
+    brand_id: 'brand-03',
+    active: true
   },
   {
     name: 'EVGA Radeon RX 5600 XT',
@@ -93,7 +102,8 @@ const mockup_graphics_cards: Products = [
     price: 249.99,
     slug: 'rx5600xt',
     stock: 5,
-    brand_id: 'brand-04'
+    brand_id: 'brand-04',
+    active: true
   },
   {
     name: 'Zotac NVIDIA GeForce RTX 3070',
@@ -103,7 +113,8 @@ const mockup_graphics_cards: Products = [
     price: 499.99,
     slug: 'rtx3070',
     stock: 4,
-    brand_id: 'brand-21'
+    brand_id: 'brand-21',
+    active: true
   },
   {
     name: 'Sapphire AMD Radeon RX 6600 XT',
@@ -112,7 +123,8 @@ const mockup_graphics_cards: Products = [
     price: 299.99,
     slug: 'rx6600xt',
     stock: 6,
-    brand_id: 'brand-22'
+    brand_id: 'brand-22',
+    active: true
   },
   {
     name: 'Sapphire NVIDIA GeForce GTX 1050 Ti',
@@ -121,7 +133,8 @@ const mockup_graphics_cards: Products = [
     price: 149.99,
     slug: 'gtx1050ti',
     stock: 2,
-    brand_id: 'brand-22'
+    brand_id: 'brand-22',
+    active: true
   },
   {
     name: 'Zotac AMD Radeon RX 5500 XT',
@@ -130,7 +143,8 @@ const mockup_graphics_cards: Products = [
     price: 199.99,
     slug: 'rx5500xt',
     stock: 8,
-    brand_id: 'brand-21'
+    brand_id: 'brand-21',
+    active: true
   },
   {
     name: 'EVGA NVIDIA GeForce GTX 1660',
@@ -140,7 +154,8 @@ const mockup_graphics_cards: Products = [
     price: 219.99,
     slug: 'gtx1660',
     stock: 5,
-    brand_id: 'brand-04'
+    brand_id: 'brand-04',
+    active: true
   },
   {
     name: 'Gigabyte AMD Radeon RX 560',
@@ -149,7 +164,8 @@ const mockup_graphics_cards: Products = [
     price: 99.99,
     slug: 'rx560',
     stock: 10,
-    brand_id: 'brand-03'
+    brand_id: 'brand-03',
+    active: true
   },
   {
     name: 'ASUS NVIDIA GeForce GT 1030',
@@ -158,7 +174,8 @@ const mockup_graphics_cards: Products = [
     price: 89.99,
     slug: 'gt1030',
     stock: 3,
-    brand_id: 'brand-02'
+    brand_id: 'brand-02',
+    active: true
   },
   {
     name: 'MSI AMD Radeon RX 550',
@@ -168,7 +185,8 @@ const mockup_graphics_cards: Products = [
     price: 69.99,
     slug: 'rx550',
     stock: 5,
-    brand_id: 'brand-01'
+    brand_id: 'brand-01',
+    active: true
   },
   {
     name: 'MSI NVIDIA GeForce RTX 3050',
@@ -177,7 +195,8 @@ const mockup_graphics_cards: Products = [
     price: 249.99,
     slug: 'rtx3050',
     stock: 7,
-    brand_id: 'brand-01'
+    brand_id: 'brand-01',
+    active: true
   },
   {
     name: 'ASUS AMD Radeon RX 6400',
@@ -186,7 +205,8 @@ const mockup_graphics_cards: Products = [
     price: 129.99,
     slug: 'rx6400',
     stock: 4,
-    brand_id: 'brand-02'
+    brand_id: 'brand-02',
+    active: true
   }
 ]
 

@@ -8,7 +8,8 @@ const mockup_ram: Products = [
     price: 79.99,
     slug: 'corsair16gbddr4',
     stock: 10,
-    brand_id: 'brand-05'
+    brand_id: 'brand-05',
+    active: true
   },
   {
     name: 'G.Skill Trident Z RGB 32GB DDR4 RAM',
@@ -17,7 +18,8 @@ const mockup_ram: Products = [
     price: 149.99,
     slug: 'gskill32gbddr4',
     stock: 8,
-    brand_id: 'brand-28'
+    brand_id: 'brand-28',
+    active: true
   },
   {
     name: 'Crucial Ballistix 8GB DDR4 RAM',
@@ -26,7 +28,8 @@ const mockup_ram: Products = [
     price: 39.99,
     slug: 'crucial8gbddr4',
     stock: 12,
-    brand_id: 'brand-24'
+    brand_id: 'brand-24',
+    active: true
   },
   {
     name: 'Kingston HyperX Fury 16GB DDR4 RAM',
@@ -35,7 +38,8 @@ const mockup_ram: Products = [
     price: 69.99,
     slug: 'kingston16gbddr4',
     stock: 7,
-    brand_id: 'brand-26'
+    brand_id: 'brand-26',
+    active: true
   },
   {
     name: 'Team T-Force Delta RGB 32GB DDR4 RAM',
@@ -44,7 +48,8 @@ const mockup_ram: Products = [
     price: 179.99,
     slug: 'team32gbddr4-delta',
     stock: 6,
-    brand_id: 'brand-29'
+    brand_id: 'brand-29',
+    active: true
   },
   {
     name: 'Patriot Viper Steel 64GB DDR4 RAM',
@@ -54,7 +59,8 @@ const mockup_ram: Products = [
     price: 249.99,
     slug: 'patriot64gbddr4',
     stock: 5,
-    brand_id: 'brand-30'
+    brand_id: 'brand-30',
+    active: true
   },
   {
     name: 'Corsair Dominator Platinum RGB 64GB DDR4 RAM',
@@ -63,7 +69,8 @@ const mockup_ram: Products = [
     price: 279.99,
     slug: 'corsair64gbddr4',
     stock: 4,
-    brand_id: 'brand-05'
+    brand_id: 'brand-05',
+    active: true
   },
   {
     name: 'HyperX Predator RGB 32GB DDR4 RAM',
@@ -73,7 +80,8 @@ const mockup_ram: Products = [
     price: 149.99,
     slug: 'hyperx32gbddr4',
     stock: 8,
-    brand_id: 'brand-26'
+    brand_id: 'brand-26',
+    active: true
   },
   {
     name: 'G.Skill Ripjaws V 16GB DDR4 RAM',
@@ -82,7 +90,8 @@ const mockup_ram: Products = [
     price: 69.99,
     slug: 'gskill16gbddr4',
     stock: 9,
-    brand_id: 'brand-28'
+    brand_id: 'brand-28',
+    active: true
   },
   {
     name: 'Team T-Force Vulcan Z 32GB DDR4 RAM',
@@ -91,7 +100,8 @@ const mockup_ram: Products = [
     price: 119.99,
     slug: 'team32gbddr4-vulcanz',
     stock: 6,
-    brand_id: 'brand-29'
+    brand_id: 'brand-29',
+    active: true
   }
 ]
 

@@ -10,6 +10,7 @@ export type Products = {
   image: string
   price: number
   stock: number
+  active?: boolean
   brand_id: string
 }[]
 
@@ -20,5 +21,6 @@ export type Processors = {
   image: string
   price: number
   stock: number
+  active?: boolean
   brand_id: 'brand-08' | 'brand-06' // Intel or AMD
 }[]

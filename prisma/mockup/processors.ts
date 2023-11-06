@@ -9,7 +9,8 @@ const mockup_processors: Processors = [
     price: 499.99,
     slug: 'i910900k',
     stock: 5,
-    brand_id: 'brand-08'
+    brand_id: 'brand-08',
+    active: true
   },
   {
     name: 'AMD Ryzen 9 5900X 12-Core Processor',
@@ -19,7 +20,8 @@ const mockup_processors: Processors = [
     price: 549.99,
     slug: 'ryzen5900x',
     stock: 3,
-    brand_id: 'brand-06'
+    brand_id: 'brand-06',
+    active: true
   },
   {
     name: 'Intel Core i7-10700K 8-Core Processor',
@@ -28,7 +30,8 @@ const mockup_processors: Processors = [
     price: 369.99,
     slug: 'i710700k',
     stock: 6,
-    brand_id: 'brand-08'
+    brand_id: 'brand-08',
+    active: true
   },
   {
     name: 'AMD Ryzen 7 5800X 8-Core Processor',
@@ -38,7 +41,8 @@ const mockup_processors: Processors = [
     price: 449.99,
     slug: 'ryzen5800x',
     stock: 4,
-    brand_id: 'brand-06'
+    brand_id: 'brand-06',
+    active: true
   },
   {
     name: 'Intel Core i5-10600K 6-Core Processor',
@@ -47,7 +51,8 @@ const mockup_processors: Processors = [
     price: 259.99,
     slug: 'i510600k',
     stock: 8,
-    brand_id: 'brand-08'
+    brand_id: 'brand-08',
+    active: true
   },
   {
     name: 'AMD Ryzen 5 5600X 6-Core Processor',
@@ -56,7 +61,8 @@ const mockup_processors: Processors = [
     price: 299.99,
     slug: 'ryzen5600x',
     stock: 10,
-    brand_id: 'brand-06'
+    brand_id: 'brand-06',
+    active: true
   },
   {
     name: 'Intel Core i3-10100 4-Core Processor',
@@ -66,7 +72,8 @@ const mockup_processors: Processors = [
     price: 129.99,
     slug: 'i310100',
     stock: 6,
-    brand_id: 'brand-08'
+    brand_id: 'brand-08',
+    active: true
   },
   {
     name: 'AMD Ryzen 3 3300X 4-Core Processor',
@@ -76,7 +83,8 @@ const mockup_processors: Processors = [
     price: 109.99,
     slug: 'ryzen3300x',
     stock: 7,
-    brand_id: 'brand-06'
+    brand_id: 'brand-06',
+    active: true
   },
   {
     name: 'Intel Core i9-11900K 8-Core Processor',
@@ -86,7 +94,8 @@ const mockup_processors: Processors = [
     price: 599.99,
     slug: 'i911900k',
     stock: 4,
-    brand_id: 'brand-08'
+    brand_id: 'brand-08',
+    active: true
   },
   {
     name: 'AMD Ryzen 9 5950X 16-Core Processor',
@@ -96,7 +105,8 @@ const mockup_processors: Processors = [
     price: 749.99,
     slug: 'ryzen5950x',
     stock: 2,
-    brand_id: 'brand-06'
+    brand_id: 'brand-06',
+    active: true
   }
 ]
 
