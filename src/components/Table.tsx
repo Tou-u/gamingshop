@@ -6,17 +6,15 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  Input,
-  Button,
-  DropdownTrigger,
-  Dropdown,
-  DropdownMenu,
-  DropdownItem,
-  Chip,
-  Pagination,
-  Selection,
-  Tooltip
-} from '@nextui-org/react'
+  Selection
+} from '@nextui-org/table'
+import { Input } from '@nextui-org/input'
+import { Button } from '@nextui-org/button'
+import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/dropdown'
+import { Chip } from '@nextui-org/chip'
+import { Pagination } from '@nextui-org/pagination'
+import { Tooltip } from '@nextui-org/tooltip'
+import { Link } from '@nextui-org/link'
 import { useCallback, useMemo, useState } from 'react'
 import { PlusIcon } from '@/icons/PlusIcon'
 import { ChevronDownIcon } from '@/icons/ChevronDownIcon'
@@ -24,6 +22,7 @@ import { SearchIcon } from '@/icons/SearchIcon'
 import { EyeIcon } from '@/icons/EyeIcon'
 import { EditIcon } from '@/icons/EditIcon'
 import { DeleteIcon } from '@/icons/DeleteIcon'
+import NextLink from 'next/link'
 
 const columns = [
   { name: 'NAME', uid: 'name' },
@@ -129,15 +128,21 @@ export default function App({ products }: { products: Products }) {
       case 'actions':
         return (
           <div className="relative flex items-center gap-2">
-            <Tooltip content="Details">
-              <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+            <Tooltip content="See in store">
+              <a
+                className="text-lg text-default-400 cursor-pointer active:opacity-50"
+                href={`/product/${product.slug}`}
+                target="_blank">
                 <EyeIcon />
-              </span>
+              </a>
             </Tooltip>
             <Tooltip content="Edit">
-              <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+              <Link
+                as={NextLink}
+                href={`/dashboard/${product.id}`}
+                className="text-lg text-default-400 cursor-pointer active:opacity-50">
                 <EditIcon />
-              </span>
+              </Link>
             </Tooltip>
             <Tooltip color="danger" content="Delete">
               <span className="text-lg text-danger cursor-pointer active:opacity-50">
@@ -199,7 +204,12 @@ export default function App({ products }: { products: Products }) {
                 ))}
               </DropdownMenu>
             </Dropdown>
-            <Button className="bg-foreground text-background" size="sm" endContent={<PlusIcon />}>
+            <Button
+              as={NextLink}
+              href={`/dashboard/newProduct`}
+              className="bg-foreground text-background"
+              size="sm"
+              endContent={<PlusIcon />}>
               Add New
             </Button>
           </div>
