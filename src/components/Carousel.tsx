@@ -29,9 +29,7 @@ export default function Carousel({ products }: { products: Products }) {
         showDots
         responsive={responsive}
         ssr
-        infinite
-        customTransition="all .5"
-        transitionDuration={500}
+        // infinite
         removeArrowOnDeviceType={['tablet', 'mobile']}
         partialVisible
         renderDotsOutside

@@ -16,7 +16,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <Suspense fallback={<NavBarSkeleton />}>
             <Header />
           </Suspense>
-          {children}
+          <main className="max-w-[1050px] m-auto p-2">{children}</main>
         </Providers>
       </body>
     </html>

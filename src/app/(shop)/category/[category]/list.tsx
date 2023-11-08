@@ -25,11 +25,11 @@ export default function CategoryList({ products }: { products: Products }) {
 
   return (
     <>
-      <div className="pl-3 flex pb-2 gap-2">
+      <div className="flex items-center gap-2 pb-2">
         <Select setOrderBy={setOrderBy} />
         <Autocomplete brands={brands} setSortProducts={setSortProducts} products={products} />
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-5 place-items-center gap-4">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] place-items-center gap-2">
         {filterProducts.map((product) => (
           <ProductCard product={product} key={product.slug} />
         ))}
