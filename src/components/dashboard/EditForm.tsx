@@ -1,5 +1,5 @@
 'use client'
-import { Key, useEffect, useState } from 'react'
+import { FormEvent, Key, useEffect, useState } from 'react'
 import { Input, Textarea } from '@nextui-org/input'
 import { Button, ButtonGroup } from '@nextui-org/button'
 import { Autocomplete, AutocompleteItem } from '@nextui-org/autocomplete'
@@ -49,7 +49,7 @@ export default function EditForm({
 }) {
   const [selectedCategory, setSelectedCategory] = useState<Key>(product.category.id)
   const [selectedBrand, setSelectedBrand] = useState<Key>(product.brand.id)
-  const [isSelected, setIsSelected] = useState(product.active)
+  const [isPublished, setIsPublished] = useState(product.active)
 
   const [state, formAction] = useFormState(EditProduct, undefined)
 
@@ -61,20 +61,53 @@ export default function EditForm({
     checkState()
   }, [state])
 
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    const data = new FormData(event.currentTarget)
+    const additionalInfo = [
+      { name: 'category_id', value: selectedCategory as string },
+      { name: 'brand_id', value: selectedBrand as string },
+      { name: 'active', value: isPublished ? 'true' : 'false' },
+      { name: 'id', value: product.id }
+    ]
+    additionalInfo.map((info) => data.append(info.name, info.value || ''))
+    await formAction(data)
+  }
+
   return (
     <>
       <Toaster position="bottom-center" />
-      <form action={formAction}>
+      <form onSubmit={handleSubmit}>
         <section className="flex flex-col gap-3">
-          <Input type="text" label="Slug" name="slug" defaultValue={product?.slug} />
-          <Input type="text" label="Name" name="name" defaultValue={product?.name} />
+          <Input
+            type="text"
+            label="Slug"
+            name="slug"
+            defaultValue={product?.slug}
+            autoComplete="off"
+          />
+          <Input
+            type="text"
+            label="Name"
+            name="name"
+            defaultValue={product?.name}
+            autoComplete="off"
+          />
           <Textarea
             type="text"
             label="Description"
             name="description"
+            placeholder="0"
             defaultValue={product?.description}
+            autoComplete="off"
           />
-          <Input type="text" label="Image" name="image" defaultValue={product?.image} />
+          <Input
+            type="text"
+            label="Image"
+            name="image"
+            defaultValue={product?.image}
+            autoComplete="off"
+          />
           <Input
             type="number"
             label="Price"
@@ -84,6 +117,7 @@ export default function EditForm({
               </div>
             }
             name="price"
+            placeholder="0"
             defaultValue={product?.price.toString()}
           />
           <Input
@@ -93,49 +127,24 @@ export default function EditForm({
             defaultValue={product?.stock.toString()}
           />
           <Autocomplete
+            onFocusChange={() => {}}
             label="Category"
-            isRequired
+            defaultItems={categories}
             selectedKey={selectedCategory}
             onSelectionChange={setSelectedCategory}>
-            {categories.map((category) => (
-              <AutocompleteItem key={category.id} value={category.id}>
-                {category.name}
-              </AutocompleteItem>
-            ))}
+            {(item) => <AutocompleteItem key={item.id}>{item.name}</AutocompleteItem>}
           </Autocomplete>
           <Autocomplete
+            onFocusChange={() => {}}
             label="Brand"
-            isRequired
+            defaultItems={brands}
             selectedKey={selectedBrand}
             onSelectionChange={setSelectedBrand}>
-            {brands.map((brand) => (
-              <AutocompleteItem key={brand.id} value={brand.id}>
-                {brand.name}
-              </AutocompleteItem>
-            ))}
+            {(item) => <AutocompleteItem key={item.id}>{item.name}</AutocompleteItem>}
           </Autocomplete>
-          <Switch
-            name="active"
-            isSelected={isSelected}
-            onValueChange={setIsSelected}
-            value={'active'}>
+          <Switch isSelected={isPublished} onValueChange={setIsPublished}>
             Publish product
           </Switch>
-          <input
-            type="text"
-            name="category_id"
-            value={selectedCategory as string}
-            onChange={() => setSelectedCategory}
-            hidden
-          />
-          <input
-            type="text"
-            name="brand_id"
-            value={selectedBrand as string}
-            onChange={() => setSelectedBrand}
-            hidden
-          />
-          <input type="text" defaultValue={product.id} name="id" hidden />
           <ButtonGroup>
             <Button as={NextLink} href="/dashboard">
               Go Back

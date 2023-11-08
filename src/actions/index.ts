@@ -9,12 +9,12 @@ const ProductSchema = z.object({
   name: z.string().min(1, { message: 'A name is required' }).trim(),
   description: z.string().min(1, { message: 'A description is required' }).trim(),
   image: z.string().min(1, { message: 'An image is required' }).trim(),
-  price: z.coerce.number(),
-  stock: z.coerce.number(),
+  price: z.coerce.number().min(0, { message: 'Enter a valid price' }),
+  stock: z.coerce.number().min(0, { message: 'Enter a valid stock' }),
   category_id: z.string().min(1, { message: 'A category is required' }),
   brand_id: z.string().min(1, { message: 'A brand is required' }),
-  id: z.string(),
-  active: z.coerce.boolean()
+  active: z.enum(['true', 'false']).transform((value) => value === 'true'),
+  id: z.string().optional()
 })
 
 export async function NewProduct(prevState: any, formData: FormData) {
@@ -26,7 +26,7 @@ export async function NewProduct(prevState: any, formData: FormData) {
     return { error: errors[0].message }
   }
 
-  const { id, ...data } = response.data
+  const data = response.data
 
   try {
     await prisma.product.create({
@@ -48,7 +48,6 @@ export async function EditProduct(prevState: any, formData: FormData) {
 
   if (!response.success) {
     const { errors } = response.error
-    console.log(errors)
     return { error: errors[0].message }
   }
 
