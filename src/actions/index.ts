@@ -67,3 +67,17 @@ export async function EditProduct(prevState: any, formData: FormData) {
     return { error: 'Failed to save the product, try again later.' }
   }
 }
+
+export async function DeleteProduct(prevState: any, formData: FormData) {
+  const id = formData.get('id') as string
+
+  try {
+    await prisma.product.delete({
+      where: { id }
+    })
+    revalidatePath('/dashboard')
+    return { success: true }
+  } catch (error) {
+    return { error: 'Failed to delete the product, try again later.' }
+  }
+}
