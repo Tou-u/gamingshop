@@ -8,47 +8,19 @@ import NextLink from 'next/link'
 import { useFormState, useFormStatus } from 'react-dom'
 import { EditProduct } from '@/actions'
 import toast, { Toaster } from 'react-hot-toast'
-
-export type Product = {
-  id: string
-  name: string
-  slug: string
-  description: string
-  image: string
-  price: number
-  stock: number
-  active: boolean
-  category: {
-    id: string
-    name: string
-  }
-  brand: {
-    id: string
-    name: string
-  }
-}
-
-export type Brands = {
-  id: string
-  name: string
-}[]
-
-export type Categories = {
-  id: string
-  name: string
-}[]
+import { Brand, Category, FullProduct } from '@/types'
 
 export default function EditForm({
   product,
   categories,
   brands
 }: {
-  product: Product
-  categories: Categories
-  brands: Brands
+  product: FullProduct
+  categories: Category[]
+  brands: Brand[]
 }) {
-  const [selectedCategory, setSelectedCategory] = useState<Key>(product.category.id)
-  const [selectedBrand, setSelectedBrand] = useState<Key>(product.brand.id)
+  const [selectedCategory, setSelectedCategory] = useState<Key>(product.category.id!)
+  const [selectedBrand, setSelectedBrand] = useState<Key>(product.brand.id!)
   const [isPublished, setIsPublished] = useState(product.active)
 
   const [state, formAction] = useFormState(EditProduct, undefined)
@@ -132,7 +104,7 @@ export default function EditForm({
             defaultItems={categories}
             selectedKey={selectedCategory}
             onSelectionChange={setSelectedCategory}>
-            {(item) => <AutocompleteItem key={item.id}>{item.name}</AutocompleteItem>}
+            {(item) => <AutocompleteItem key={item.id!}>{item.name}</AutocompleteItem>}
           </Autocomplete>
           <Autocomplete
             onFocusChange={() => {}}
@@ -140,7 +112,7 @@ export default function EditForm({
             defaultItems={brands}
             selectedKey={selectedBrand}
             onSelectionChange={setSelectedBrand}>
-            {(item) => <AutocompleteItem key={item.id}>{item.name}</AutocompleteItem>}
+            {(item) => <AutocompleteItem key={item.id!}>{item.name}</AutocompleteItem>}
           </Autocomplete>
           <Switch isSelected={isPublished} onValueChange={setIsPublished}>
             Publish product

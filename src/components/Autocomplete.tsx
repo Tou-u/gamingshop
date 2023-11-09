@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
-import { Products } from '@/types'
+import { Product } from '@/types'
 import { Autocomplete as AutocompleteUI, AutocompleteItem } from '@nextui-org/autocomplete'
 
 export default function Autocomplete({
@@ -8,8 +8,8 @@ export default function Autocomplete({
   products
 }: {
   brands: string[]
-  setSortProducts: Dispatch<SetStateAction<Products>>
-  products: Products
+  setSortProducts: Dispatch<SetStateAction<Product[]>>
+  products: Product[]
 }) {
   function handleChangeBrand(selectedBrand: string) {
     if (selectedBrand) {

@@ -8,23 +8,14 @@ import { Autocomplete, AutocompleteItem } from '@nextui-org/autocomplete'
 import { Switch } from '@nextui-org/switch'
 import toast, { Toaster } from 'react-hot-toast'
 import { NewProduct } from '@/actions'
-
-type Categories = {
-  id: string
-  name: string
-}[]
-
-type Brands = {
-  id: string
-  name: string
-}[]
+import { Brand, Category } from '@/types'
 
 export default function EditForm({
   categories,
   brands
 }: {
-  categories: Categories
-  brands: Brands
+  categories: Category[]
+  brands: Brand[]
 }) {
   const [selectedCategory, setSelectedCategory] = useState<Key>()
   const [selectedBrand, setSelectedBrand] = useState<Key>()
@@ -84,7 +75,7 @@ export default function EditForm({
             defaultItems={categories}
             selectedKey={selectedCategory}
             onSelectionChange={setSelectedCategory}>
-            {(item) => <AutocompleteItem key={item.id}>{item.name}</AutocompleteItem>}
+            {(item) => <AutocompleteItem key={item.id!}>{item.name}</AutocompleteItem>}
           </Autocomplete>
           <Autocomplete
             onFocusChange={() => {}}
@@ -92,7 +83,7 @@ export default function EditForm({
             defaultItems={brands}
             selectedKey={selectedBrand}
             onSelectionChange={setSelectedBrand}>
-            {(item) => <AutocompleteItem key={item.id}>{item.name}</AutocompleteItem>}
+            {(item) => <AutocompleteItem key={item.id!}>{item.name}</AutocompleteItem>}
           </Autocomplete>
           <Switch isSelected={isPublished} onValueChange={setIsPublished}>
             Publish product
