@@ -24,7 +24,7 @@ import { EditIcon } from '@/icons/EditIcon'
 import NextLink from 'next/link'
 import { Modal, ModalContent, ModalHeader, ModalFooter, useDisclosure } from '@nextui-org/modal'
 import { DeleteIcon } from '@/icons/DeleteIcon'
-import { useFormState, useFormStatus } from 'react-dom'
+import { useFormState } from 'react-dom'
 import { DeleteProduct } from '@/actions'
 
 const columns = [
