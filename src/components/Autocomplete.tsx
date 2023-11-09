@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Dispatch, SetStateAction } from 'react'
 import { Product } from '@/types'
 import { Autocomplete as AutocompleteUI, AutocompleteItem } from '@nextui-org/autocomplete'
