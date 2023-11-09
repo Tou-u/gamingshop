@@ -6,7 +6,7 @@ export default async function Dashboard() {
   return (
     <div>
       <h1>Dashboard</h1>
-      <Table products={products.data!} />
+      {products.data && <Table products={products.data} />}
     </div>
   )
 }

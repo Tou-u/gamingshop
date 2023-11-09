@@ -21,7 +21,7 @@ export default async function GetData() {
 
   return (
     <>
-      {products.data && (
+      {graphic_cards && processors && (
         <section>
           <Link
             as={NextLink}
@@ -30,7 +30,7 @@ export default async function GetData() {
             className="font-bold text-lg p-1">
             Graphics Cards
           </Link>
-          <Carousel products={graphic_cards!} />
+          <Carousel products={graphic_cards} />
           <article>
             <Link
               as={NextLink}
@@ -39,7 +39,7 @@ export default async function GetData() {
               className="font-bold text-lg p-1">
               Processors
             </Link>
-            <Carousel products={processors!} />
+            <Carousel products={processors} />
           </article>
         </section>
       )}

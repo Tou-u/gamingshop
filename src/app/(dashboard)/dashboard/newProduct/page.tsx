@@ -7,7 +7,9 @@ export default async function ProductPage() {
   return (
     <main className="p-2">
       <h1 className="text-center text-lg">New Product</h1>
-      <NewForm categories={categories.data!} brands={brands.data!} />
+      {categories.data && brands.data && (
+        <NewForm categories={categories.data} brands={brands.data} />
+      )}
     </main>
   )
 }

@@ -11,11 +11,8 @@ export default async function GetData({ category }: { category: string }) {
 
   return (
     <>
-      {products.data?.length === 0 ? (
-        <p>No products found</p>
-      ) : (
-        <CategoryList products={products.data!} />
-      )}
+      {products.data && <CategoryList products={products.data} />}
+      {products.data?.length === 0 && <p>No products found</p>}
     </>
   )
 }

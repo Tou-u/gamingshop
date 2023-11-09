@@ -20,7 +20,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
     <main className="p-2">
       <h1 className="text-lg font-bold text-center pb-2">{product.data.name}</h1>
       <div className="grid grid-cols-2 place-items-center">
-        <Image src="/placeholder.jpeg" />
+        <Image src="/placeholder.jpeg" alt={product.data.name} />
         <div>
           <p className="text-lg">
             {Intl.NumberFormat('en-US', {
