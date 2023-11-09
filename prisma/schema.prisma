@@ -13,6 +13,7 @@ model User {
   role         String
   auth_session Session[]
   key          Key[]
+  cart         Cart?
 }
 
 model Session {
@@ -45,8 +46,10 @@ model Product {
   active      Boolean  @default(false)
   category_id String
   brand_id    String
+  cart_id     String?
   category    Category @relation(references: [id], fields: [category_id])
   brand       Brand    @relation(references: [id], fields: [brand_id])
+  cart        Cart?    @relation(references: [id], fields: [cart_id])
 }
 
 model Category {
@@ -59,4 +62,11 @@ model Brand {
   id       String    @id @default(cuid())
   name     String    @unique
   products Product[]
+}
+
+model Cart {
+  id       String    @id @default(cuid())
+  products Product[]
+  user_id  String    @unique
+  user     User      @relation(references: [id], fields: [user_id], onDelete: Cascade)
 }

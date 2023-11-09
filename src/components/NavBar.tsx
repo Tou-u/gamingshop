@@ -1,5 +1,4 @@
 'use client'
-
 import {
   Navbar,
   NavbarBrand,
@@ -18,14 +17,17 @@ import NextLink from 'next/link'
 import UserDropdown from './ui/UserDropdown'
 import { SearchIcon } from '@/icons/SearchIcon'
 import { useRouter } from 'next/navigation'
-import { Categories } from '@/types'
+import { Category, UserCart } from '@/types'
+import CartPopover from './CartPopover'
 
 export const NavBar = ({
   session,
-  categories
+  categories,
+  usercart
 }: {
   session: Session | null
-  categories: Categories
+  categories: Category[]
+  usercart: UserCart | undefined
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const user = session?.user
@@ -47,7 +49,6 @@ export const NavBar = ({
       <NavbarContent className="sm:hidden" justify="start">
         <NavbarMenuToggle aria-label={isMenuOpen ? 'Close menu' : 'Open menu'} />
         <NavbarBrand>
-          {/* <AcmeLogo /> */}
           <Link href="/" as={NextLink} className="font-bold text-inherit">
             GamingShop
           </Link>
@@ -56,7 +57,6 @@ export const NavBar = ({
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarBrand>
-          {/* <AcmeLogo /> */}
           <p className="font-bold text-inherit">GamingShop</p>
         </NavbarBrand>
         <NavbarItem>
@@ -92,6 +92,7 @@ export const NavBar = ({
             startContent={<SearchIcon />}
           />
         </form>
+        <CartPopover usercart={usercart} />
         <NavbarItem>
           {user ? (
             <UserDropdown user={user} />

@@ -103,6 +103,23 @@ export async function getProductsByName(name: string) {
   }
 }
 
+export async function getUserCart(user_id: string) {
+  try {
+    const products = await prisma.cart.findUnique({
+      where: {
+        user_id
+      },
+      select: {
+        products: true
+      }
+    })
+    return { data: products }
+  } catch (error) {
+    console.log(error)
+    return { error: 'Error obtaining the cart' }
+  }
+}
+
 // Dashboard Site
 export async function getProductsDashboard() {
   try {
