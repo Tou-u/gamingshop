@@ -3,7 +3,7 @@ import { Fragment, useState } from 'react'
 import { Popover, PopoverTrigger, PopoverContent } from '@nextui-org/popover'
 import { Button } from '@nextui-org/button'
 import { Card, CardHeader, CardBody, CardFooter } from '@nextui-org/card'
-import { Link } from '@nextui-org/Link'
+import { Link } from '@nextui-org/link'
 import { UserCart } from '@/types'
 import NextLink from 'next/link'
 
