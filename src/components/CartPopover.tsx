@@ -1,14 +1,20 @@
 import CartIcon from '@/icons/CartIcon'
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import { Popover, PopoverTrigger, PopoverContent } from '@nextui-org/popover'
 import { Button } from '@nextui-org/button'
 import { Card, CardHeader, CardBody, CardFooter } from '@nextui-org/card'
 import { Link } from '@nextui-org/Link'
 import { UserCart } from '@/types'
+import NextLink from 'next/link'
 
 export default function CartPopover({ usercart }: { usercart: UserCart | undefined }) {
+  const [isOpen, setIsOpen] = useState(false)
   return (
-    <Popover placement="bottom" backdrop="opaque">
+    <Popover
+      placement="bottom"
+      backdrop="opaque"
+      isOpen={isOpen}
+      onOpenChange={(open) => setIsOpen(open)}>
       <PopoverTrigger>
         <Button isIconOnly variant="light" radius="full">
           <CartIcon />
@@ -43,7 +49,9 @@ export default function CartPopover({ usercart }: { usercart: UserCart | undefin
                 </section>
               </CardBody>
               <CardFooter className="gap-3">
-                <Link href="/">Proceed to payment</Link>
+                <Link as={NextLink} href="/cart" onClick={() => setIsOpen(!isOpen)}>
+                  Proceed to payment
+                </Link>
               </CardFooter>
             </>
           )}
