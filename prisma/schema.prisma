@@ -44,6 +44,7 @@ model Product {
   price       Int
   stock       Int
   active      Boolean  @default(false)
+  created_at  DateTime @default(now())
   category_id String
   brand_id    String
   cart_id     String?
