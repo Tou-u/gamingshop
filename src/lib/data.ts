@@ -3,21 +3,36 @@ import prisma from './prisma'
 // Shop Site
 export async function getMainProducts() {
   try {
-    const products = await prisma.category.findMany({
+    // const products = await prisma.category.findMany({
+    //   select: {
+    //     name: true,
+    //     products: {
+    //       take: 6,
+    //       select: {
+    //         slug: true,
+    //         name: true,
+    //         price: true,
+    //         image: true
+    //       },
+    //       where: {
+    //         active: { equals: true }
+    //       },
+    //     }
+    //   }
+    // })
+    const products = await prisma.product.findMany({
       select: {
+        slug: true,
         name: true,
-        products: {
-          take: 6,
-          select: {
-            slug: true,
-            name: true,
-            price: true,
-            image: true
-          },
-          where: {
-            active: { equals: true }
-          }
-        }
+        price: true,
+        image: true
+      },
+      take: 10,
+      where: {
+        active: { equals: true }
+      },
+      orderBy: {
+        created_at: 'asc'
       }
     })
     return { data: products }
