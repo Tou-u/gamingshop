@@ -5,26 +5,18 @@ import {
   DropdownItem,
   DropdownSection
 } from '@nextui-org/dropdown'
-import { User } from '@nextui-org/user'
+import { Avatar } from '@nextui-org/avatar'
 import { User as LuciaUser } from 'lucia'
 import { useRouter } from 'next/navigation'
-import Form from '../Form'
+import Form from './Form'
 
 export default function UserDropdown({ user }: { user: LuciaUser }) {
   const router = useRouter()
   return (
-    <div className="flex items-center">
+    <div className="cursor-pointer">
       <Dropdown placement="bottom-start">
         <DropdownTrigger>
-          <User
-            as="button"
-            avatarProps={{
-              isBordered: true,
-              name: user.username
-            }}
-            className="transition-transform"
-            name={user.username}
-          />
+          <Avatar isBordered color="primary" name={user.username} />
         </DropdownTrigger>
         <DropdownMenu aria-label="User Actions" variant="flat">
           {user.role === 'admin' ? (
