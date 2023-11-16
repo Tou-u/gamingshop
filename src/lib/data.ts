@@ -1,58 +1,100 @@
 import prisma from './prisma'
+import { cache } from 'react'
 
 // Shop Site
-export async function getMainProducts() {
-  try {
-    // const products = await prisma.category.findMany({
-    //   select: {
-    //     name: true,
-    //     products: {
-    //       take: 6,
-    //       select: {
-    //         slug: true,
-    //         name: true,
-    //         price: true,
-    //         image: true
-    //       },
-    //       where: {
-    //         active: { equals: true }
-    //       },
-    //     }
-    //   }
-    // })
+const api = {
+  getMainProducts: async () => {
+    try {
+      const products = await prisma.product.findMany({
+        select: {
+          slug: true,
+          name: true,
+          price: true,
+          image: true
+        },
+        take: 10,
+        where: {
+          active: { equals: true }
+        },
+        orderBy: {
+          created_at: 'desc'
+        }
+      })
+      return products
+    } catch (error) {
+      throw new Error('Error obtaining the products')
+    }
+  },
+  getUserCart: cache(async (user_id: string) => {
+    const cart = await prisma.cart.findUnique({
+      where: {
+        user_id
+      },
+      select: {
+        products: {
+          select: {
+            slug: true,
+            name: true,
+            image: true,
+            price: true
+          },
+          where: {
+            active: { equals: true }
+          }
+        }
+      }
+    })
+    return cart?.products
+  }),
+  getProductBySlug: async (slug: string) => {
+    try {
+      const product = await prisma.product.findUnique({
+        where: { slug, active: { equals: true } },
+        select: {
+          name: true,
+          description: true,
+          image: true,
+          price: true,
+          stock: true,
+          slug: true
+        }
+      })
+      return product
+    } catch (error) {
+      throw new Error('Error obtaining the product')
+    }
+  },
+  getProductsByName: async (name: string) => {
     const products = await prisma.product.findMany({
+      where: {
+        name: { contains: name, mode: 'insensitive' },
+        active: { equals: true }
+      },
       select: {
         slug: true,
         name: true,
         price: true,
         image: true
-      },
-      take: 10,
-      where: {
-        active: { equals: true }
-      },
-      orderBy: {
-        created_at: 'asc'
       }
     })
-    return { data: products }
-  } catch (error) {
-    return { error: 'Error obtaining the products' }
+    return products
   }
 }
 
-export async function getCategories() {
-  try {
-    const categories = await prisma.category.findMany({
-      select: {
-        name: true
-      }
-    })
-    return { data: categories }
-  } catch (error) {
-    return { error: 'Error obtaining the categories' }
-  }
-}
+export default api
+
+// export async function getCategories() {
+//   try {
+//     const categories = await prisma.category.findMany({
+//       select: {
+//         name: true
+//       }
+//     })
+//     return { data: categories }
+//   } catch (error) {
+//     return { error: 'Error obtaining the categories' }
+//   }
+// }
 
 export async function getProductsPerCategory(name: string) {
   try {
@@ -77,61 +119,6 @@ export async function getProductsPerCategory(name: string) {
     return { data: products }
   } catch (error) {
     return { error: 'Error obtaining the products' }
-  }
-}
-
-export async function getProductBySlug(slug: string) {
-  try {
-    const product = await prisma.product.findUnique({
-      where: { slug, active: { equals: true } },
-      select: {
-        name: true,
-        description: true,
-        image: true,
-        price: true,
-        stock: true
-      }
-    })
-    return { data: product }
-  } catch (error) {
-    return { error: 'Error obtaining the product' }
-  }
-}
-
-export async function getProductsByName(name: string) {
-  try {
-    const products = await prisma.product.findMany({
-      where: {
-        name: { contains: name, mode: 'insensitive' },
-        active: { equals: true }
-      },
-      select: {
-        slug: true,
-        name: true,
-        price: true,
-        image: true
-      }
-    })
-    return { data: products }
-  } catch (error) {
-    return { error: 'Error obtaining the products' }
-  }
-}
-
-export async function getUserCart(user_id: string) {
-  try {
-    const products = await prisma.cart.findUnique({
-      where: {
-        user_id
-      },
-      select: {
-        products: true
-      }
-    })
-    return { data: products }
-  } catch (error) {
-    console.log(error)
-    return { error: 'Error obtaining the cart' }
   }
 }
 

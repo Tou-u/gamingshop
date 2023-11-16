@@ -1,7 +1,7 @@
 import { getPageSession } from '@/auth/lucia'
-import { getUserCart } from '@/lib/data'
 import { NavBar } from './NavBar'
 import { UserCart } from '@/types'
+import api from '@/lib/data'
 
 let usercart: UserCart | undefined = undefined
 
@@ -9,7 +9,7 @@ export default async function Header() {
   const session = await getPageSession().catch((session) => (session = null))
 
   if (session) {
-    usercart = (await getUserCart(session.user.userId)).data?.products
+    usercart = await api.getUserCart(session.user.userId)
   }
 
   return <NavBar session={session} usercart={usercart} />
