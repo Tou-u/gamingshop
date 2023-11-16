@@ -187,7 +187,7 @@ export default function App({ products }: { products: Product[] }) {
           <div className="flex gap-3">
             <Dropdown>
               <DropdownTrigger>
-                <Button endContent={<ChevronDownIcon />} size="sm" variant="flat">
+                <Button endContent={<ChevronDownIcon size={16} />} size="sm" variant="flat">
                   Status
                 </Button>
               </DropdownTrigger>

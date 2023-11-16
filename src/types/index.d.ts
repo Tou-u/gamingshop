@@ -17,17 +17,10 @@ export type Category = {
 }
 
 export type UserCart = {
-  id: string
   slug: string
   name: string
-  description: string
   image: string
   price: number
-  stock: number
-  active: boolean
-  category_id: string
-  brand_id: string
-  cart_id: string | null
 }[]
 
 export type FullProduct = {
