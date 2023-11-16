@@ -10,7 +10,7 @@ export default function ProductCard({ product }: { product: Product }) {
       key={product.slug}
       isPressable
       as={NextLink}
-      href={`/product/${product.slug}`}
+      href={`/${product.slug}`}
       className="w-[200px]">
       <CardBody className="overflow-visible p-0">
         <Image
