@@ -4,6 +4,70 @@ import prisma from '@/lib/prisma'
 import { revalidatePath } from 'next/cache'
 import { Prisma } from '@prisma/client'
 
+// Shop
+export async function AddToCart(prevState: any, formData: FormData) {
+  const user_id = formData.get('user_id') as string
+  const product_slug = formData.get('product_slug') as string
+
+  try {
+    await prisma.user.update({
+      data: {
+        cart: {
+          upsert: {
+            create: {
+              products: {
+                connect: {
+                  slug: product_slug
+                }
+              }
+            },
+            update: {
+              products: {
+                connect: {
+                  slug: product_slug
+                }
+              }
+            }
+          }
+        }
+      },
+      where: {
+        id: user_id
+      }
+    })
+    revalidatePath('/')
+    return { success: true }
+  } catch (error) {
+    return { error: 'Failed to add to cart the product, try again later.' }
+  }
+}
+
+export async function RemoveFromCart(prevState: any, formData: FormData) {
+  const user_id = formData.get('user_id') as string
+  const product_slug = formData.get('product_slug') as string
+
+  try {
+    await prisma.cart.update({
+      data: {
+        products: {
+          disconnect: {
+            slug: product_slug
+          }
+        }
+      },
+      where: {
+        user_id
+      }
+    })
+    revalidatePath('/')
+    return { success: true }
+  } catch (error) {
+    return { error: 'Failed to remove from cart the product, try again later.' }
+  }
+}
+
+// Dashboard
+
 const ProductSchema = z.object({
   slug: z.string().min(1, { message: 'A slug is required' }).trim(),
   name: z.string().min(1, { message: 'A name is required' }).trim(),

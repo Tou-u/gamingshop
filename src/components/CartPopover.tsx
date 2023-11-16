@@ -6,9 +6,16 @@ import { Card, CardHeader, CardBody, CardFooter } from '@nextui-org/card'
 import { Link } from '@nextui-org/link'
 import { UserCart } from '@/types'
 import NextLink from 'next/link'
+import { currencyToUSD } from '@/utils/scripts'
 
 export default function CartPopover({ usercart }: { usercart: UserCart }) {
   const [isOpen, setIsOpen] = useState(false)
+
+  let toPay = 0
+
+  usercart.forEach((product) => {
+    toPay += product.price
+  })
   return (
     <Popover
       placement="bottom"
@@ -48,7 +55,8 @@ export default function CartPopover({ usercart }: { usercart: UserCart }) {
                   ))}
                 </section>
               </CardBody>
-              <CardFooter className="gap-3">
+              <CardFooter className="flex flex-col">
+                <p>Total: {currencyToUSD(toPay)}</p>
                 <Link as={NextLink} href="/cart" onClick={() => setIsOpen(!isOpen)}>
                   Proceed to payment
                 </Link>
