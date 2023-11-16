@@ -63,7 +63,7 @@ export const NavBar = ({
 
     if (!searchValue.trim()) return
 
-    router.push(`/search/${searchValue.trim()}`)
+    router.push(`/search?q=${searchValue.trim()}`)
   }
 
   return (
@@ -131,7 +131,7 @@ export const NavBar = ({
         </form>
         <NavbarItem>
           <div className="flex gap-3 w-[92px]">
-            {usercart ? <CartPopover usercart={usercart} /> : null}
+            {usercart === undefined ? null : <CartPopover usercart={usercart} />}
             {session === undefined ? null : session === null ? (
               <Button as={Link} color="warning" href="/login" variant="flat">
                 Login
