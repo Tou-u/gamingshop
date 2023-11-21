@@ -131,7 +131,9 @@ export const NavBar = ({
         </form>
         <NavbarItem>
           <div className="flex gap-3 w-[92px]">
-            {usercart === undefined ? null : <CartPopover usercart={usercart} />}
+            {usercart === undefined ? null : (
+              <CartPopover usercart={usercart} user={session!.user} />
+            )}
             {session === undefined ? null : session === null ? (
               <Button as={Link} color="warning" href="/login" variant="flat">
                 Login
