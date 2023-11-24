@@ -35,3 +35,14 @@ export type FullProduct = {
   category: Category
   brand: Brand
 }
+
+export type Adress = {
+  id: string
+  first_name: string
+  last_name: string
+  adress: string
+  email: string
+  phone: number
+  info: string | null
+  user_id: string
+}
