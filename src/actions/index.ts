@@ -5,7 +5,7 @@ import { revalidatePath } from 'next/cache'
 import { Prisma } from '@prisma/client'
 
 // Shop
-export async function AddToCart(prevState: any, formData: FormData) {
+export async function AddToCart(formData: FormData) {
   const user_id = formData.get('user_id') as string
   const product_slug = formData.get('product_slug') as string
 
@@ -42,7 +42,7 @@ export async function AddToCart(prevState: any, formData: FormData) {
   }
 }
 
-export async function RemoveFromCart(prevState: any, formData: FormData) {
+export async function RemoveFromCart(formData: FormData) {
   const user_id = formData.get('user_id') as string
   const product_slug = formData.get('product_slug') as string
 
@@ -63,6 +63,42 @@ export async function RemoveFromCart(prevState: any, formData: FormData) {
     return { success: true }
   } catch (error) {
     return { error: 'Failed to remove from cart the product, try again later.' }
+  }
+}
+
+const AdressSchema = z.object({
+  id: z.string().optional(),
+  first_name: z.string().min(1, { message: 'A first name is required' }).trim(),
+  last_name: z.string().min(1, { message: 'A last name is required' }).trim(),
+  adress: z.string().min(1, { message: 'An adress is required' }).trim(),
+  email: z.string().min(1, { message: 'An email is required' }).trim(),
+  phone: z.coerce
+    .number()
+    .gte(10000000, { message: 'Enter a valid phone' })
+    .lte(99999999, { message: 'Enter a valid phone' }),
+  info: z.string().optional(),
+  user_id: z.string()
+})
+
+export async function AddUserAdress(user_id: string, prevState: any, formData: FormData) {
+  formData.append('user_id', user_id)
+  const form = Object.fromEntries(formData.entries())
+  const response = AdressSchema.safeParse(form)
+
+  if (!response.success) {
+    const { errors } = response.error
+    return { error: errors[0].message }
+  }
+
+  const data = response.data
+
+  try {
+    await prisma.adress.create({
+      data
+    })
+    return { success: true }
+  } catch (error) {
+    return { error: 'Failed to save the product, try again later.' }
   }
 }
 

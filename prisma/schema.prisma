@@ -14,6 +14,7 @@ model User {
   auth_session Session[]
   key          Key[]
   cart         Cart?
+  Adress       Adress?
 }
 
 model Session {
@@ -70,4 +71,16 @@ model Cart {
   products Product[]
   user_id  String    @unique
   user     User      @relation(references: [id], fields: [user_id], onDelete: Cascade)
+}
+
+model Adress {
+  id         String  @id @default(cuid())
+  first_name String
+  last_name  String
+  adress     String
+  email      String
+  phone      Int
+  info       String?
+  user_id    String  @unique
+  user       User    @relation(references: [id], fields: [user_id], onDelete: Cascade)
 }
