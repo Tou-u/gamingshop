@@ -1,5 +1,4 @@
 import prisma from './prisma'
-import { cache } from 'react'
 
 // Shop Site
 const api = {
@@ -25,7 +24,7 @@ const api = {
       throw new Error('Error obtaining the products')
     }
   },
-  getUserCart: cache(async (user_id: string) => {
+  getUserCart: async (user_id: string) => {
     const cart = await prisma.cart.findUnique({
       where: {
         user_id
@@ -45,7 +44,7 @@ const api = {
       }
     })
     return cart?.products
-  }),
+  },
   getProductBySlug: async (slug: string) => {
     try {
       const product = await prisma.product.findUnique({
@@ -78,23 +77,18 @@ const api = {
       }
     })
     return products
+  },
+  getUserAdress: async (user_id: string) => {
+    const adress = prisma.adress.findUnique({
+      where: {
+        user_id
+      }
+    })
+    return adress
   }
 }
 
 export default api
-
-// export async function getCategories() {
-//   try {
-//     const categories = await prisma.category.findMany({
-//       select: {
-//         name: true
-//       }
-//     })
-//     return { data: categories }
-//   } catch (error) {
-//     return { error: 'Error obtaining the categories' }
-//   }
-// }
 
 export async function getProductsPerCategory(name: string) {
   try {

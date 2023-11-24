@@ -4,8 +4,8 @@ import api from '@/lib/data'
 import { Fragment } from 'react'
 import { Divider } from '@nextui-org/divider'
 import { currencyToUSD } from '@/utils/scripts'
-import { Button } from '@nextui-org/button'
 import Form from './form'
+import Checkout from './checkout'
 
 export default async function Page() {
   const session = await getPageSession().catch((session) => (session = null))
@@ -19,6 +19,8 @@ export default async function Page() {
   if (products?.length === 0 || !products) {
     redirect('/')
   }
+
+  const adress = await api.getUserAdress(session.user.userId)
 
   let toPay = 0
 
@@ -64,9 +66,7 @@ export default async function Page() {
             <p>Order total:</p>
             <p className="font-bold">{currencyToUSD(toPay)}</p>
           </div>
-          <Button color="primary" className="w-[50%] self-center">
-            Checkout
-          </Button>
+          <Checkout adress={adress} />
         </section>
       </div>
     </>

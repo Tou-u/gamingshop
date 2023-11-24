@@ -1,11 +1,20 @@
-import Form from "@/components/Form";
-import Link from "next/link";
-import { getPageSession } from "@/auth/lucia";
-import { redirect } from "next/navigation";
+import Form from '@/components/Form'
+import Link from 'next/link'
+import { getPageSession } from '@/auth/lucia'
+import { redirect } from 'next/navigation'
 
-const Page = async () => {
-  const session = await getPageSession();
-  if (session) redirect("/");
+type Props = {
+  searchParams: { callbackUrl: string }
+}
+
+const Page = async ({ searchParams }: Props) => {
+  const session = await getPageSession()
+  if (session) {
+    if (searchParams.callbackUrl) {
+      redirect(`/${searchParams.callbackUrl}`)
+    }
+    redirect('/')
+  }
   return (
     <>
       <h1>Sign in</h1>
@@ -20,7 +29,7 @@ const Page = async () => {
       </Form>
       <Link href="/signup">Create an account</Link>
     </>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

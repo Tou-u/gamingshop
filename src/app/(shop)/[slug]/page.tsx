@@ -31,7 +31,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
           <Divider />
           <p>Stock: {product.stock}</p>
           {!session ? (
-            <Button as={NextLink} color="primary" href="/login">
+            <Button as={NextLink} color="primary" href={`/login?callbackUrl=${params.slug}`}>
               Add to cart
             </Button>
           ) : (

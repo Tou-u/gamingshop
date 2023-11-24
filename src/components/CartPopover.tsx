@@ -1,5 +1,5 @@
-import CartIcon from '@/icons/CartIcon'
-import { FormEvent, Fragment, useState } from 'react'
+import CartIcon from '@/components/ui/icons/CartIcon'
+import { Fragment, useState } from 'react'
 import { Popover, PopoverTrigger, PopoverContent } from '@nextui-org/popover'
 import { Button } from '@nextui-org/button'
 import { Card, CardHeader, CardBody, CardFooter } from '@nextui-org/card'
@@ -7,11 +7,8 @@ import { Link } from '@nextui-org/link'
 import { UserCart } from '@/types'
 import NextLink from 'next/link'
 import { currencyToUSD } from '@/utils/scripts'
-import RemoveIcon from '@/icons/RemoveIcon'
-import { RemoveFromCart } from '@/actions'
-import { User } from 'lucia'
 
-export default function CartPopover({ usercart, user }: { usercart: UserCart; user: User }) {
+export default function CartPopover({ usercart }: { usercart: UserCart }) {
   const [isOpen, setIsOpen] = useState(false)
 
   let toPay = 0
@@ -19,14 +16,6 @@ export default function CartPopover({ usercart, user }: { usercart: UserCart; us
   usercart.forEach((product) => {
     toPay += product.price
   })
-
-  async function handleRemoveProduct(event: FormEvent<HTMLFormElement>, slug: string) {
-    event.preventDefault()
-    const data = new FormData()
-    data.append('user_id', user.userId)
-    data.append('product_slug', slug)
-    await RemoveFromCart(null, data)
-  }
 
   return (
     <Popover
@@ -60,20 +49,13 @@ export default function CartPopover({ usercart, user }: { usercart: UserCart; us
                       <div className="col-span-4 border-b">
                         <h5>{product.name}</h5>
                       </div>
-                      <div className="col-span-2 border-b flex justify-between">
+                      <div className="col-span-2 border-b">
                         <h5>
                           {Intl.NumberFormat('en-US', {
                             style: 'currency',
                             currency: 'USD'
                           }).format(product.price)}
                         </h5>
-                        <div className="my-auto">
-                          <form onSubmit={(e) => handleRemoveProduct(e, product.slug)}>
-                            <button>
-                              <RemoveIcon />
-                            </button>
-                          </form>
-                        </div>
                       </div>
                     </Fragment>
                   ))}

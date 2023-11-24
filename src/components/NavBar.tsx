@@ -16,8 +16,8 @@ import { FormEvent, useState } from 'react'
 import { Session } from 'lucia'
 import NextLink from 'next/link'
 import UserDropdown from './UserDropdown'
-import { SearchIcon } from '@/icons/SearchIcon'
-import { ChevronDownIcon } from '@/icons/ChevronDownIcon'
+import { SearchIcon } from '@/components/ui/icons/SearchIcon'
+import { ChevronDownIcon } from '@/components/ui/icons/ChevronDownIcon'
 import { useRouter } from 'next/navigation'
 import { UserCart } from '@/types'
 import CartPopover from './CartPopover'
@@ -131,9 +131,7 @@ export const NavBar = ({
         </form>
         <NavbarItem>
           <div className="flex gap-3 w-[92px]">
-            {usercart === undefined ? null : (
-              <CartPopover usercart={usercart} user={session!.user} />
-            )}
+            {usercart === undefined ? null : <CartPopover usercart={usercart} />}
             {session === undefined ? null : session === null ? (
               <Button as={Link} color="warning" href="/login" variant="flat">
                 Login

@@ -2,9 +2,10 @@
 import { Product, UserCart } from '@/types'
 import { User } from 'lucia'
 import { AddToCart, RemoveFromCart } from '@/actions'
-import { useFormState } from 'react-dom'
-import { FormEvent } from 'react'
+import { useFormStatus } from 'react-dom'
 import { Button } from '@nextui-org/button'
+import CartIconPlus from '@/components/ui/icons/CartIconPlus'
+import CartIconX from '@/components/ui/icons/CartIconX'
 
 export default function Form({
   product,
@@ -15,42 +16,59 @@ export default function Form({
   user: User
   cart: UserCart
 }) {
-  const [addState, addAction] = useFormState(AddToCart, undefined)
-  const [removeState, removeAction] = useFormState(RemoveFromCart, undefined)
-
   const AlreadyInCart = cart.map((x) => x.slug).includes(product.slug)
 
-  async function handleAddToCart(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    const data = new FormData(event.currentTarget)
+  function AddToCartForm() {
+    const data = new FormData()
     data.append('user_id', user.userId)
     data.append('product_slug', product.slug)
-    await addAction(data)
+    return data
   }
 
-  async function handleRemoveFromCart(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    const data = new FormData(event.currentTarget)
+  function RemoveFromCartForm() {
+    const data = new FormData()
     data.append('user_id', user.userId)
     data.append('product_slug', product.slug)
-    await removeAction(data)
+    return data
   }
 
   return (
     <>
       {!AlreadyInCart ? (
-        <form onSubmit={handleAddToCart}>
-          <Button type="submit" color="primary">
-            Add to cart
-          </Button>
+        <form action={AddToCart.bind(null, AddToCartForm())}>
+          <AddToCartButton />
         </form>
       ) : (
-        <form onSubmit={handleRemoveFromCart}>
-          <Button type="submit" color="danger">
-            Remove from cart
-          </Button>
+        <form action={RemoveFromCart.bind(null, RemoveFromCartForm())}>
+          <RemoveFromCartButton />
         </form>
       )}
     </>
+  )
+}
+
+function AddToCartButton() {
+  const { pending } = useFormStatus()
+  return (
+    <Button
+      type="submit"
+      color="primary"
+      isLoading={pending}
+      startContent={!pending && <CartIconPlus />}>
+      Add to cart
+    </Button>
+  )
+}
+
+function RemoveFromCartButton() {
+  const { pending } = useFormStatus()
+  return (
+    <Button
+      type="submit"
+      color="danger"
+      isLoading={pending}
+      startContent={!pending && <CartIconX />}>
+      Remove product
+    </Button>
   )
 }
