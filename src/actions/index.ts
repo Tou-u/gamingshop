@@ -93,8 +93,27 @@ export async function AddUserAdress(user_id: string, prevState: any, formData: F
   const data = response.data
 
   try {
-    await prisma.adress.create({
-      data
+    await prisma.adress.upsert({
+      where: {
+        user_id: data.user_id
+      },
+      create: {
+        adress: data.adress,
+        email: data.email,
+        first_name: data.first_name,
+        last_name: data.last_name,
+        phone: data.phone,
+        info: data.info,
+        user_id: data.user_id
+      },
+      update: {
+        adress: data.adress,
+        email: data.email,
+        first_name: data.first_name,
+        last_name: data.last_name,
+        phone: data.phone,
+        info: data.info
+      }
     })
     return { success: true }
   } catch (error) {

@@ -16,12 +16,10 @@ export default async function MyAdressPage({ searchParams }: Props) {
   }
   const adress = await api.getUserAdress(session.user.userId)
 
-  console.log(adress)
-
   return (
     <>
       <div className="text-center">
-        <h2>To continue with the purchase, enter your address</h2>
+        <h2>{callbackUrl ? 'To continue with the purchase, enter your address' : 'My Adress'}</h2>
         <Form adress={adress} user={session.user} callbackUrl={callbackUrl} />
       </div>
     </>
