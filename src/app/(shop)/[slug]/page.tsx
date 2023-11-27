@@ -8,8 +8,9 @@ import { Button } from '@nextui-org/button'
 import { currencyToUSD } from '@/utils/scripts'
 import NextLink from 'next/link'
 import Form from './form'
+import CartIconPlus from '@/components/ui/icons/CartIconPlus'
 
-let usercart: UserCart | undefined = undefined
+let usercart: UserCart = []
 
 export default async function ProductPage({ params }: { params: { slug: string } }) {
   const session = await getPageSession().catch((session) => (session = null))
@@ -31,11 +32,15 @@ export default async function ProductPage({ params }: { params: { slug: string }
           <Divider />
           <p>Stock: {product.stock}</p>
           {!session ? (
-            <Button as={NextLink} color="primary" href={`/login?callbackUrl=${params.slug}`}>
+            <Button
+              as={NextLink}
+              color="primary"
+              startContent={<CartIconPlus />}
+              href={`/login?callbackUrl=${params.slug}`}>
               Add to cart
             </Button>
           ) : (
-            <Form product={product} user={session.user} cart={usercart!} />
+            <Form product={product} user={session.user} cart={usercart} />
           )}
         </div>
       </div>
