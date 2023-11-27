@@ -43,7 +43,10 @@ const api = {
         }
       }
     })
-    return cart?.products
+    if (!cart) {
+      return []
+    }
+    return cart.products
   },
   getProductBySlug: async (slug: string) => {
     try {
