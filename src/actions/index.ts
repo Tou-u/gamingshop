@@ -71,16 +71,16 @@ const AdressSchema = z.object({
   first_name: z.string().min(1, { message: 'A first name is required' }).trim(),
   last_name: z.string().min(1, { message: 'A last name is required' }).trim(),
   adress: z.string().min(1, { message: 'An adress is required' }).trim(),
-  email: z.string().min(1, { message: 'An email is required' }).trim(),
+  email: z.string().email({ message: 'Enter a valid email' }),
   phone: z.coerce
-    .number()
+    .number({ invalid_type_error: 'Enter a valid phone' })
     .gte(10000000, { message: 'Enter a valid phone' })
     .lte(99999999, { message: 'Enter a valid phone' }),
-  info: z.string().optional(),
+  info: z.string().trim().optional(),
   user_id: z.string()
 })
 
-export async function AddUserAdress(user_id: string, prevState: any, formData: FormData) {
+export async function AddOrUpdateUserAdress(user_id: string, prevState: any, formData: FormData) {
   formData.append('user_id', user_id)
   const form = Object.fromEntries(formData.entries())
   const response = AdressSchema.safeParse(form)
@@ -115,9 +115,33 @@ export async function AddUserAdress(user_id: string, prevState: any, formData: F
         info: data.info
       }
     })
+    revalidatePath('/myadress')
     return { success: true }
   } catch (error) {
     return { error: 'Failed to save the product, try again later.' }
+  }
+}
+
+export async function NewOrder(formData: FormData) {
+  const user_id = formData.get('user_id') as string
+  const products = formData.get('products') as string
+  const adress = formData.get('adress') as string
+
+  const SlugsFromProducts: [] = JSON.parse(products)
+
+  try {
+    await prisma.order.create({
+      data: {
+        products: {
+          connect: SlugsFromProducts.map((slug) => ({ slug }))
+        },
+        adress: JSON.parse(adress),
+        user_id
+      }
+    })
+    console.log('creado')
+  } catch (error) {
+    console.log(error)
   }
 }
 

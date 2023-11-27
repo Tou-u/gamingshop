@@ -6,6 +6,7 @@ import { Divider } from '@nextui-org/divider'
 import { currencyToUSD } from '@/utils/scripts'
 import Form from './form'
 import Checkout from './checkout'
+import AdressCard from './card'
 
 export default async function Page() {
   const session = await getPageSession().catch((session) => (session = null))
@@ -35,7 +36,7 @@ export default async function Page() {
   return (
     <>
       <h1 className="text-center text-xl font-bold mb-2">Your cart ({totalItems})</h1>
-      <div className="grid grid-cols-5">
+      <div className="grid grid-cols-5 gap-2">
         <section className="col-span-3">
           <article>
             {products.map((product) => (
@@ -66,7 +67,8 @@ export default async function Page() {
             <p>Order total:</p>
             <p className="font-bold">{currencyToUSD(toPay)}</p>
           </div>
-          <Checkout adress={adress} />
+          {adress && <AdressCard adress={adress} />}
+          <Checkout adress={adress} user={session.user} products={products} />
         </section>
       </div>
     </>
