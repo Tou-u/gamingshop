@@ -15,6 +15,7 @@ model User {
   key          Key[]
   cart         Cart?
   Adress       Adress?
+  Order        Order[]
 }
 
 model Session {
@@ -48,10 +49,10 @@ model Product {
   created_at  DateTime @default(now())
   category_id String
   brand_id    String
-  cart_id     String?
   category    Category @relation(references: [id], fields: [category_id])
   brand       Brand    @relation(references: [id], fields: [brand_id])
-  cart        Cart?    @relation(references: [id], fields: [cart_id])
+  cart        Cart[]
+  Order       Order[]
 }
 
 model Category {
@@ -69,8 +70,8 @@ model Brand {
 model Cart {
   id       String    @id @default(cuid())
   products Product[]
-  user_id  String    @unique
   user     User      @relation(references: [id], fields: [user_id], onDelete: Cascade)
+  user_id  String    @unique
 }
 
 model Adress {
@@ -81,6 +82,16 @@ model Adress {
   email      String
   phone      Int
   info       String?
-  user_id    String  @unique
   user       User    @relation(references: [id], fields: [user_id], onDelete: Cascade)
+  user_id    String  @unique
+}
+
+model Order {
+  id         String    @id @default(cuid())
+  status     String    @default("paid")
+  created_at DateTime  @default(now())
+  products   Product[]
+  adress     Json
+  user       User      @relation(references: [id], fields: [user_id], onDelete: Cascade)
+  user_id    String
 }
