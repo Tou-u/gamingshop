@@ -14,21 +14,21 @@ export default function Form({
 }: {
   product: Product
   user: User
-  cart: UserCart
+  cart: UserCart[]
 }) {
-  const AlreadyInCart = cart.map((x) => x.slug).includes(product.slug)
+  const AlreadyInCart = cart.map((cart) => cart.id).includes(product.id)
 
   function AddToCartForm() {
     const data = new FormData()
     data.append('user_id', user.userId)
-    data.append('product_slug', product.slug)
+    data.append('product_id', product.id)
     return data
   }
 
   function RemoveFromCartForm() {
     const data = new FormData()
     data.append('user_id', user.userId)
-    data.append('product_slug', product.slug)
+    data.append('product_id', product.id)
     return data
   }
 

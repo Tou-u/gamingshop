@@ -32,10 +32,11 @@ const api = {
       select: {
         products: {
           select: {
-            slug: true,
             name: true,
             image: true,
-            price: true
+            price: true,
+            id: true,
+            slug: true
           },
           where: {
             active: { equals: true }
@@ -58,7 +59,8 @@ const api = {
           image: true,
           price: true,
           stock: true,
-          slug: true
+          slug: true,
+          id: true
         }
       })
       return product
@@ -88,6 +90,17 @@ const api = {
       }
     })
     return adress
+  },
+  getUserOrders: async (user_id: string) => {
+    const orders = prisma.order.findMany({
+      where: {
+        user_id
+      },
+      orderBy: {
+        created_at: 'desc'
+      }
+    })
+    return orders
   }
 }
 

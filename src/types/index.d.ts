@@ -1,4 +1,5 @@
 export type Product = {
+  id: string
   slug: string
   name: string
   image: string
@@ -17,11 +18,12 @@ export type Category = {
 }
 
 export type UserCart = {
+  id: string
   slug: string
   name: string
   image: string
   price: number
-}[]
+}
 
 export type FullProduct = {
   id: string

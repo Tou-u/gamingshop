@@ -1,16 +1,16 @@
 'use client'
 import { RemoveFromCart } from '@/actions'
 import CartIconX from '@/components/ui/icons/CartIconX'
-import { Product } from '@/types'
+import { UserCart } from '@/types'
 import { Button } from '@nextui-org/button'
 import { User } from 'lucia'
 import { useFormStatus } from 'react-dom'
 
-export default function Form({ user, product }: { user: User; product: Product }) {
+export default function Form({ user, product }: { user: User; product: UserCart }) {
   function RemoveProductForm() {
     const data = new FormData()
     data.append('user_id', user.userId)
-    data.append('product_slug', product.slug)
+    data.append('product_id', product.id)
     return data
   }
 

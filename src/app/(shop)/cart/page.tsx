@@ -17,7 +17,7 @@ export default async function Page() {
 
   const products = await api.getUserCart(session.user.userId)
 
-  if (products?.length === 0 || !products) {
+  if (products.length === 0) {
     redirect('/')
   }
 
@@ -34,13 +34,13 @@ export default async function Page() {
   const totalItems = `${length} ${itemText}`
 
   return (
-    <>
+    <div>
       <h1 className="text-center text-xl font-bold mb-2">Your cart ({totalItems})</h1>
       <div className="grid grid-cols-5 gap-2">
         <section className="col-span-3">
           <article>
             {products.map((product) => (
-              <Fragment key={product.slug}>
+              <Fragment key={product.id}>
                 <div className="flex gap-1">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -71,6 +71,6 @@ export default async function Page() {
           <Checkout adress={adress} user={session.user} products={products} />
         </section>
       </div>
-    </>
+    </div>
   )
 }

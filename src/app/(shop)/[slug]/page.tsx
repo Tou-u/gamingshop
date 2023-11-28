@@ -10,7 +10,7 @@ import NextLink from 'next/link'
 import Form from './form'
 import CartIconPlus from '@/components/ui/icons/CartIconPlus'
 
-let usercart: UserCart = []
+let usercart: UserCart[] = []
 
 export default async function ProductPage({ params }: { params: { slug: string } }) {
   const session = await getPageSession().catch((session) => (session = null))

@@ -3,36 +3,33 @@ import { z } from 'zod'
 import prisma from '@/lib/prisma'
 import { revalidatePath } from 'next/cache'
 import { Prisma } from '@prisma/client'
+import { Adress } from '@/types'
 
 // Shop
+
 export async function AddToCart(formData: FormData) {
   const user_id = formData.get('user_id') as string
-  const product_slug = formData.get('product_slug') as string
+  const product_id = formData.get('product_id') as string
 
   try {
-    await prisma.user.update({
-      data: {
-        cart: {
-          upsert: {
-            create: {
-              products: {
-                connect: {
-                  slug: product_slug
-                }
-              }
-            },
-            update: {
-              products: {
-                connect: {
-                  slug: product_slug
-                }
-              }
-            }
+    await prisma.cart.upsert({
+      create: {
+        products: {
+          connect: {
+            id: product_id
+          }
+        },
+        user_id
+      },
+      update: {
+        products: {
+          connect: {
+            id: product_id
           }
         }
       },
       where: {
-        id: user_id
+        user_id
       }
     })
     revalidatePath('/')
@@ -44,14 +41,14 @@ export async function AddToCart(formData: FormData) {
 
 export async function RemoveFromCart(formData: FormData) {
   const user_id = formData.get('user_id') as string
-  const product_slug = formData.get('product_slug') as string
+  const product_id = formData.get('product_id') as string
 
   try {
     await prisma.cart.update({
       data: {
         products: {
           disconnect: {
-            slug: product_slug
+            id: product_id
           }
         }
       },
@@ -125,23 +122,32 @@ export async function AddOrUpdateUserAdress(user_id: string, prevState: any, for
 export async function NewOrder(formData: FormData) {
   const user_id = formData.get('user_id') as string
   const products = formData.get('products') as string
-  const adress = formData.get('adress') as string
+  const adressData = formData.get('adress') as string
 
-  const SlugsFromProducts: [] = JSON.parse(products)
+  const { first_name, last_name, adress, email, phone, info } = JSON.parse(adressData) as Adress
 
   try {
+    const delay = new Promise((resolve) =>
+      setTimeout(() => {
+        resolve('Simulating purchase')
+      }, 1000)
+    )
+    await delay
     await prisma.order.create({
       data: {
-        products: {
-          connect: SlugsFromProducts.map((slug) => ({ slug }))
-        },
-        adress: JSON.parse(adress),
+        user_id,
+        adress: Object({ first_name, last_name, adress, email, phone, info }),
+        products: JSON.parse(products)
+      }
+    })
+    await prisma.cart.delete({
+      where: {
         user_id
       }
     })
-    console.log('creado')
+    return { success: true }
   } catch (error) {
-    console.log(error)
+    return { error: 'Failed to complete the order, try again later.' }
   }
 }
 
