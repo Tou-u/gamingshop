@@ -2,7 +2,7 @@ import styles from './Loading.module.css'
 
 export default function Loading({ title }: { title: string }) {
   return (
-    <section className="h-[250px] flex flex-col items-center justify-center gap-2">
+    <section className="flex flex-col items-center justify-center gap-2">
       <svg
         className={styles.container}
         x="0px"
@@ -25,7 +25,7 @@ export default function Loading({ title }: { title: string }) {
           d="M29.760000000000005 18.72 c0 7.28 -3.9200000000000004 13.600000000000001 -9.840000000000002 16.96 c -2.8800000000000003 1.6800000000000002 -6.24 2.64 -9.840000000000002 2.64 c -3.6 0 -6.88 -0.96 -9.76 -2.64 c0 -7.28 3.9200000000000004 -13.52 9.840000000000002 -16.96 c2.8800000000000003 -1.6800000000000002 6.24 -2.64 9.76 -2.64 S26.880000000000003 17.040000000000003 29.760000000000005 18.72 c5.84 3.3600000000000003 9.76 9.68 9.840000000000002 16.96 c -2.8800000000000003 1.6800000000000002 -6.24 2.64 -9.76 2.64 c -3.6 0 -6.88 -0.96 -9.840000000000002 -2.64 c -5.84 -3.3600000000000003 -9.76 -9.68 -9.76 -16.96 c0 -7.28 3.9200000000000004 -13.600000000000001 9.76 -16.96 C25.84 5.120000000000001 29.760000000000005 11.440000000000001 29.760000000000005 18.72z"></path>
       </svg>
 
-      <h2 className="font-bold">{title}</h2>
+      <h2 className="font-bold capitalize">{title}</h2>
     </section>
   )
 }
