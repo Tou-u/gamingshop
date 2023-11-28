@@ -16,6 +16,7 @@
     "@lucia-auth/adapter-prisma": "3.0.2",
     "@nextui-org/react": "2.2.9",
     "@prisma/client": "5.6.0",
+    "@react-stately/data": "3.11.0",
     "framer-motion": "10.16.5",
     "lucia": "2.7.4",
     "next": "14.0.3",
@@ -24,11 +25,11 @@
     "react-hot-toast": "2.4.1",
     "react-multi-carousel": "2.8.4",
     "zod": "3.22.4",
-    "zustand": "4.4.6"
+    "zustand": "4.4.7"
   },
   "devDependencies": {
-    "@types/node": "20.9.4",
-    "@types/react": "18.2.38",
+    "@types/node": "20.10.0",
+    "@types/react": "18.2.39",
     "@types/react-dom": "18.2.17",
     "autoprefixer": "10.4.16",
     "eslint": "8.54.0",
