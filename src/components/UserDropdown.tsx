@@ -31,7 +31,11 @@ export default function UserDropdown({ user }: { user: LuciaUser }) {
             </DropdownSection>
           ) : (
             <DropdownSection title="Your account" showDivider>
-              <DropdownItem key="orders" startContent={<OrdersIcons />}>
+              <DropdownItem
+                key="orders"
+                startContent={<OrdersIcons />}
+                as={NextLink}
+                href="/myorders">
                 Orders
               </DropdownItem>
               <DropdownItem
