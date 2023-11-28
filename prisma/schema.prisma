@@ -52,7 +52,6 @@ model Product {
   category    Category @relation(references: [id], fields: [category_id])
   brand       Brand    @relation(references: [id], fields: [brand_id])
   cart        Cart[]
-  Order       Order[]
 }
 
 model Category {
@@ -87,11 +86,11 @@ model Adress {
 }
 
 model Order {
-  id         String    @id @default(cuid())
-  status     String    @default("paid")
-  created_at DateTime  @default(now())
-  products   Product[]
+  id         String   @id @default(cuid())
+  status     String   @default("paid")
+  created_at DateTime @default(now())
+  products   Json[]
   adress     Json
-  user       User      @relation(references: [id], fields: [user_id], onDelete: Cascade)
+  user       User     @relation(references: [id], fields: [user_id], onDelete: Cascade)
   user_id    String
 }
