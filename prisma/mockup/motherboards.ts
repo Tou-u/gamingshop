@@ -1,4 +1,5 @@
 import { Products } from './types'
+import { getRandomDate } from './utils'
 
 const mockup_motherboards: Products = [
   {
@@ -10,7 +11,8 @@ const mockup_motherboards: Products = [
     slug: 'asusstrixb450f',
     stock: 10,
     brand_id: 'brand-02',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'MSI MAG Z590 Tomahawk Motherboard',
@@ -21,7 +23,8 @@ const mockup_motherboards: Products = [
     slug: 'msiz590tomahawk',
     stock: 5,
     brand_id: 'brand-01',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'Gigabyte B450 AORUS PRO WIFI Motherboard',
@@ -32,7 +35,8 @@ const mockup_motherboards: Products = [
     slug: 'gigabyteb450aorus',
     stock: 7,
     brand_id: 'brand-03',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'ASRock B550M Steel Legend Motherboard',
@@ -43,7 +47,8 @@ const mockup_motherboards: Products = [
     slug: 'asrockb550m',
     stock: 8,
     brand_id: 'brand-31',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'ASUS TUF Gaming B460-Plus Motherboard',
@@ -54,7 +59,8 @@ const mockup_motherboards: Products = [
     slug: 'asustufb460plus',
     stock: 6,
     brand_id: 'brand-02',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'MSI MPG Z590 Gaming Edge WiFi Motherboard',
@@ -65,7 +71,8 @@ const mockup_motherboards: Products = [
     slug: 'msiz590gamingedge',
     stock: 4,
     brand_id: 'brand-01',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'Gigabyte X570 AORUS Master Motherboard',
@@ -76,7 +83,8 @@ const mockup_motherboards: Products = [
     slug: 'gigabytex570master',
     stock: 3,
     brand_id: 'brand-03',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'ASRock H510M-HDV Motherboard',
@@ -87,7 +95,8 @@ const mockup_motherboards: Products = [
     slug: 'asrockh510mhdv',
     stock: 9,
     brand_id: 'brand-31',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'ASUS Prime B550M-A/CSM Micro-ATX Motherboard',
@@ -98,7 +107,8 @@ const mockup_motherboards: Products = [
     slug: 'asusprimeb550m',
     stock: 7,
     brand_id: 'brand-02',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'MSI B450 TOMAHAWK MAX Motherboard',
@@ -109,7 +119,8 @@ const mockup_motherboards: Products = [
     slug: 'msib450tomahawk',
     stock: 8,
     brand_id: 'brand-01',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   }
 ]
 

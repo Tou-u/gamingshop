@@ -1,4 +1,5 @@
 import { Products } from './types'
+import { getRandomDate } from './utils'
 
 const mockup_ram: Products = [
   {
@@ -9,7 +10,8 @@ const mockup_ram: Products = [
     slug: 'corsair16gbddr4',
     stock: 10,
     brand_id: 'brand-05',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'G.Skill Trident Z RGB 32GB DDR4 RAM',
@@ -19,7 +21,8 @@ const mockup_ram: Products = [
     slug: 'gskill32gbddr4',
     stock: 8,
     brand_id: 'brand-28',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'Crucial Ballistix 8GB DDR4 RAM',
@@ -29,7 +32,8 @@ const mockup_ram: Products = [
     slug: 'crucial8gbddr4',
     stock: 12,
     brand_id: 'brand-24',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'Kingston HyperX Fury 16GB DDR4 RAM',
@@ -39,7 +43,8 @@ const mockup_ram: Products = [
     slug: 'kingston16gbddr4',
     stock: 7,
     brand_id: 'brand-26',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'Team T-Force Delta RGB 32GB DDR4 RAM',
@@ -49,7 +54,8 @@ const mockup_ram: Products = [
     slug: 'team32gbddr4-delta',
     stock: 6,
     brand_id: 'brand-29',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'Patriot Viper Steel 64GB DDR4 RAM',
@@ -60,7 +66,8 @@ const mockup_ram: Products = [
     slug: 'patriot64gbddr4',
     stock: 5,
     brand_id: 'brand-30',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'Corsair Dominator Platinum RGB 64GB DDR4 RAM',
@@ -70,7 +77,8 @@ const mockup_ram: Products = [
     slug: 'corsair64gbddr4',
     stock: 4,
     brand_id: 'brand-05',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'HyperX Predator RGB 32GB DDR4 RAM',
@@ -81,7 +89,8 @@ const mockup_ram: Products = [
     slug: 'hyperx32gbddr4',
     stock: 8,
     brand_id: 'brand-26',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'G.Skill Ripjaws V 16GB DDR4 RAM',
@@ -91,7 +100,8 @@ const mockup_ram: Products = [
     slug: 'gskill16gbddr4',
     stock: 9,
     brand_id: 'brand-28',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'Team T-Force Vulcan Z 32GB DDR4 RAM',
@@ -101,7 +111,8 @@ const mockup_ram: Products = [
     slug: 'team32gbddr4-vulcanz',
     stock: 6,
     brand_id: 'brand-29',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   }
 ]
 

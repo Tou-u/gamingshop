@@ -12,6 +12,7 @@ export type Products = {
   stock: number
   active?: boolean
   brand_id: string
+  created_at?: Date
 }[]
 
 export type Processors = {
@@ -23,4 +24,5 @@ export type Processors = {
   stock: number
   active?: boolean
   brand_id: 'brand-08' | 'brand-06' // Intel or AMD
+  created_at?: Date
 }[]

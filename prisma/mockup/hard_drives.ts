@@ -1,4 +1,5 @@
 import { Products } from './types'
+import { getRandomDate } from './utils'
 
 const mockup_hard_drives: Products = [
   {
@@ -10,7 +11,8 @@ const mockup_hard_drives: Products = [
     slug: 'samsung1tbssd',
     stock: 8,
     brand_id: 'brand-09',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'Seagate BarraCuda 4TB HDD',
@@ -21,7 +23,8 @@ const mockup_hard_drives: Products = [
     slug: 'seagate4tbhdd',
     stock: 5,
     brand_id: 'brand-23',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'Crucial MX500 2TB SATA SSD',
@@ -31,7 +34,8 @@ const mockup_hard_drives: Products = [
     slug: 'crucial2tbssd',
     stock: 6,
     brand_id: 'brand-24',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'WD 500GB NVMe SSD',
@@ -42,7 +46,8 @@ const mockup_hard_drives: Products = [
     slug: 'wd500gbssd',
     stock: 7,
     brand_id: 'brand-10',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'Toshiba P300 1TB HDD',
@@ -53,7 +58,8 @@ const mockup_hard_drives: Products = [
     slug: 'toshiba1tbhdd',
     stock: 9,
     brand_id: 'brand-25',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'Kingston A2000 500GB NVMe SSD',
@@ -64,7 +70,8 @@ const mockup_hard_drives: Products = [
     slug: 'kingston500gbssd',
     stock: 10,
     brand_id: 'brand-26',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'Seagate IronWolf 6TB NAS HDD',
@@ -75,7 +82,8 @@ const mockup_hard_drives: Products = [
     slug: 'seagate6tbnas',
     stock: 4,
     brand_id: 'brand-23',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'ADATA SU800 1TB SATA SSD',
@@ -86,7 +94,8 @@ const mockup_hard_drives: Products = [
     slug: 'adata1tbssd',
     stock: 6,
     brand_id: 'brand-27',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'WD Red Plus 4TB NAS HDD',
@@ -97,7 +106,8 @@ const mockup_hard_drives: Products = [
     slug: 'wd4tbnas',
     stock: 5,
     brand_id: 'brand-10',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'Samsung 2TB NVMe SSD',
@@ -108,7 +118,8 @@ const mockup_hard_drives: Products = [
     slug: 'samsung2tbssd',
     stock: 4,
     brand_id: 'brand-09',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   }
 ]
 

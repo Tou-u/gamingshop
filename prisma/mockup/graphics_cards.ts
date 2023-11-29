@@ -1,4 +1,5 @@
 import { Products } from './types'
+import { getRandomDate } from './utils'
 
 const mockup_graphics_cards: Products = [
   {
@@ -10,7 +11,8 @@ const mockup_graphics_cards: Products = [
     slug: 'rtx3090',
     stock: 2,
     brand_id: 'brand-01',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'ASUS AMD Radeon RX 6900 XT',
@@ -21,7 +23,8 @@ const mockup_graphics_cards: Products = [
     slug: 'rx6900xt',
     stock: 5,
     brand_id: 'brand-02',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'Gigabyte NVIDIA GeForce GTX 1660 Super',
@@ -31,7 +34,8 @@ const mockup_graphics_cards: Products = [
     slug: 'gtx1660super',
     stock: 3,
     brand_id: 'brand-03',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'EVGA AMD Radeon RX 6700 XT',
@@ -41,7 +45,8 @@ const mockup_graphics_cards: Products = [
     slug: 'rx6700xt',
     stock: 7,
     brand_id: 'brand-04',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'Zotac NVIDIA GeForce RTX 3080',
@@ -52,7 +57,8 @@ const mockup_graphics_cards: Products = [
     slug: 'rtx3080',
     stock: 1,
     brand_id: 'brand-21',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'Sapphire AMD Radeon RX 6800 XT',
@@ -63,7 +69,8 @@ const mockup_graphics_cards: Products = [
     slug: 'rx6800xt',
     stock: 4,
     brand_id: 'brand-22',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'MSI NVIDIA GeForce GTX 1650',
@@ -73,7 +80,8 @@ const mockup_graphics_cards: Products = [
     slug: 'gtx1650',
     stock: 6,
     brand_id: 'brand-01',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'ASUS AMD Radeon RX 5700 XT',
@@ -83,7 +91,8 @@ const mockup_graphics_cards: Products = [
     slug: 'rx5700xt',
     stock: 2,
     brand_id: 'brand-02',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'Gigabyte NVIDIA GeForce GTX 1660 Ti',
@@ -93,7 +102,8 @@ const mockup_graphics_cards: Products = [
     slug: 'gtx1660ti',
     stock: 3,
     brand_id: 'brand-03',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'EVGA Radeon RX 5600 XT',
@@ -103,7 +113,8 @@ const mockup_graphics_cards: Products = [
     slug: 'rx5600xt',
     stock: 5,
     brand_id: 'brand-04',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'Zotac NVIDIA GeForce RTX 3070',
@@ -114,7 +125,8 @@ const mockup_graphics_cards: Products = [
     slug: 'rtx3070',
     stock: 4,
     brand_id: 'brand-21',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'Sapphire AMD Radeon RX 6600 XT',
@@ -124,7 +136,8 @@ const mockup_graphics_cards: Products = [
     slug: 'rx6600xt',
     stock: 6,
     brand_id: 'brand-22',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'Sapphire NVIDIA GeForce GTX 1050 Ti',
@@ -134,7 +147,8 @@ const mockup_graphics_cards: Products = [
     slug: 'gtx1050ti',
     stock: 2,
     brand_id: 'brand-22',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'Zotac AMD Radeon RX 5500 XT',
@@ -144,7 +158,8 @@ const mockup_graphics_cards: Products = [
     slug: 'rx5500xt',
     stock: 8,
     brand_id: 'brand-21',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'EVGA NVIDIA GeForce GTX 1660',
@@ -155,7 +170,8 @@ const mockup_graphics_cards: Products = [
     slug: 'gtx1660',
     stock: 5,
     brand_id: 'brand-04',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'Gigabyte AMD Radeon RX 560',
@@ -165,7 +181,8 @@ const mockup_graphics_cards: Products = [
     slug: 'rx560',
     stock: 10,
     brand_id: 'brand-03',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'ASUS NVIDIA GeForce GT 1030',
@@ -175,7 +192,8 @@ const mockup_graphics_cards: Products = [
     slug: 'gt1030',
     stock: 3,
     brand_id: 'brand-02',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'MSI AMD Radeon RX 550',
@@ -186,7 +204,8 @@ const mockup_graphics_cards: Products = [
     slug: 'rx550',
     stock: 5,
     brand_id: 'brand-01',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'MSI NVIDIA GeForce RTX 3050',
@@ -196,7 +215,8 @@ const mockup_graphics_cards: Products = [
     slug: 'rtx3050',
     stock: 7,
     brand_id: 'brand-01',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   },
   {
     name: 'ASUS AMD Radeon RX 6400',
@@ -206,7 +226,8 @@ const mockup_graphics_cards: Products = [
     slug: 'rx6400',
     stock: 4,
     brand_id: 'brand-02',
-    active: true
+    active: true,
+    created_at: getRandomDate()
   }
 ]
 
