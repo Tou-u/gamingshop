@@ -8,7 +8,7 @@ type Props = {
   searchParams: { callbackUrl: string }
 }
 
-export default async function MyAdressPage({ searchParams }: Props) {
+export default async function MyAddressPage({ searchParams }: Props) {
   const callbackUrl = searchParams.callbackUrl
   const session = await getPageSession().catch((session) => (session = null))
 
@@ -19,7 +19,7 @@ export default async function MyAdressPage({ searchParams }: Props) {
   return (
     <>
       <div className="text-center">
-        <h2>{callbackUrl ? 'To continue with the purchase, enter your address' : 'My Adress'}</h2>
+        <h2>{callbackUrl ? 'To continue with the purchase, enter your address' : 'My Address'}</h2>
         <Suspense fallback={<Loading title="Loading Form" />}>
           <Data user={session.user} callbackUrl={callbackUrl} />
         </Suspense>

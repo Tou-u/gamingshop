@@ -68,17 +68,17 @@ CREATE TABLE "Cart" (
 );
 
 -- CreateTable
-CREATE TABLE "Adress" (
+CREATE TABLE "Address" (
     "id" TEXT NOT NULL,
     "first_name" TEXT NOT NULL,
     "last_name" TEXT NOT NULL,
-    "adress" TEXT NOT NULL,
+    "address" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "phone" INTEGER NOT NULL,
     "info" TEXT,
     "user_id" TEXT NOT NULL,
 
-    CONSTRAINT "Adress_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Address_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -87,7 +87,7 @@ CREATE TABLE "Order" (
     "status" TEXT NOT NULL DEFAULT 'paid',
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "products" JSONB[],
-    "adress" JSONB NOT NULL,
+    "address" JSONB NOT NULL,
     "user_id" TEXT NOT NULL,
 
     CONSTRAINT "Order_pkey" PRIMARY KEY ("id")
@@ -127,7 +127,7 @@ CREATE UNIQUE INDEX "Brand_name_key" ON "Brand"("name");
 CREATE UNIQUE INDEX "Cart_user_id_key" ON "Cart"("user_id");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Adress_user_id_key" ON "Adress"("user_id");
+CREATE UNIQUE INDEX "Address_user_id_key" ON "Address"("user_id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_CartToProduct_AB_unique" ON "_CartToProduct"("A", "B");
@@ -151,7 +151,7 @@ ALTER TABLE "Product" ADD CONSTRAINT "Product_brand_id_fkey" FOREIGN KEY ("brand
 ALTER TABLE "Cart" ADD CONSTRAINT "Cart_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Adress" ADD CONSTRAINT "Adress_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Address" ADD CONSTRAINT "Address_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Order" ADD CONSTRAINT "Order_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

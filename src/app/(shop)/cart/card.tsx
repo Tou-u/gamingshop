@@ -3,10 +3,10 @@ import { Card, CardBody, CardHeader } from '@nextui-org/card'
 import { EditIcon } from '@/components/ui/icons/EditIcon'
 import { Button } from '@nextui-org/button'
 import { Divider } from '@nextui-org/divider'
-import { Adress } from '@/types'
+import { Address } from '@/types'
 import { useRouter } from 'next/navigation'
 
-export default function AdressCard({ adress }: { adress: Adress }) {
+export default function AddressCard({ address }: { address: Address }) {
   const { replace } = useRouter()
   return (
     <Card className="mb-2">
@@ -15,16 +15,16 @@ export default function AdressCard({ adress }: { adress: Adress }) {
       </CardHeader>
       <Divider />
       <CardBody className="p-1">
-        <p>{`${adress.first_name} ${adress.last_name}`}</p>
-        <p>{adress.adress}</p>
+        <p>{`${address.first_name} ${address.last_name}`}</p>
+        <p>{address.address}</p>
         <div className="flex justify-between items-center">
-          <p>9 {adress.phone}</p>
+          <p>9 {address.phone}</p>
           <Button
             isIconOnly
             size="sm"
             variant="light"
             radius="full"
-            onClick={() => replace('/myadress?callbackUrl=cart')}>
+            onClick={() => replace('/myaddress?callbackUrl=cart')}>
             <EditIcon />
           </Button>
         </div>

@@ -38,11 +38,11 @@ export type FullProduct = {
   brand: Brand
 }
 
-export type Adress = {
+export type Address = {
   id: string
   first_name: string
   last_name: string
-  adress: string
+  address: string
   email: string
   phone: number
   info: string | null

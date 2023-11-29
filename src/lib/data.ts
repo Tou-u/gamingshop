@@ -15,9 +15,7 @@ const api = {
         where: {
           active: { equals: true }
         },
-        orderBy: {
-          created_at: 'desc'
-        }
+        orderBy: { created_at: 'desc' }
       })
       return products
     } catch (error) {
@@ -83,13 +81,13 @@ const api = {
     })
     return products
   },
-  getUserAdress: async (user_id: string) => {
-    const adress = prisma.adress.findUnique({
+  getUserAddress: async (user_id: string) => {
+    const address = prisma.address.findUnique({
       where: {
         user_id
       }
     })
-    return adress
+    return address
   },
   getUserOrders: async (user_id: string) => {
     const orders = prisma.order.findMany({

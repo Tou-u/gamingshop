@@ -3,7 +3,7 @@ import Form from './form'
 import { User } from 'lucia'
 
 export default async function Data({ user, callbackUrl }: { user: User; callbackUrl: string }) {
-  const adress = await api.getUserAdress(user.userId)
+  const address = await api.getUserAddress(user.userId)
 
-  return <Form adress={adress} user={user} callbackUrl={callbackUrl} />
+  return <Form address={address} user={user} callbackUrl={callbackUrl} />
 }

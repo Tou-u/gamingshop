@@ -1,4 +1,4 @@
-export default function AdressIcon() {
+export default function AddressIcon() {
   return (
     <svg
       width="24"

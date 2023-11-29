@@ -6,7 +6,7 @@ import { Divider } from '@nextui-org/divider'
 import { currencyToUSD } from '@/utils/scripts'
 import Form from './form'
 import Checkout from './checkout'
-import AdressCard from './card'
+import AddressCard from './card'
 
 export default async function Page() {
   const session = await getPageSession().catch((session) => (session = null))
@@ -21,7 +21,7 @@ export default async function Page() {
     redirect('/')
   }
 
-  const adress = await api.getUserAdress(session.user.userId)
+  const address = await api.getUserAddress(session.user.userId)
 
   let toPay = 0
 
@@ -67,8 +67,8 @@ export default async function Page() {
             <p>Order total:</p>
             <p className="font-bold">{currencyToUSD(toPay)}</p>
           </div>
-          {adress && <AdressCard adress={adress} />}
-          <Checkout adress={adress} user={session.user} products={products} />
+          {address && <AddressCard address={address} />}
+          <Checkout address={address} user={session.user} products={products} />
         </section>
       </div>
     </div>

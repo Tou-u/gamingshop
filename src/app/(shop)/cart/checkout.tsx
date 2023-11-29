@@ -1,7 +1,7 @@
 'use client'
 import { NewOrder } from '@/actions'
 import Loading from '@/components/ui/Loading'
-import { Adress, UserCart } from '@/types'
+import { Address, UserCart } from '@/types'
 import { Button } from '@nextui-org/button'
 import { Modal, ModalContent, ModalBody, useDisclosure } from '@nextui-org/modal'
 import { User } from 'lucia'
@@ -10,11 +10,11 @@ import { useState } from 'react'
 import { Link } from '@nextui-org/react'
 
 export default function Checkout({
-  adress,
+  address,
   user,
   products
 }: {
-  adress: Adress | null
+  address: Address | null
   user: User
   products: UserCart[]
 }) {
@@ -26,8 +26,8 @@ export default function Checkout({
   })
 
   async function handleCheckout() {
-    if (!adress) {
-      router.replace('/myadress?callbackUrl=cart')
+    if (!address) {
+      router.replace('/myaddress?callbackUrl=cart')
       return
     }
     onOpen()
@@ -35,7 +35,7 @@ export default function Checkout({
     const data = new FormData()
     data.append('user_id', user.userId)
     data.append('products', JSON.stringify(products))
-    data.append('adress', JSON.stringify(adress))
+    data.append('address', JSON.stringify(address))
 
     const response = await NewOrder(data)
 
@@ -44,7 +44,7 @@ export default function Checkout({
     } else {
       setFinishedPurchase({
         status: false,
-        message: 'Failed to complete the order, try again later.'
+        message: response.error!
       })
     }
   }

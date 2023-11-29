@@ -9,7 +9,7 @@ import { Avatar } from '@nextui-org/avatar'
 import { User as LuciaUser } from 'lucia'
 import { useRouter } from 'next/navigation'
 import Form from './Form'
-import AdressIcon from './ui/icons/AdressIcon'
+import AddressIcon from './ui/icons/AddressIcon'
 import OrdersIcons from './ui/icons/OrdersIcon'
 import LogoutIcon from './ui/icons/LogoutIcon'
 import NextLink from 'next/link'
@@ -39,11 +39,11 @@ export default function UserDropdown({ user }: { user: LuciaUser }) {
                 Orders
               </DropdownItem>
               <DropdownItem
-                key="adress"
-                startContent={<AdressIcon />}
+                key="address"
+                startContent={<AddressIcon />}
                 as={NextLink}
-                href="/myadress">
-                Adress
+                href="/myaddress">
+                Address
               </DropdownItem>
             </DropdownSection>
           )}

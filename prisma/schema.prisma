@@ -14,7 +14,7 @@ model User {
   auth_session Session[]
   key          Key[]
   cart         Cart?
-  Adress       Adress?
+  Address      Address?
   Order        Order[]
 }
 
@@ -73,11 +73,11 @@ model Cart {
   user_id  String    @unique
 }
 
-model Adress {
+model Address {
   id         String  @id @default(cuid())
   first_name String
   last_name  String
-  adress     String
+  address    String
   email      String
   phone      Int
   info       String?
@@ -90,7 +90,7 @@ model Order {
   status     String   @default("paid")
   created_at DateTime @default(now())
   products   Json[]
-  adress     Json
+  address    Json
   user       User     @relation(references: [id], fields: [user_id], onDelete: Cascade)
   user_id    String
 }

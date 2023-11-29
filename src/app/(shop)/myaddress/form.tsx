@@ -1,9 +1,9 @@
 'use client'
-import { Adress } from '@/types'
+import { Address } from '@/types'
 import { Input, Textarea } from '@nextui-org/input'
 import { Button } from '@nextui-org/button'
 import { useFormState, useFormStatus } from 'react-dom'
-import { AddOrUpdateUserAdress } from '@/actions'
+import { AddOrUpdateUserAddress } from '@/actions'
 import { User } from 'lucia'
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
@@ -12,16 +12,19 @@ import { Toaster } from 'react-hot-toast'
 import { toast } from '@/lib/utils'
 
 export default function Form({
-  adress,
+  address,
   user,
   callbackUrl
 }: {
-  adress: Adress | null
+  address: Address | null
   user: User
   callbackUrl: string
 }) {
   const router = useRouter()
-  const [state, formAction] = useFormState(AddOrUpdateUserAdress.bind(null, user.userId), undefined)
+  const [state, formAction] = useFormState(
+    AddOrUpdateUserAddress.bind(null, user.userId),
+    undefined
+  )
 
   useEffect(() => {
     const checkState = () => {
@@ -29,7 +32,7 @@ export default function Form({
         if (callbackUrl) {
           router.replace(`/${callbackUrl}`)
         }
-        toast.success('Adress saved')
+        toast.success('Address saved')
       }
       if (state?.error) toast.error(state.error)
     }
@@ -46,21 +49,21 @@ export default function Form({
             label="First Name"
             name="first_name"
             autoComplete="off"
-            defaultValue={adress?.first_name}
+            defaultValue={address?.first_name}
           />
           <Input
             type="text"
             label="Last Name"
             name="last_name"
             autoComplete="off"
-            defaultValue={adress?.last_name}
+            defaultValue={address?.last_name}
           />
           <Input
             type="text"
-            label="Adress"
-            name="adress"
+            label="Address"
+            name="address"
             autoComplete="off"
-            defaultValue={adress?.adress}
+            defaultValue={address?.address}
           />
           <Input
             inputMode="email"
@@ -68,7 +71,7 @@ export default function Form({
             label="Email"
             name="email"
             autoComplete="off"
-            defaultValue={adress?.email}
+            defaultValue={address?.email}
           />
           <Input
             inputMode="tel"
@@ -83,7 +86,7 @@ export default function Form({
                 <span className="text-default-400 text-small">+569</span>
               </div>
             }
-            defaultValue={adress?.phone.toString()}
+            defaultValue={address?.phone.toString()}
           />
           <Textarea
             label="Additional Information (optional)"
@@ -91,16 +94,16 @@ export default function Form({
             disableAutosize
             autoComplete="off"
             className="col-span-2 sm:col-auto sm:col-end-2"
-            defaultValue={adress?.info?.toString()}
+            defaultValue={address?.info?.toString()}
           />
         </section>
-        <SaveAdress callbackUrl={callbackUrl} />
+        <SaveAddress callbackUrl={callbackUrl} />
       </form>
     </>
   )
 }
 
-function SaveAdress({ callbackUrl }: { callbackUrl: string }) {
+function SaveAddress({ callbackUrl }: { callbackUrl: string }) {
   const { pending } = useFormStatus()
   return (
     <Button
@@ -108,7 +111,7 @@ function SaveAdress({ callbackUrl }: { callbackUrl: string }) {
       color="primary"
       isLoading={pending}
       startContent={!pending && <SaveIcon />}>
-      {callbackUrl ? 'Continue shopping' : 'Save Adress'}
+      {callbackUrl ? 'Continue shopping' : 'Save Address'}
     </Button>
   )
 }
