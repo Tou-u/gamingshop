@@ -9,6 +9,7 @@ import { currencyToUSD } from '@/utils/scripts'
 import NextLink from 'next/link'
 import Form from './form'
 import CartIconPlus from '@/components/ui/icons/CartIconPlus'
+import CartIconX from '@/components/ui/icons/CartIconX'
 
 let usercart: UserCart[] = []
 
@@ -38,6 +39,10 @@ export default async function ProductPage({ params }: { params: { slug: string }
               startContent={<CartIconPlus />}
               href={`/login?callbackUrl=${params.slug}`}>
               Add to cart
+            </Button>
+          ) : product.stock === 0 ? (
+            <Button color="danger" isDisabled startContent={<CartIconX />}>
+              Out of stock
             </Button>
           ) : (
             <Form product={product} user={session.user} cart={usercart} />
