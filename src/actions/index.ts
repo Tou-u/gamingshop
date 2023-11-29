@@ -3,7 +3,7 @@ import { z } from 'zod'
 import prisma from '@/lib/prisma'
 import { revalidatePath } from 'next/cache'
 import { Prisma } from '@prisma/client'
-import { Adress } from '@/types'
+import { Address, Product } from '@/types'
 
 // Shop
 
@@ -63,11 +63,11 @@ export async function RemoveFromCart(formData: FormData) {
   }
 }
 
-const AdressSchema = z.object({
+const AddressSchema = z.object({
   id: z.string().optional(),
   first_name: z.string().min(1, { message: 'A first name is required' }).trim(),
   last_name: z.string().min(1, { message: 'A last name is required' }).trim(),
-  adress: z.string().min(1, { message: 'An adress is required' }).trim(),
+  address: z.string().min(1, { message: 'An address is required' }).trim(),
   email: z.string().email({ message: 'Enter a valid email' }),
   phone: z.coerce
     .number({ invalid_type_error: 'Enter a valid phone' })
@@ -77,10 +77,10 @@ const AdressSchema = z.object({
   user_id: z.string()
 })
 
-export async function AddOrUpdateUserAdress(user_id: string, prevState: any, formData: FormData) {
+export async function AddOrUpdateUserAddress(user_id: string, prevState: any, formData: FormData) {
   formData.append('user_id', user_id)
   const form = Object.fromEntries(formData.entries())
-  const response = AdressSchema.safeParse(form)
+  const response = AddressSchema.safeParse(form)
 
   if (!response.success) {
     const { errors } = response.error
@@ -90,12 +90,12 @@ export async function AddOrUpdateUserAdress(user_id: string, prevState: any, for
   const data = response.data
 
   try {
-    await prisma.adress.upsert({
+    await prisma.address.upsert({
       where: {
         user_id: data.user_id
       },
       create: {
-        adress: data.adress,
+        address: data.address,
         email: data.email,
         first_name: data.first_name,
         last_name: data.last_name,
@@ -104,7 +104,7 @@ export async function AddOrUpdateUserAdress(user_id: string, prevState: any, for
         user_id: data.user_id
       },
       update: {
-        adress: data.adress,
+        address: data.address,
         email: data.email,
         first_name: data.first_name,
         last_name: data.last_name,
@@ -112,19 +112,53 @@ export async function AddOrUpdateUserAdress(user_id: string, prevState: any, for
         info: data.info
       }
     })
-    revalidatePath('/myadress')
+    revalidatePath('/myaddress')
     return { success: true }
   } catch (error) {
     return { error: 'Failed to save the product, try again later.' }
   }
 }
 
+function ValidateOrder(products: Product[], user_id: string, address: {}) {
+  return prisma.$transaction(async (tx) => {
+    for (const product of products) {
+      const updateStock = await tx.product.update({
+        where: {
+          id: product.id,
+          active: { equals: true }
+        },
+        data: {
+          stock: { decrement: 1 }
+        }
+      })
+
+      if (updateStock.stock < 0) {
+        throw new Error(`Product ${updateStock.name} out of stock`)
+      }
+    }
+    await prisma.order.create({
+      data: {
+        user_id,
+        address,
+        products: products
+      }
+    })
+
+    await prisma.cart.delete({
+      where: {
+        user_id
+      }
+    })
+  })
+}
+
 export async function NewOrder(formData: FormData) {
   const user_id = formData.get('user_id') as string
-  const products = formData.get('products') as string
-  const adressData = formData.get('adress') as string
+  const productsData = formData.get('products') as string
+  const addressData = formData.get('address') as string
 
-  const { first_name, last_name, adress, email, phone, info } = JSON.parse(adressData) as Adress
+  const { user_id: userId, id, ...address } = JSON.parse(addressData) as Address
+  const products = JSON.parse(productsData) as Product[]
 
   try {
     const delay = new Promise((resolve) =>
@@ -133,20 +167,18 @@ export async function NewOrder(formData: FormData) {
       }, 1000)
     )
     await delay
-    await prisma.order.create({
-      data: {
-        user_id,
-        adress: Object({ first_name, last_name, adress, email, phone, info }),
-        products: JSON.parse(products)
-      }
-    })
-    await prisma.cart.delete({
-      where: {
-        user_id
-      }
-    })
+    await ValidateOrder(products, user_id, address)
+
     return { success: true }
   } catch (error) {
+    if (error instanceof Error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        if (error.code === 'P2025') {
+          return { error: 'A product in your cart is no longer available.' }
+        }
+      }
+      return { error: error.message }
+    }
     return { error: 'Failed to complete the order, try again later.' }
   }
 }
