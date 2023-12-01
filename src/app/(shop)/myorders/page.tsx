@@ -1,7 +1,8 @@
 import { getPageSession } from '@/auth/lucia'
-import api from '@/lib/data'
 import { notFound } from 'next/navigation'
-import TableComponent from './table'
+import { Suspense } from 'react'
+import Loading from '@/components/ui/Loading'
+import Data from './data'
 
 export default async function MyOrdersPage() {
   const session = await getPageSession().catch((session) => (session = null))
@@ -10,11 +11,12 @@ export default async function MyOrdersPage() {
     notFound()
   }
 
-  const orders = await api.getUserOrders(session.user.userId)
-
   return (
     <div>
-      <TableComponent orders={orders} />
+      <h1 className="p-1 font-bold text-lg text-center">My Orders</h1>
+      <Suspense fallback={<Loading title="Loading Orders" size="200px" />}>
+        <Data user={session.user} />
+      </Suspense>
     </div>
   )
 }
