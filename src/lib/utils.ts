@@ -28,3 +28,25 @@ export const toast = {
     })
   }
 }
+
+export const LongDate = (date: number | Date | undefined) => {
+  return new Intl.DateTimeFormat('es-MX', {
+    dateStyle: 'medium',
+    timeStyle: 'short',
+    timeZone: 'America/Santiago'
+  }).format(date)
+}
+
+export const ShortDate = (date: number | Date | undefined) => {
+  return new Intl.DateTimeFormat('es-MX', {
+    dateStyle: 'short',
+    timeZone: 'America/Santiago'
+  }).format(date)
+}
+
+export const CurrencyToUSD = (price: number) => {
+  return Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  }).format(price)
+}
