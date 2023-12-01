@@ -1,8 +1,9 @@
 import styles from './Loading.module.css'
 
-export default function Loading({ title }: { title: string }) {
+export default function Loading({ title, size }: { title: string; size?: string }) {
   return (
-    <section className="flex flex-col items-center justify-center gap-2">
+    <section
+      className={`flex flex-col items-center justify-center gap-2 ${size ? `h-[${size}]` : ''} `}>
       <svg
         className={styles.container}
         x="0px"

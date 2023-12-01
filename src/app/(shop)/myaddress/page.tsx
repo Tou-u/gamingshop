@@ -17,13 +17,13 @@ export default async function MyAddressPage({ searchParams }: Props) {
   }
 
   return (
-    <>
-      <div className="text-center">
-        <h2>{callbackUrl ? 'To continue with the purchase, enter your address' : 'My Address'}</h2>
-        <Suspense fallback={<Loading title="Loading Form" />}>
-          <Data user={session.user} callbackUrl={callbackUrl} />
-        </Suspense>
-      </div>
-    </>
+    <div className="text-center">
+      <h1 className="p-1 font-bold text-lg">
+        {callbackUrl ? 'To continue with the purchase, enter your address' : 'My Address'}
+      </h1>
+      <Suspense fallback={<Loading title="Loading Form" size="200px" />}>
+        <Data user={session.user} callbackUrl={callbackUrl} />
+      </Suspense>
+    </div>
   )
 }

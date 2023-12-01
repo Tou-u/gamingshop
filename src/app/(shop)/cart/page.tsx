@@ -2,7 +2,6 @@ import { getPageSession } from '@/auth/lucia'
 import { notFound, redirect } from 'next/navigation'
 import api from '@/lib/data'
 import { Fragment } from 'react'
-import { Divider } from '@nextui-org/divider'
 import { currencyToUSD } from '@/utils/scripts'
 import Form from './form'
 import Checkout from './checkout'
@@ -56,7 +55,6 @@ export default async function Page() {
                     <Form user={session.user} product={product} />
                   </div>
                 </div>
-                <Divider className="m-1" />
               </Fragment>
             ))}
           </article>
