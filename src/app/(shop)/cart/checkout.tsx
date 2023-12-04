@@ -1,5 +1,4 @@
 'use client'
-import { NewOrder } from '@/actions'
 import Loading from '@/components/ui/Loading'
 import { Address, UserCart } from '@/types'
 import { Button } from '@nextui-org/button'
@@ -8,6 +7,7 @@ import { User } from 'lucia'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { Link } from '@nextui-org/react'
+import { newOrder } from '@/lib/actions/shop'
 
 export default function Checkout({
   address,
@@ -37,7 +37,7 @@ export default function Checkout({
     data.append('products', JSON.stringify(products))
     data.append('address', JSON.stringify(address))
 
-    const response = await NewOrder(data)
+    const response = await newOrder(data)
 
     if (response.success) {
       setFinishedPurchase({ status: true, message: 'Order complete' })
