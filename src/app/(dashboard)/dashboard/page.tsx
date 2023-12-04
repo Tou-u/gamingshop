@@ -1,12 +1,14 @@
-import Table from '@/components/Table'
-import { getProductsDashboard } from '@/lib/data'
+import { Suspense } from 'react'
+import Loading from '@/components/ui/Loading'
+import Data from './data'
 
 export default async function Dashboard() {
-  const products = await getProductsDashboard()
   return (
     <div>
-      <h1>Dashboard</h1>
-      {products.data && <Table products={products.data} />}
+      <h1 className="p-1 font-bold text-lg text-center">Dashboard</h1>
+      <Suspense fallback={<Loading title="Loading Table" gap />}>
+        <Data />
+      </Suspense>
     </div>
   )
 }

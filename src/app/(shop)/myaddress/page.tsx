@@ -21,7 +21,7 @@ export default async function MyAddressPage({ searchParams }: Props) {
       <h1 className="p-1 font-bold text-lg">
         {callbackUrl ? 'To continue with the purchase, enter your address' : 'My Address'}
       </h1>
-      <Suspense fallback={<Loading title="Loading Form" size="200px" />}>
+      <Suspense fallback={<Loading title="Loading Form" gap />}>
         <Data user={session.user} callbackUrl={callbackUrl} />
       </Suspense>
     </div>

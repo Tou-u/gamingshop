@@ -14,7 +14,7 @@ export default async function MyOrdersPage() {
   return (
     <div>
       <h1 className="p-1 font-bold text-lg text-center">My Orders</h1>
-      <Suspense fallback={<Loading title="Loading Orders" size="200px" />}>
+      <Suspense fallback={<Loading title="Loading Orders" gap />}>
         <Data user={session.user} />
       </Suspense>
     </div>
