@@ -9,7 +9,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="dark">
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <main className="max-w-[1050px] m-auto p-2">{children}</main>
+        </Providers>
       </body>
     </html>
   )

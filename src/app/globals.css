@@ -2,8 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-.customdot {
-  .react-multi-carousel-dot--active button {
-    background-color: #006fee;
-  }
+/* .flicking-pagination{
+  position: relative !important;
+  padding-top: 20px;
+}
+
+.flicking-pagination-bullet {
+  background-color: rgb(255, 255, 255, 10%) !important
+}
+.flicking-pagination-bullet-active {
+  background-color: #0070F0!important;
+} */
+
+.flicking-arrow-prev {
+  width: 30px !important;
+  height: 30px !important;
+ 
+}
+
+.flicking-arrow-prev::before {
+  left: 8px !important;
+  width: 15px !important;
+  height: 4px !important;
+  top: 50% !important;
+}
+
+.flicking-arrow-prev::after {
+  left: 8px !important;
+  width: 15px !important;
+  height: 4px !important;
+  top: calc(50% - 3px) !important;
+}
+.flicking-arrow-next {
+  width: 30px !important;
+  height: 30px !important;
+ 
+}
+
+.flicking-arrow-next::before {
+  left: 8px !important;
+  width: 15px !important;
+  height: 4px !important;
+  top: 50% !important;
+}
+
+.flicking-arrow-next::after {
+  left: 8px !important;
+  width: 15px !important;
+  height: 4px !important;
+  top: calc(50% - 3px) !important;
 }
