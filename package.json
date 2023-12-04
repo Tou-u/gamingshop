@@ -13,30 +13,29 @@
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "dependencies": {
+    "@egjs/flicking-plugins": "4.7.1",
+    "@egjs/react-flicking": "4.11.1",
     "@lucia-auth/adapter-prisma": "3.0.2",
     "@nextui-org/react": "2.2.9",
     "@prisma/client": "5.6.0",
-    "@react-stately/data": "3.11.0",
-    "framer-motion": "10.16.5",
+    "framer-motion": "10.16.12",
     "lucia": "2.7.4",
     "next": "14.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hot-toast": "2.4.1",
-    "react-multi-carousel": "2.8.4",
-    "zod": "3.22.4",
-    "zustand": "4.4.7"
+    "zod": "3.22.4"
   },
   "devDependencies": {
-    "@types/node": "20.10.0",
-    "@types/react": "18.2.39",
+    "@types/node": "20.10.3",
+    "@types/react": "18.2.41",
     "@types/react-dom": "18.2.17",
     "autoprefixer": "10.4.16",
-    "eslint": "8.54.0",
+    "eslint": "8.55.0",
     "eslint-config-next": "14.0.3",
-    "postcss": "8.4.31",
+    "postcss": "8.4.32",
     "prisma": "5.6.0",
-    "tailwindcss": "3.3.5",
+    "tailwindcss": "3.3.6",
     "ts-node": "10.9.1",
     "typescript": "5.3.2"
   }
