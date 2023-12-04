@@ -1,11 +1,20 @@
 'use client'
 import { useState } from 'react'
-import { Product } from '@/types'
 import Select from '@/components/Select'
 import Autocomplete from '@/components/Autocomplete'
 import ProductCard from '@/components/ProductCard'
 
 type Option = 'default' | 'lower' | 'higher'
+
+type Product = {
+  image: string
+  brand: {
+    name: string
+  }
+  slug: string
+  name: string
+  price: number
+}
 
 export default function CategoryList({ products }: { products: Product[] }) {
   const [orderBy, setOrderBy] = useState<Option>('default')

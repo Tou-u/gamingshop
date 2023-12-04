@@ -1,7 +1,16 @@
 // @ts-nocheck
 import { Dispatch, SetStateAction } from 'react'
-import { Product } from '@/types'
 import { Autocomplete as AutocompleteUI, AutocompleteItem } from '@nextui-org/autocomplete'
+
+type Product = {
+  image: string
+  brand: {
+    name: string
+  }
+  slug: string
+  name: string
+  price: number
+}
 
 export default function Autocomplete({
   brands,
