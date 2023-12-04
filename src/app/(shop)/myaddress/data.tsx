@@ -1,4 +1,4 @@
-import api from '@/lib/data'
+import api from '@/lib/data/shop'
 import Form from './form'
 import { User } from 'lucia'
 

@@ -1,11 +1,11 @@
 import { getPageSession } from '@/auth/lucia'
 import { notFound, redirect } from 'next/navigation'
-import api from '@/lib/data'
+import api from '@/lib/data/shop'
 import { Fragment } from 'react'
-import { currencyToUSD } from '@/utils/scripts'
 import Form from './form'
 import Checkout from './checkout'
 import AddressCard from './card'
+import { CurrencyToUSD } from '@/lib/utils'
 
 export default async function Page() {
   const session = await getPageSession().catch((session) => (session = null))
@@ -50,7 +50,7 @@ export default async function Page() {
                   <div className="flex flex-col">
                     <p>{product.name}</p>
                     <p className="flex-1">
-                      Price: <span className="font-bold">{currencyToUSD(product.price)}</span>
+                      Price: <span className="font-bold">{CurrencyToUSD(product.price)}</span>
                     </p>
                     <Form user={session.user} product={product} />
                   </div>
@@ -63,7 +63,7 @@ export default async function Page() {
           <h2 className="text-center mb-2 font-bold">Order Summary</h2>
           <div className="flex justify-evenly mb-2">
             <p>Order total:</p>
-            <p className="font-bold">{currencyToUSD(toPay)}</p>
+            <p className="font-bold">{CurrencyToUSD(toPay)}</p>
           </div>
           {address && <AddressCard address={address} />}
           <Checkout address={address} user={session.user} products={products} />

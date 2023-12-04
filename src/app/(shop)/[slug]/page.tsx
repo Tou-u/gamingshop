@@ -1,15 +1,15 @@
 import { UserCart } from '@/types'
 import { getPageSession } from '@/auth/lucia'
-import api from '@/lib/data'
+import api from '@/lib/data/shop'
 import { notFound } from 'next/navigation'
 import { Image } from '@nextui-org/image'
 import { Divider } from '@nextui-org/divider'
 import { Button } from '@nextui-org/button'
-import { currencyToUSD } from '@/utils/scripts'
 import NextLink from 'next/link'
 import Form from './form'
 import CartIconPlus from '@/components/ui/icons/CartIconPlus'
 import CartIconX from '@/components/ui/icons/CartIconX'
+import { CurrencyToUSD } from '@/lib/utils'
 
 let usercart: UserCart[] = []
 
@@ -29,7 +29,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
       <div className="grid grid-cols-2 place-items-center">
         <Image src="/placeholder.jpeg" alt={product.name} />
         <div>
-          <p className="text-lg">{currencyToUSD(product.price)}</p>
+          <p className="text-lg">{CurrencyToUSD(product.price)}</p>
           <Divider />
           <p>Stock: {product.stock}</p>
           {!session ? (

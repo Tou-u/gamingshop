@@ -1,6 +1,6 @@
-import api from '@/lib/data'
+import api from '@/lib/data/shop'
 import { Link } from '@nextui-org/link'
-import Carousel from '@/components/Carousel'
+import Carousel from './carousel'
 
 export default async function Data() {
   const products = await api.getMainProducts()

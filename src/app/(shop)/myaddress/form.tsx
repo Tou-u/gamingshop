@@ -3,13 +3,13 @@ import { Address } from '@/types'
 import { Input, Textarea } from '@nextui-org/input'
 import { Button } from '@nextui-org/button'
 import { useFormState, useFormStatus } from 'react-dom'
-import { AddOrUpdateUserAddress } from '@/actions'
 import { User } from 'lucia'
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import SaveIcon from '@/components/ui/icons/SaveIcon'
 import { Toaster } from 'react-hot-toast'
 import { toast } from '@/lib/utils'
+import { addOrUpdateUserAddress } from '@/lib/actions/shop'
 
 export default function Form({
   address,
@@ -22,7 +22,7 @@ export default function Form({
 }) {
   const router = useRouter()
   const [state, formAction] = useFormState(
-    AddOrUpdateUserAddress.bind(null, user.userId),
+    addOrUpdateUserAddress.bind(null, user.userId),
     undefined
   )
 

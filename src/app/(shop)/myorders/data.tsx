@@ -1,5 +1,5 @@
 import { User } from 'lucia'
-import api from '@/lib/data'
+import api from '@/lib/data/shop'
 import TableComponent from './table'
 
 export default async function Data({ user }: { user: User }) {

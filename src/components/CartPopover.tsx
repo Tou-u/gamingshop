@@ -6,9 +6,9 @@ import { Card, CardHeader, CardBody, CardFooter } from '@nextui-org/card'
 import { Link } from '@nextui-org/link'
 import { UserCart } from '@/types'
 import NextLink from 'next/link'
-import { currencyToUSD } from '@/utils/scripts'
+import { CurrencyToUSD } from '@/lib/utils'
 
-export default function CartPopover({ usercart }: { usercart: UserCart }) {
+export default function CartPopover({ usercart }: { usercart: UserCart[] }) {
   const [isOpen, setIsOpen] = useState(false)
 
   let toPay = 0
@@ -62,7 +62,7 @@ export default function CartPopover({ usercart }: { usercart: UserCart }) {
                 </section>
               </CardBody>
               <CardFooter className="flex flex-col">
-                <p>Total: {currencyToUSD(toPay)}</p>
+                <p>Total: {CurrencyToUSD(toPay)}</p>
                 <Link as={NextLink} href="/cart" onClick={() => setIsOpen(!isOpen)}>
                   Proceed to payment
                 </Link>

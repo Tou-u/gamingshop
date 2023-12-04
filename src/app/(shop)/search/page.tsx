@@ -1,5 +1,5 @@
 import ProductCard from '@/components/ProductCard'
-import api from '@/lib/data'
+import api from '@/lib/data/shop'
 import { redirect } from 'next/navigation'
 import { Fragment } from 'react'
 
