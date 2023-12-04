@@ -50,7 +50,7 @@ export const NavBar = ({
   usercart
 }: {
   session: Session | null | undefined
-  usercart: UserCart | undefined
+  usercart: UserCart[] | undefined
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
