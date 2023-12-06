@@ -10,10 +10,35 @@ import Form from './form'
 import CartIconPlus from '@/components/ui/icons/CartIconPlus'
 import CartIconX from '@/components/ui/icons/CartIconX'
 import { CurrencyToUSD } from '@/lib/utils'
+import { Metadata } from 'next'
 
 let usercart: UserCart[] = []
 
-export default async function ProductPage({ params }: { params: { slug: string } }) {
+type Props = {
+  params: { slug: string }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const product = await api.getProductBySlug(params.slug)
+
+  if (product) {
+    return {
+      title: `${product.name} | Gaming Shop`,
+      description: product.description,
+      openGraph: {
+        title: `${product.name} | Gaming Shop`,
+        description: product.description,
+        images: ['/placeholder.jpeg']
+      }
+    }
+  }
+
+  return {
+    title: 'Gaming Shop'
+  }
+}
+
+export default async function ProductPage({ params }: Props) {
   const session = await getPageSession().catch((session) => (session = null))
   const product = await api.getProductBySlug(params.slug)
 
