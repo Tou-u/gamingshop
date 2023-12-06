@@ -7,7 +7,6 @@ let usercart: UserCart[] | undefined = undefined
 
 export default async function Header() {
   const session = await getPageSession().catch((session) => (session = null))
-
   if (session) {
     usercart = await api.getUserCart(session.user.userId)
   }

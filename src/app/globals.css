@@ -17,7 +17,6 @@
 .flicking-arrow-prev {
   width: 30px !important;
   height: 30px !important;
- 
 }
 
 .flicking-arrow-prev::before {
@@ -36,7 +35,6 @@
 .flicking-arrow-next {
   width: 30px !important;
   height: 30px !important;
- 
 }
 
 .flicking-arrow-next::before {

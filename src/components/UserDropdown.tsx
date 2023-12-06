@@ -13,6 +13,7 @@ import AddressIcon from './ui/icons/AddressIcon'
 import OrdersIcons from './ui/icons/OrdersIcon'
 import LogoutIcon from './ui/icons/LogoutIcon'
 import NextLink from 'next/link'
+import AdminIcon from './ui/icons/AdminIcon'
 
 export default function UserDropdown({ user }: { user: LuciaUser }) {
   const router = useRouter()
@@ -25,7 +26,10 @@ export default function UserDropdown({ user }: { user: LuciaUser }) {
         <DropdownMenu aria-label="User Actions" variant="flat">
           {user.role === 'admin' ? (
             <DropdownSection title="Admin options" showDivider>
-              <DropdownItem key="dashboard" onPress={() => router.push('/dashboard')}>
+              <DropdownItem
+                key="dashboard"
+                startContent={<AdminIcon />}
+                onPress={() => router.push('/d/products')}>
                 Dashboard
               </DropdownItem>
             </DropdownSection>
