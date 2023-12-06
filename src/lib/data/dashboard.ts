@@ -13,6 +13,28 @@ const api = {
       throw new Error('Error obtaining the products')
     }
   },
+  getOrders: async (username?: string) => {
+    try {
+      const orders = await prisma.order.findMany({
+        orderBy: {
+          created_at: 'desc'
+        },
+        include: {
+          user: {
+            select: { username: true }
+          }
+        },
+        where: {
+          user: {
+            username: { contains: username, mode: 'insensitive' }
+          }
+        }
+      })
+      return orders
+    } catch (error) {
+      throw new Error('Error obtaining the orders')
+    }
+  },
   getProduct: async (id: string | undefined) => {
     try {
       const brands = await prisma.brand.findMany()
