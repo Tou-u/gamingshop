@@ -15,18 +15,18 @@ import { Chip } from '@nextui-org/chip'
 import { Pagination } from '@nextui-org/pagination'
 import { Tooltip } from '@nextui-org/tooltip'
 import { Link } from '@nextui-org/link'
-import { FormEvent, useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { PlusIcon } from '@/components/ui/icons/PlusIcon'
 import { ChevronDownIcon } from '@/components/ui/icons/ChevronDownIcon'
 import { SearchIcon } from '@/components/ui/icons/SearchIcon'
-import { EyeIcon } from '@/components/ui/icons/EyeIcon2'
-import { EditIcon } from '@/components/ui/icons/EditIcon'
+import EyeIcon from '@/components/ui/icons/EyeIcon2'
+import EditIcon from '@/components/ui/icons/EditIcon'
+import DeleteIcon from '@/components/ui/icons/DeleteIcon'
 import NextLink from 'next/link'
 import { Modal, ModalContent, ModalHeader, ModalFooter, useDisclosure } from '@nextui-org/modal'
-import { DeleteIcon } from '@/components/ui/icons/DeleteIcon'
 import { useFormState, useFormStatus } from 'react-dom'
 import { deleteProduct } from '@/lib/actions/dashboard'
-import { toast } from '@/lib/utils'
+import { CurrencyToUSD, toast } from '@/lib/utils'
 import { Toaster } from 'react-hot-toast'
 
 const columns = [
@@ -64,6 +64,19 @@ export default function TableComponent({ products }: { products: Product[] }) {
   const [product, setProduct] = useState<Product | null>(null)
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure()
 
+  const [state, formAction] = useFormState(deleteProduct.bind(null, product?.id), undefined)
+
+  useEffect(() => {
+    const checkState = () => {
+      if (state?.success) {
+        onClose()
+        toast.success('Product deleted')
+      }
+      if (state?.error) toast.error(state.error)
+    }
+    checkState()
+  }, [state, onClose])
+
   const hasSearchFilter = Boolean(filterValue)
 
   const filteredItems = useMemo(() => {
@@ -90,6 +103,15 @@ export default function TableComponent({ products }: { products: Product[] }) {
     return filteredItems.slice(start, end)
   }, [page, filteredItems, rowsPerPage])
 
+  const onSearchChange = useCallback((value?: string) => {
+    if (value) {
+      setFilterValue(value)
+      setPage(1)
+    } else {
+      setFilterValue('')
+    }
+  }, [])
+
   const renderCell = useCallback(
     (product: Product, columnKey: React.Key) => {
       const cellValue = product[columnKey as keyof Product]
@@ -100,12 +122,7 @@ export default function TableComponent({ products }: { products: Product[] }) {
         case 'price':
           return (
             <div className="flex flex-col">
-              <p className="text-bold text-small capitalize">
-                {Intl.NumberFormat('en-US', {
-                  style: 'currency',
-                  currency: 'USD'
-                }).format(product.price)}
-              </p>
+              <p className="text-bold text-small capitalize">{CurrencyToUSD(product.price)}</p>
               <p className="text-bold text-tiny capitalize text-default-500">
                 Stock: {product.stock}
               </p>
@@ -159,29 +176,41 @@ export default function TableComponent({ products }: { products: Product[] }) {
     [onOpen]
   )
 
-  const onSearchChange = useCallback((value?: string) => {
-    if (value) {
-      setFilterValue(value)
-      setPage(1)
-    } else {
-      setFilterValue('')
-    }
-  }, [])
-
-  const topContent = useMemo(() => {
-    return (
-      <div className="flex flex-col gap-4">
+  return (
+    <>
+      <Toaster position="bottom-center" />
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1 text-center">
+                <p>Are you sure to delete the product ?</p>
+                <p className="underline">{product?.name}</p>
+              </ModalHeader>
+              <ModalFooter>
+                <form action={formAction}>
+                  <DeleteButton />
+                </form>
+                <Button color="primary" onPress={onClose}>
+                  Cancel
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+      <div className="flex flex-col gap-2">
         <div className="flex justify-between gap-3 items-end">
           <Input
-            isClearable
+            size="sm"
+            variant="bordered"
+            color="primary"
             classNames={{
-              base: 'w-full sm:max-w-[44%]',
-              inputWrapper: 'border-1 h-[10px]'
+              base: 'w-[49%] sm:max-w-[30%]'
             }}
             placeholder="Search by name..."
             startContent={<SearchIcon className="text-default-300" />}
             value={filterValue}
-            variant="bordered"
             onClear={() => setFilterValue('')}
             onValueChange={onSearchChange}
           />
@@ -209,7 +238,7 @@ export default function TableComponent({ products }: { products: Product[] }) {
             <Button
               as={NextLink}
               href="/d/product"
-              className="bg-foreground text-background"
+              color="primary"
               size="sm"
               endContent={<PlusIcon />}>
               Add Product
@@ -218,92 +247,11 @@ export default function TableComponent({ products }: { products: Product[] }) {
         </div>
         <span className="text-default-400 text-small">Total {products.length} products</span>
       </div>
-    )
-  }, [filterValue, statusFilter, onSearchChange, products.length])
-
-  const bottomContent = useMemo(() => {
-    return (
-      <div className="py-2 px-2 flex w-full justify-center">
-        <Pagination
-          showControls
-          classNames={{
-            cursor: 'bg-foreground text-background'
-          }}
-          color="default"
-          page={page}
-          total={pages}
-          variant="light"
-          onChange={setPage}
-        />
-      </div>
-    )
-  }, [page, pages])
-
-  const classNames = useMemo(
-    () => ({
-      wrapper: ['max-h-[382px]', 'max-w-3xl'],
-      th: ['bg-transparent', 'text-default-500', 'border-b', 'border-divider'],
-      td: [
-        'group-data-[first=true]:first:before:rounded-none',
-        'group-data-[first=true]:last:before:rounded-none',
-        'group-data-[middle=true]:before:rounded-none',
-        'group-data-[last=true]:first:before:rounded-none',
-        'group-data-[last=true]:last:before:rounded-none'
-      ]
-    }),
-    []
-  )
-
-  const [state, formAction] = useFormState(deleteProduct.bind(null, product?.id), undefined)
-
-  useEffect(() => {
-    const checkState = () => {
-      if (state?.success) {
-        onClose()
-        toast.success('Product deleted')
-      }
-      if (state?.error) toast.error(state.error)
-    }
-    checkState()
-  }, [state, onClose])
-
-  return (
-    <>
-      <Toaster position="bottom-center" />
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1 text-center">
-                <p>Are you sure to delete the product ?</p>
-                <p className="underline">{product?.name}</p>
-              </ModalHeader>
-              <ModalFooter>
-                <form action={formAction}>
-                  <DeleteButton />
-                </form>
-                <Button color="primary" onPress={onClose}>
-                  Cancel
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
       <Table
         isCompact
         removeWrapper
         aria-label="Table with products of gaming shop"
-        bottomContent={bottomContent}
-        bottomContentPlacement="outside"
-        checkboxesProps={{
-          classNames: {
-            wrapper: 'after:bg-foreground after:text-background text-background'
-          }
-        }}
-        classNames={classNames}
-        topContent={topContent}
-        topContentPlacement="outside">
+        classNames={{ th: ['bg-transparent', 'text-default-500', 'border-b', 'border-divider'] }}>
         <TableHeader columns={columns}>
           {(column) => (
             <TableColumn key={column.uid} align={column.uid === 'actions' ? 'center' : 'start'}>
@@ -319,6 +267,16 @@ export default function TableComponent({ products }: { products: Product[] }) {
           )}
         </TableBody>
       </Table>
+      <div className="py-2 px-2 flex w-full justify-center">
+        <Pagination
+          showControls
+          showShadow
+          variant="light"
+          page={page}
+          total={pages}
+          onChange={setPage}
+        />
+      </div>
     </>
   )
 }
