@@ -44,10 +44,8 @@ export const createOrEditProduct = async (
     return { success: true }
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      console.log(error)
       if (error.code === 'P2002') return { error: 'A product with that slug already exist' }
     }
-    console.log(error)
     return { error: 'Failed to save the product, try again later.' }
   }
 }
