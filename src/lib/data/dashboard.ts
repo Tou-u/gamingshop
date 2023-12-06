@@ -13,9 +13,23 @@ const api = {
       throw new Error('Error obtaining the products')
     }
   },
-  getOrders: async (username?: string) => {
+  getOrders: async (username?: string, page: number = 1, stage?: string) => {
+    const pageSize = 15
+    const skip = (page - 1) * pageSize
+
     try {
+      const totalOrders = await prisma.order.count({
+        where: {
+          user: {
+            username: { contains: username, mode: 'insensitive' }
+          },
+          stage: stage === 'all' ? undefined : stage
+        }
+      })
+      const pages = Math.ceil(totalOrders / pageSize)
       const orders = await prisma.order.findMany({
+        skip,
+        take: pageSize,
         orderBy: {
           created_at: 'desc'
         },
@@ -27,10 +41,11 @@ const api = {
         where: {
           user: {
             username: { contains: username, mode: 'insensitive' }
-          }
+          },
+          stage: stage === 'all' ? undefined : stage
         }
       })
-      return orders
+      return { orders, pages }
     } catch (error) {
       throw new Error('Error obtaining the orders')
     }
@@ -63,6 +78,18 @@ const api = {
       return { data: { brands, categories, product } }
     } catch (error) {
       throw new Error('Error obtaining the product')
+    }
+  },
+  getOrder: async (order_id: string) => {
+    try {
+      const order = await prisma.order.findFirst({
+        where: {
+          id: order_id
+        }
+      })
+      return order
+    } catch (error) {
+      throw new Error('Error obtaining the order')
     }
   }
 }
