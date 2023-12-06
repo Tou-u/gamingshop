@@ -1,17 +1,23 @@
 import { getPageSession } from '@/auth/lucia'
-import api from '@/lib/data/dashboard'
 import { notFound } from 'next/navigation'
-import Table from './table'
+import { Suspense } from 'react'
+import Data from './data'
+import Loading from '@/components/ui/Loading'
 
-export default async function Orders({ searchParams }: { searchParams?: { client?: string } }) {
+export default async function Orders({
+  searchParams
+}: {
+  searchParams?: { client?: string; page?: string; stage?: string }
+}) {
   const session = await getPageSession().catch((session) => (session = null))
   if (!session || session.user.role !== 'admin') notFound()
 
-  const orders = await api.getOrders(searchParams?.client)
-
   return (
     <div>
-      <Table orders={orders} />
+      <h1 className="p-1 font-bold text-lg text-center">Manage Orders</h1>
+      <Suspense fallback={<Loading title="Loading Orders" gap />}>
+        <Data searchParams={searchParams} />
+      </Suspense>
     </div>
   )
 }
