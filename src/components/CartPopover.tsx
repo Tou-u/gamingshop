@@ -50,12 +50,7 @@ export default function CartPopover({ usercart }: { usercart: UserCart[] }) {
                         <h5>{product.name}</h5>
                       </div>
                       <div className="col-span-2 border-b">
-                        <h5>
-                          {Intl.NumberFormat('en-US', {
-                            style: 'currency',
-                            currency: 'USD'
-                          }).format(product.price)}
-                        </h5>
+                        <h5>{CurrencyToUSD(product.price)}</h5>
                       </div>
                     </Fragment>
                   ))}

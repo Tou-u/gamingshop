@@ -1,3 +1,4 @@
+import { CurrencyToUSD } from '@/lib/utils'
 import { Card, CardBody, CardFooter } from '@nextui-org/card'
 import { Image } from '@nextui-org/image'
 import NextLink from 'next/link'
@@ -30,12 +31,7 @@ export default function ProductCard({ product }: { product: Product }) {
       </CardBody>
       <CardFooter className="text-small flex-col p-2 text-center h-[100px] items-center justify-center">
         <b>{product.name}</b>
-        <p className="text-default-500">
-          {Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD'
-          }).format(product.price)}
-        </p>
+        <p className="text-default-500">{CurrencyToUSD(product.price)}</p>
       </CardFooter>
     </Card>
   )
