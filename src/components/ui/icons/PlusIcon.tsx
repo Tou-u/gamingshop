@@ -12,7 +12,7 @@ export const PlusIcon = () => (
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={1.5}>
+      strokeWidth={3}>
       <path d="M6 12h12" />
       <path d="M12 18V6" />
     </g>

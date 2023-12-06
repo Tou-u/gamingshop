@@ -1,8 +1,8 @@
 'use client'
-import EyeIcon from '@/components/ui/icons/EyeIcon'
+import EyeIcon from '@/components/ui/icons/EyeIcon2'
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from '@nextui-org/table'
 import { Chip } from '@nextui-org/chip'
-import { Button } from '@nextui-org/button'
+import { Tooltip } from '@nextui-org/tooltip'
 import { Link } from '@nextui-org/link'
 import NextLink from 'next/link'
 import { Prisma } from '@prisma/client'
@@ -15,6 +15,7 @@ import { Divider } from '@nextui-org/divider'
 type Order = {
   id: string
   status: string
+  stage: string
   created_at: Date
   products: Prisma.JsonValue[]
   address: Prisma.JsonValue
@@ -27,6 +28,19 @@ type Product = {
   slug: string
   image: string
   price: number
+}
+
+type Stages = {
+  [key: string]: {
+    color: 'success' | 'default' | 'primary' | 'danger'
+  }
+}
+
+const stages: Stages = {
+  processing: { color: 'default' },
+  processed: { color: 'primary' },
+  shipped: { color: 'success' },
+  refund: { color: 'danger' }
 }
 
 const columns = [
@@ -77,14 +91,13 @@ export default function TableComponent({ orders }: { orders: Order[] }) {
         return <p className="m-auto">{ShortDate(order.created_at)}</p>
       case 'details':
         return (
-          <Button
-            isIconOnly
-            variant="light"
-            radius="full"
-            className="m-auto"
-            onPress={() => showModal(order)}>
-            <EyeIcon />
-          </Button>
+          <Tooltip content="See details" color="primary">
+            <span
+              className="text-lg text-default-400 cursor-pointer active:opacity-50"
+              onClick={() => showModal(order)}>
+              <EyeIcon />
+            </span>
+          </Tooltip>
         )
       default:
         return
@@ -136,6 +149,16 @@ export default function TableComponent({ orders }: { orders: Order[] }) {
             <ModalBody>
               <div className="px-2 flex flex-col gap-1">
                 <p>{`Purchase Date: ${LongDate(selectedData.created_at)}`}</p>
+                <div className="flex gap-2">
+                  <p>Stage:</p>
+                  <Chip
+                    className="capitalize border-none gap-1"
+                    size="sm"
+                    variant="shadow"
+                    color={stages[selectedData.stage].color}>
+                    {selectedData.stage}
+                  </Chip>
+                </div>
                 <Divider />
                 <section className="flex flex-col items-center">
                   <h2 className="font-bold">Shipping Information</h2>
@@ -160,7 +183,7 @@ export default function TableComponent({ orders }: { orders: Order[] }) {
         }}>
         <TableHeader columns={columns}>
           {(column) => (
-            <TableColumn key={column.uid} className="text-center">
+            <TableColumn key={column.uid} className="text-center p-0">
               {column.name}
             </TableColumn>
           )}

@@ -11,7 +11,7 @@ export default async function Dashboard() {
   return (
     <div>
       <h1 className="p-1 font-bold text-lg text-center">Manage Products</h1>
-      <Suspense fallback={<Loading title="Loading Table" gap />}>
+      <Suspense fallback={<Loading title="Loading Products" gap />}>
         <Data />
       </Suspense>
     </div>
