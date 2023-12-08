@@ -21,12 +21,18 @@ const api = {
       throw new Error('Error obtaining the products')
     }
   },
-  getProductsPerCategory: async (name: string) => {
+  getProductsPerCategory: async (name: string, order?: 'asc' | 'desc', brand?: string) => {
+    if (order !== 'asc' && order !== 'desc' && order !== undefined) order = undefined
+    if (brand === '') brand = undefined
+
     try {
       const products = await prisma.product.findMany({
         where: {
           category: { name },
-          active: { equals: true }
+          active: { equals: true },
+          brand: {
+            name: brand
+          }
         },
         select: {
           slug: true,
@@ -38,10 +44,26 @@ const api = {
               name: true
             }
           }
+        },
+        orderBy: {
+          price: order
         }
       })
 
-      return { data: products }
+      const brands = await prisma.product.findMany({
+        where: {
+          category: { name },
+          active: { equals: true }
+        },
+        select: {
+          brand: {
+            select: { name: true }
+          }
+        },
+        distinct: 'brand_id'
+      })
+
+      return { products, brands }
     } catch (error) {
       throw new Error('Error obtaining the products')
     }
