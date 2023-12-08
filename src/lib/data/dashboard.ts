@@ -85,6 +85,13 @@ const api = {
       const order = await prisma.order.findFirst({
         where: {
           id: order_id
+        },
+        include: {
+          user: {
+            select: {
+              username: true
+            }
+          }
         }
       })
       return order
