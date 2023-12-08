@@ -6,6 +6,7 @@ import Form from './form'
 import Checkout from './checkout'
 import AddressCard from './card'
 import { CurrencyToUSD } from '@/lib/utils'
+import { PUBLIC_URL } from '@/lib/r2'
 
 export default async function Page() {
   const session = await getPageSession().catch((session) => (session = null))
@@ -44,7 +45,7 @@ export default async function Page() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     alt={product.name}
-                    src="/placeholder.jpeg"
+                    src={`${PUBLIC_URL}/${product.image}`}
                     className="w-[100px] h-[100px] rounded-2xl object-cover"
                   />
                   <div className="flex flex-col">

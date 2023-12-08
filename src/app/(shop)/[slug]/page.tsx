@@ -11,6 +11,7 @@ import CartIconPlus from '@/components/ui/icons/CartIconPlus'
 import CartIconX from '@/components/ui/icons/CartIconX'
 import { CurrencyToUSD } from '@/lib/utils'
 import { Metadata } from 'next'
+import { PUBLIC_URL } from '@/lib/r2'
 
 let usercart: UserCart[] = []
 
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       openGraph: {
         title: `${product.name} | Gaming Shop`,
         description: product.description,
-        images: ['/placeholder.jpeg']
+        images: [`${PUBLIC_URL}/${product.image}`]
       }
     }
   }
@@ -52,7 +53,7 @@ export default async function ProductPage({ params }: Props) {
     <main className="p-2">
       <h1 className="text-lg font-bold text-center pb-2">{product.name}</h1>
       <div className="grid grid-cols-2 place-items-center">
-        <Image src="/placeholder.jpeg" alt={product.name} />
+        <Image src={`${PUBLIC_URL}/${product.image}`} alt={product.name} />
         <div>
           <p className="text-lg">{CurrencyToUSD(product.price)}</p>
           <Divider />

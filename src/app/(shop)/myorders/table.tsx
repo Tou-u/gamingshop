@@ -11,6 +11,7 @@ import { Modal, ModalContent, ModalHeader, ModalBody, useDisclosure } from '@nex
 import { CurrencyToUSD, LongDate, ShortDate } from '@/lib/utils'
 import { Address } from '@/types'
 import { Divider } from '@nextui-org/divider'
+import { PUBLIC_URL } from '@/lib/r2'
 
 type Order = {
   id: string
@@ -71,8 +72,8 @@ export default function TableComponent({ orders }: { orders: Order[] }) {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   alt={product.name}
-                  src="/placeholder.jpeg"
-                  className="h-[30px] w-[30px] object-cover"
+                  src={`${PUBLIC_URL}/${product.image}`}
+                  className="h-[40px] w-[40px] object-contain"
                 />
                 <Link as={NextLink} href={`/${product.slug}`}>
                   {product.name}

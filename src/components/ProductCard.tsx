@@ -1,3 +1,4 @@
+import { PUBLIC_URL } from '@/lib/r2'
 import { CurrencyToUSD } from '@/lib/utils'
 import { Card, CardBody, CardFooter } from '@nextui-org/card'
 import { Image } from '@nextui-org/image'
@@ -25,11 +26,11 @@ export default function ProductCard({ product }: { product: Product }) {
           radius="lg"
           width="100%"
           alt={product.name}
-          className="w-full object-cover h-[140px]"
-          src="/placeholder.jpeg"
+          className="w-full object-contain h-[150px] bg-white"
+          src={`${PUBLIC_URL}/${product.image}`}
         />
       </CardBody>
-      <CardFooter className="text-small flex-col p-2 text-center h-[100px] items-center justify-center">
+      <CardFooter className="text-small flex-col p-2 text-center h-[90px] items-center justify-center">
         <b>{product.name}</b>
         <p className="text-default-500">{CurrencyToUSD(product.price)}</p>
       </CardFooter>
