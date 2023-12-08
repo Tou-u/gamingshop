@@ -83,8 +83,10 @@ export default function TableComponent({ products }: { products: Product[] }) {
     let filteredProducts = [...products]
 
     if (hasSearchFilter) {
-      filteredProducts = filteredProducts.filter((product) =>
-        product.name.toLowerCase().includes(filterValue.toLowerCase())
+      filteredProducts = filteredProducts.filter(
+        (product) =>
+          product.name.toLowerCase().includes(filterValue.toLowerCase()) ||
+          product.id.toLowerCase().includes(filterValue.toLowerCase())
       )
     }
     if (statusFilter !== 'all' && Array.from(statusFilter).length !== statusOptions.length) {
@@ -208,7 +210,7 @@ export default function TableComponent({ products }: { products: Product[] }) {
             classNames={{
               base: 'w-[49%] sm:max-w-[30%]'
             }}
-            placeholder="Search by name..."
+            placeholder="Search by name or id..."
             startContent={<SearchIcon className="text-default-300" />}
             value={filterValue}
             onClear={() => setFilterValue('')}
