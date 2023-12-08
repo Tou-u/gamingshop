@@ -8,7 +8,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <Suspense fallback={<NavBar session={undefined} usercart={undefined} />}>
         <Header />
       </Suspense>
-      {children}
+      <main className="min-h-[calc(100vh-65px)]">{children}</main>
     </>
   )
 }

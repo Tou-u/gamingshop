@@ -6,7 +6,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <>
       <NavBar user={session?.user} />
-      {children}
+      <main className="min-h-[calc(100vh-65px)]">{children}</main>
     </>
   )
 }

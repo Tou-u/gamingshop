@@ -8,9 +8,19 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="dark">
-      <body>
+      <body className="max-w-[1050px] m-auto px-2">
         <Providers>
-          <main className="max-w-[1050px] m-auto px-2">{children}</main>
+          {children}
+          <footer>
+            <div className="w-full p-4 text-center">
+              <span className="text-sm text-gray-400">
+                <a href="#" className="hover:underline px-2">
+                  Rodrigo Riquelme
+                </a>
+                Portfolio Gaming Shop App
+              </span>
+            </div>
+          </footer>
         </Providers>
       </body>
     </html>
