@@ -4,6 +4,7 @@ export type Brands = {
 }[]
 
 export type Products = {
+  id?: string
   slug: string
   name: string
   description: string
@@ -16,6 +17,7 @@ export type Products = {
 }[]
 
 export type Processors = {
+  id?: string
   slug: string
   name: string
   description: string

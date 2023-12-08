@@ -1,5 +1,5 @@
 const startDate = new Date('2023-01-01')
-const endDate = new Date('2023-11-29')
+const endDate = new Date('2023-12-01')
 const timeDiff = endDate.getTime() - startDate.getTime()
 
 export function getRandomDate() {

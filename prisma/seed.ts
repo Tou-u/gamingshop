@@ -7,6 +7,7 @@ import mockup_processors from './mockup/processors'
 import mockup_ram from './mockup/ram'
 
 const prisma = new PrismaClient()
+
 async function main() {
   await prisma.product.deleteMany()
   await prisma.category.deleteMany()
@@ -16,10 +17,8 @@ async function main() {
     data: mockup_brands
   })
 
-  const graphic_cards = await prisma.category.upsert({
-    where: { id: 'graphics-01' },
-    update: {},
-    create: {
+  const graphic_cards = await prisma.category.create({
+    data: {
       name: 'graphics cards',
       products: {
         createMany: {
@@ -28,10 +27,9 @@ async function main() {
       }
     }
   })
-  const processors = await prisma.category.upsert({
-    where: { id: 'processors-02' },
-    update: {},
-    create: {
+
+  const processors = await prisma.category.create({
+    data: {
       name: 'processors',
       products: {
         createMany: {
@@ -40,10 +38,9 @@ async function main() {
       }
     }
   })
-  const hard_drives = await prisma.category.upsert({
-    where: { id: 'hd-03' },
-    update: {},
-    create: {
+
+  const hard_drives = await prisma.category.create({
+    data: {
       name: 'hard drives',
       products: {
         createMany: {
@@ -52,10 +49,9 @@ async function main() {
       }
     }
   })
-  const ram = await prisma.category.upsert({
-    where: { id: 'ram-04' },
-    update: {},
-    create: {
+
+  const ram = await prisma.category.create({
+    data: {
       name: 'ram',
       products: {
         createMany: {
@@ -64,10 +60,9 @@ async function main() {
       }
     }
   })
-  const motherboards = await prisma.category.upsert({
-    where: { id: 'mb-05' },
-    update: {},
-    create: {
+
+  const motherboards = await prisma.category.create({
+    data: {
       name: 'motherboards',
       products: {
         createMany: {
