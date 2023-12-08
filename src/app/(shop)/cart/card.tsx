@@ -1,6 +1,6 @@
 'use client'
 import { Card, CardBody, CardHeader } from '@nextui-org/card'
-import { EditIcon } from '@/components/ui/icons/EditIcon'
+import EditIcon from '@/components/ui/icons/EditIcon'
 import { Button } from '@nextui-org/button'
 import { Divider } from '@nextui-org/divider'
 import { Address } from '@/types'
