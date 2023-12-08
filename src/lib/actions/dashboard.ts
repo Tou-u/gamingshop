@@ -4,6 +4,7 @@ import prisma from '../prisma'
 import { ProductSchema } from './schema'
 import { Prisma } from '@prisma/client'
 import { Key } from 'react'
+import { randomUUID } from 'crypto'
 
 export const createOrEditProduct = async (
   extraData: { category_id: Key; brand_id: Key; active: boolean; productId: string | undefined },
@@ -30,7 +31,10 @@ export const createOrEditProduct = async (
   try {
     if (!id) {
       await prisma.product.create({
-        data
+        data: {
+          ...data,
+          id: `temp-${randomUUID()}`
+        }
       })
     } else {
       await prisma.product.update({
@@ -40,7 +44,7 @@ export const createOrEditProduct = async (
         data
       })
     }
-    revalidatePath('/dashboard')
+    revalidatePath('/d/products')
     return { success: true }
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
@@ -57,9 +61,27 @@ export const deleteProduct = async (productId: string | undefined, prevState: an
     await prisma.product.delete({
       where: { id: productId }
     })
-    revalidatePath('/dashboard')
+    revalidatePath('/d/products')
     return { success: true }
   } catch (error) {
     return { error: 'Failed to delete the product, try again later.' }
+  }
+}
+
+export const updateOrderStage = async (id: string, prevState: any, formData: FormData) => {
+  const stage = formData.get('stage') as string
+  try {
+    await prisma.order.update({
+      where: {
+        id
+      },
+      data: {
+        stage
+      }
+    })
+    revalidatePath('/d/orders')
+    return { success: true }
+  } catch (error) {
+    return { error: 'Failed to save the stage, try again later.' }
   }
 }
