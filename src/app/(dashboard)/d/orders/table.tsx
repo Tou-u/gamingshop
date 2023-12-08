@@ -152,7 +152,7 @@ export default function TableComponent({ orders, pages }: Props) {
                   <Link
                     as={NextLink}
                     href={`/d/orders/${order.id}`}
-                    className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                    className="text-lg text-default-400 cursor-pointer active:opacity-50 align-middle">
                     <EyeIcon />
                   </Link>
                 </Tooltip>
