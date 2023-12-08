@@ -4,6 +4,7 @@ import prisma from '../prisma'
 import { AddressSchema } from './schema'
 import { Address, Product } from '@/types'
 import { Prisma } from '@prisma/client'
+import { randomUUID } from 'crypto'
 
 export const addToCart = async (formData: FormData) => {
   const user_id = formData.get('user_id') as string
@@ -128,7 +129,8 @@ const validateOrder = (products: Product[], user_id: string, address: {}) => {
       data: {
         user_id,
         address,
-        products: products
+        products: products,
+        id: `temp-${randomUUID()}`
       }
     })
 
