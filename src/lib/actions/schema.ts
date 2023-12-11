@@ -20,10 +20,13 @@ export const AddressSchema = z.object({
 })
 
 export const ProductSchema = z.object({
-  slug: z.string().min(1, { message: 'A slug is required' }).trim(),
+  slug: z
+    .string()
+    .min(1, { message: 'A slug is required' })
+    .regex(new RegExp(/^[a-z0-9]+(?:-[a-z0-9]+)*$/g), { message: 'Enter a valid slug' })
+    .trim(),
   name: z.string().min(1, { message: 'A name is required' }).trim(),
   description: z.string().min(1, { message: 'A description is required' }).trim(),
-  image: z.string().min(1, { message: 'An image is required' }).trim(),
   price: z.coerce
     .number({ invalid_type_error: 'Enter a valid price' })
     .min(0, { message: 'Enter a valid price' }),
