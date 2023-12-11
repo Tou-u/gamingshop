@@ -1,26 +1,16 @@
-import Form from "@/components/Form";
-import Link from "next/link";
-import { getPageSession } from "@/auth/lucia";
-import { redirect } from "next/navigation";
+import { getPageSession } from '@/auth/lucia'
+import { redirect } from 'next/navigation'
+import Form from './form'
 
 const Page = async () => {
-  const session = await getPageSession();
-  if (session) redirect("/");
+  const session = await getPageSession()
+  if (session) redirect('/')
   return (
-    <>
-      <h1>Sign up</h1>
-      <Form action="/api/signup">
-        <label htmlFor="username">Username</label>
-        <input name="username" id="username" />
-        <br />
-        <label htmlFor="password">Password</label>
-        <input type="password" name="password" id="password" />
-        <br />
-        <input type="submit" />
-      </Form>
-      <Link href="/login">Sign in</Link>
-    </>
-  );
-};
+    <section className="h-[calc(100vh-65px)] flex flex-col justify-center text-center gap-3 max-w-md mx-auto">
+      <h1 className="text-xl font-bold leading-tight tracking-tight">Sign up to Gaming Shop</h1>
+      <Form />
+    </section>
+  )
+}
 
-export default Page;
+export default Page

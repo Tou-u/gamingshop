@@ -1,5 +1,10 @@
 import { z } from 'zod'
 
+export const AuthSchema = z.object({
+  username: z.string().min(1, { message: 'A username is required' }).trim().toLowerCase(),
+  password: z.string().min(1, { message: 'A password is required' }).trim()
+})
+
 export const AddressSchema = z.object({
   id: z.string().optional(),
   first_name: z.string().min(1, { message: 'A first name is required' }).trim(),
