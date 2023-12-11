@@ -8,12 +8,12 @@ import {
 import { Avatar } from '@nextui-org/avatar'
 import { User as LuciaUser } from 'lucia'
 import { useRouter } from 'next/navigation'
-import Form from './Form'
 import AddressIcon from './ui/icons/AddressIcon'
 import OrdersIcons from './ui/icons/OrdersIcon'
 import LogoutIcon from './ui/icons/LogoutIcon'
 import NextLink from 'next/link'
 import AdminIcon from './ui/icons/AdminIcon'
+import { Logout } from '@/lib/actions/auth'
 
 export default function UserDropdown({ user }: { user: LuciaUser }) {
   const router = useRouter()
@@ -52,9 +52,9 @@ export default function UserDropdown({ user }: { user: LuciaUser }) {
             </DropdownSection>
           )}
           <DropdownItem key="logout" color="danger" startContent={<LogoutIcon />}>
-            <Form action="/api/logout">
+            <form action={Logout}>
               <input type="submit" value="Log out" className="w-full text-start cursor-pointer" />
-            </Form>
+            </form>
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
