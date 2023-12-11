@@ -13,6 +13,8 @@
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "3.470.0",
+    "@aws-sdk/s3-request-presigner": "3.470.0",
     "@egjs/flicking-plugins": "4.7.1",
     "@egjs/react-flicking": "4.11.1",
     "@lucia-auth/adapter-prisma": "3.0.2",
