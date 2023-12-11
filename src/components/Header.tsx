@@ -9,6 +9,8 @@ export default async function Header() {
   const session = await getPageSession().catch((session) => (session = null))
   if (session) {
     usercart = await api.getUserCart(session.user.userId)
+  } else {
+    usercart = undefined
   }
 
   return <NavBar session={session} usercart={usercart} />
