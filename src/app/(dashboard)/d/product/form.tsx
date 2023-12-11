@@ -12,6 +12,7 @@ import { createOrEditProduct } from '@/lib/actions/dashboard'
 import { toast } from '@/lib/utils'
 import SaveIcon from '@/components/ui/icons/SaveIcon'
 import ArrowLeftIcon from '@/components/ui/icons/ArrowLeftIcon'
+import { PUBLIC_URL } from '@/lib/r2'
 
 export default function Form({
   product,
@@ -37,6 +38,7 @@ export default function Form({
     }),
     undefined
   )
+
   useEffect(() => {
     const checkState = () => {
       if (state?.success) {
@@ -78,13 +80,6 @@ export default function Form({
             autoComplete="off"
           />
           <Input
-            type="text"
-            label="Image"
-            name="image"
-            defaultValue={product?.image}
-            autoComplete="off"
-          />
-          <Input
             inputMode="numeric"
             type="text"
             label="Price"
@@ -123,9 +118,37 @@ export default function Form({
             onSelectionChange={setSelectedBrand}>
             {(item) => <AutocompleteItem key={item.id!}>{item.name}</AutocompleteItem>}
           </Autocomplete>
-          <Switch isSelected={isPublished} onValueChange={setIsPublished}>
-            Publish product
-          </Switch>
+          {!product?.image ? (
+            <>
+              <div className="flex items-center gap-2">
+                <p className="text-gray-300">Image</p>
+                <input
+                  className="w-full text-gray-300 border-1 rounded-lg cursor-pointer dark:border-gray-600 "
+                  accept="image/*"
+                  type="file"
+                  name="imageFile"
+                  placeholder="asd"
+                />
+              </div>
+              <Switch isSelected={isPublished} onValueChange={setIsPublished}>
+                Publish product
+              </Switch>
+            </>
+          ) : (
+            <div className="flex items-center justify-between">
+              <Switch isSelected={isPublished} onValueChange={setIsPublished}>
+                Publish product
+              </Switch>
+              <div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  alt={product.name}
+                  src={`${PUBLIC_URL}/${product.image}`}
+                  className="h-[60px] w-[60px] rounded-xl"
+                />
+              </div>
+            </div>
+          )}
           <ButtonGroup>
             <Button as={NextLink} href="/d/products" startContent={<ArrowLeftIcon />}>
               Go Back

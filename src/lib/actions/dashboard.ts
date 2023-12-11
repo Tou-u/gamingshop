@@ -5,6 +5,23 @@ import { ProductSchema } from './schema'
 import { Prisma } from '@prisma/client'
 import { Key } from 'react'
 import { randomUUID } from 'crypto'
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
+import { r2 } from '../r2'
+import { PutObjectCommand } from '@aws-sdk/client-s3'
+
+export const uploadImage = async (productId: string) => {
+  const signedUrl = await getSignedUrl(
+    r2,
+    new PutObjectCommand({
+      Bucket: process.env.R2_BUCKET_NAME,
+      Key: productId
+    }),
+    {
+      expiresIn: 60
+    }
+  )
+  return signedUrl
+}
 
 export const createOrEditProduct = async (
   extraData: { category_id: Key; brand_id: Key; active: boolean; productId: string | undefined },
@@ -14,9 +31,12 @@ export const createOrEditProduct = async (
   formData.append('category_id', extraData.category_id as string)
   formData.append('brand_id', extraData.brand_id as string)
   formData.append('active', extraData.active ? 'true' : 'false')
+
   if (extraData.productId) {
     formData.append('id', extraData.productId)
   }
+
+  const image = formData.get('imageFile') as File
 
   const form = Object.fromEntries(formData.entries())
   const response = ProductSchema.safeParse(form)
@@ -30,12 +50,19 @@ export const createOrEditProduct = async (
 
   try {
     if (!id) {
-      await prisma.product.create({
+      if (image.size === 0) return { error: 'An image is required' }
+      const generateId = `temp-${randomUUID()}`
+
+      const product = await prisma.product.create({
         data: {
           ...data,
-          id: `temp-${randomUUID()}`
+          id: generateId,
+          image: generateId
         }
       })
+
+      const signedUrl = await uploadImage(product.id)
+      await fetch(signedUrl, { method: 'PUT', body: image })
     } else {
       await prisma.product.update({
         where: {
