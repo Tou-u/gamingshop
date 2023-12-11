@@ -5,6 +5,7 @@ import { Button } from '@nextui-org/button'
 import { usePathname } from 'next/navigation'
 import NextLink from 'next/link'
 import { User } from 'lucia'
+import { Logout } from '@/lib/actions/auth'
 
 export default function NavBar({ user }: { user: User | undefined }) {
   const pathname = usePathname()
@@ -45,9 +46,11 @@ export default function NavBar({ user }: { user: User | undefined }) {
       <NavbarContent justify="end">
         {user && (
           <NavbarItem>
-            <Button as={Link} color="danger" href="#" variant="flat">
-              Log out
-            </Button>
+            <form action={Logout}>
+              <Button type="submit" color="danger" variant="flat">
+                Log out
+              </Button>
+            </form>
           </NavbarItem>
         )}
       </NavbarContent>
