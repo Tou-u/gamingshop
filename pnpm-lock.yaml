@@ -11,12 +11,6 @@ dependencies:
   '@aws-sdk/s3-request-presigner':
     specifier: 3.470.0
     version: 3.470.0
-  '@egjs/flicking-plugins':
-    specifier: 4.7.1
-    version: 4.7.1(@egjs/flicking@4.11.1)
-  '@egjs/react-flicking':
-    specifier: 4.11.1
-    version: 4.11.1
   '@lucia-auth/adapter-prisma':
     specifier: 3.0.2
     version: 3.0.2(@prisma/client@5.7.0)(lucia@2.7.4)
@@ -44,6 +38,9 @@ dependencies:
   react-hot-toast:
     specifier: 2.4.1
     version: 2.4.1(csstype@3.1.2)(react-dom@18.2.0)(react@18.2.0)
+  swiper:
+    specifier: 11.0.5
+    version: 11.0.5
   use-debounce:
     specifier: 10.0.0
     version: 10.0.0(react@18.2.0)
@@ -713,75 +710,11 @@ packages:
     dependencies:
       regenerator-runtime: 0.14.0
 
-  /@cfcs/core@0.0.24:
-    resolution: {integrity: sha512-feB38qu+eDk0Pggh/yR7gjaNmvUYA2uCxHP3Pz2MLE4LZ/9jPdtu8bzCSI47yTEhWyZCF5Pk698hdz8IN2mTjA==}
-    dependencies:
-      '@egjs/component': 3.0.5
-    dev: false
-
-  /@cfcs/core@0.1.0:
-    resolution: {integrity: sha512-kvYX0RpL45XTHJ5sW7teNbKeAa7pK3nNqaJPoFfZDPTIBJOkTtRD3QhkBG+O3Hu69a8xeMoPvF6y/RtJ6JUOdA==}
-    dependencies:
-      '@egjs/component': 3.0.5
-    dev: false
-
   /@cspotcode/source-map-support@0.8.1:
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
-
-  /@egjs/agent@2.4.3:
-    resolution: {integrity: sha512-XvksSENe8wPeFlEVouvrOhKdx8HMniJ3by7sro2uPF3M6QqWwjzVcmvwoPtdjiX8O1lfRoLhQMp1a7NGlVTdIA==}
-    dev: false
-
-  /@egjs/axes@3.9.0:
-    resolution: {integrity: sha512-V+HxHxEGmlu/0yJ9kqlj2doiJt1yVeROTy/0Qf+IaJ9hMabjzUgfYffGR+3atcRpejjGbcpAIiBrGbAkDVaLjg==}
-    dependencies:
-      '@cfcs/core': 0.1.0
-      '@egjs/agent': 2.4.3
-      '@egjs/component': 3.0.5
-    dev: false
-
-  /@egjs/component@3.0.5:
-    resolution: {integrity: sha512-cLcGizTrrUNA2EYE3MBmEDt2tQv1joVP1Q3oDisZ5nw0MZDx2kcgEXM+/kZpfa/PAkFvYVhRUZwytIQWoN3V/w==}
-    dev: false
-
-  /@egjs/flicking-plugins@4.7.1(@egjs/flicking@4.11.1):
-    resolution: {integrity: sha512-J0k499sCs5IAMXAJuBcrY1OoiHRi4BPbS1/RCCkIzsYgdoHzcAUjKyhSsms3gLz4O/K5eTbBmWBUtFO86fETHg==}
-    peerDependencies:
-      '@egjs/flicking': ^4.1.0
-    dependencies:
-      '@egjs/flicking': 4.11.1
-    dev: false
-
-  /@egjs/flicking@4.11.1:
-    resolution: {integrity: sha512-HYAPgXPdCVbcJmGI1m5XwaiPGya7oXvIORSzYH9MbpB6TjVWM6OTqFcimfbrmi4lzb5TdPNxSklc1F4MeCR+Rw==}
-    dependencies:
-      '@egjs/axes': 3.9.0
-      '@egjs/component': 3.0.5
-      '@egjs/imready': 1.4.1
-      '@egjs/list-differ': 1.0.1
-    dev: false
-
-  /@egjs/imready@1.4.1:
-    resolution: {integrity: sha512-JIOBs4lB7FYdsKi5uvz2j3SObX8eShtZjtqlOH41tm185aJOQZwiKBK8+V4MxzG4X6DqVhpdN8UcuVwBbElfsg==}
-    dependencies:
-      '@cfcs/core': 0.0.24
-      '@egjs/component': 3.0.5
-    dev: false
-
-  /@egjs/list-differ@1.0.1:
-    resolution: {integrity: sha512-OTFTDQcWS+1ZREOdCWuk5hCBgYO4OsD30lXcOCyVOAjXMhgL5rBRDnt/otb6Nz8CzU0L/igdcaQBDLWc4t9gvg==}
-    dev: false
-
-  /@egjs/react-flicking@4.11.1:
-    resolution: {integrity: sha512-bC+lUCGFS6TJR0ydsWHFXKichizQ7Vej9U7M7DBqC2lgRxI+HyPp2cdK5sAm5SG3oDwDFS03fPDQ0uSsuJOIRg==}
-    dependencies:
-      '@egjs/component': 3.0.5
-      '@egjs/flicking': 4.11.1
-      '@egjs/list-differ': 1.0.1
-    dev: false
 
   /@emotion/is-prop-valid@0.8.8:
     resolution: {integrity: sha512-u5WtneEAr5IDG2Wv65yhunPSMLIpuKsbuOktRojfrEiEvRyC85LgPMZI63cr7NUqT8ZIGdSVg8ZKGxIug4lXcA==}
@@ -6070,6 +6003,11 @@ packages:
   /supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+
+  /swiper@11.0.5:
+    resolution: {integrity: sha512-rhCwupqSyRnWrtNzWzemnBLMoyYuoDgGgspAm/8iBD3jCvAWycPLH4Z3TB0O5520DHLzMx94yUMH/B9Efpa48w==}
+    engines: {node: '>= 4.7.0'}
+    dev: false
 
   /tailwind-merge@1.14.0:
     resolution: {integrity: sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==}

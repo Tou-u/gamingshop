@@ -15,8 +15,6 @@
   "dependencies": {
     "@aws-sdk/client-s3": "3.470.0",
     "@aws-sdk/s3-request-presigner": "3.470.0",
-    "@egjs/flicking-plugins": "4.7.1",
-    "@egjs/react-flicking": "4.11.1",
     "@lucia-auth/adapter-prisma": "3.0.2",
     "@nextui-org/react": "2.2.9",
     "@prisma/client": "5.7.0",
@@ -26,6 +24,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hot-toast": "2.4.1",
+    "swiper": "11.0.5",
     "use-debounce": "10.0.0",
     "zod": "3.22.4"
   },
