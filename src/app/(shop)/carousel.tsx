@@ -1,32 +1,37 @@
 'use client'
-import Flicking, { ViewportSlot } from '@egjs/react-flicking'
-import '@egjs/react-flicking/dist/flicking.css'
-import { Arrow, Pagination } from '@egjs/flicking-plugins'
-import '@egjs/flicking-plugins/dist/pagination.css'
-import '@egjs/flicking-plugins/dist/arrow.css'
+import { Pagination, Autoplay } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import styles from './carousel.module.css'
 import ProductCard from '@/components/ProductCard'
 
-type Products = {
+type Product = {
+  image: string
   slug: string
   name: string
-  image: string
   price: number
-}[]
+}
 
-export default function CarouselComponent({ products }: { products: Products }) {
-  const plugins = [new Pagination({ type: 'bullet' }), new Arrow()]
+export default function Carousel({ products }: { products: Product[] }) {
   return (
-    <Flicking useFindDOMNode align={'prev'} circular plugins={plugins}>
-      {products.map((p) => (
-        <div key={p.slug} className="px-2">
-          <ProductCard product={p} />
-        </div>
+    <Swiper
+      modules={[Pagination, Autoplay]}
+      slidesPerView="auto"
+      pagination={{
+        clickable: true,
+        horizontalClass: styles.pagination,
+        bulletClass: styles.bullet,
+        bulletActiveClass: styles.active
+      }}
+      grabCursor
+      autoplay>
+      {products.map((product) => (
+        <SwiperSlide key={product.slug} className={styles.slide}>
+          <ProductCard product={product} />
+        </SwiperSlide>
       ))}
-      <ViewportSlot>
-        <div className="flicking-pagination"></div>
-        <span className="flicking-arrow-prev is-circle"></span>
-        <span className="flicking-arrow-next is-circle"></span>
-      </ViewportSlot>
-    </Flicking>
+    </Swiper>
   )
 }
