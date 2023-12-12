@@ -50,7 +50,11 @@ export default function Checkout({
   }
   return (
     <>
-      <Button color="primary" className="w-[50%] self-center" onClick={handleCheckout}>
+      <Button
+        variant="shadow"
+        color="primary"
+        className="w-[80%] sm:w-[50%] self-center"
+        onClick={handleCheckout}>
         Checkout
       </Button>
       <ModalComponent

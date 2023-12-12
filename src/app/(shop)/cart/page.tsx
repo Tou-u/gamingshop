@@ -41,7 +41,7 @@ export default async function Page() {
           <article>
             {products.map((product) => (
               <Fragment key={product.id}>
-                <div className="flex gap-1">
+                <div className="flex gap-1 pb-1">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     alt={product.name}

@@ -49,8 +49,8 @@ export default function CartPopover({ usercart }: { usercart: UserCart[] }) {
                       <div className="col-span-4 border-b">
                         <h5>{product.name}</h5>
                       </div>
-                      <div className="col-span-2 border-b">
-                        <h5>{CurrencyToUSD(product.price)}</h5>
+                      <div className="col-span-2 border-b pl-2">
+                        <h5 className="font-bold">{CurrencyToUSD(product.price)}</h5>
                       </div>
                     </Fragment>
                   ))}
