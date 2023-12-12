@@ -1,3 +1,4 @@
+import Scroll from '@/components/Scroll'
 import './globals.css'
 import { Providers } from './providers'
 
@@ -8,6 +9,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="dark">
+      <Scroll />
       <body className="max-w-[1050px] m-auto px-2">
         <Providers>
           {children}
