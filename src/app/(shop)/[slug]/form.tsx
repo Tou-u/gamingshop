@@ -45,6 +45,7 @@ function AddToCartButton() {
   return (
     <Button
       type="submit"
+      variant="shadow"
       color="primary"
       isLoading={pending}
       startContent={!pending && <CartIconPlus />}>
@@ -58,6 +59,7 @@ function RemoveFromCartButton() {
   return (
     <Button
       type="submit"
+      variant="shadow"
       color="danger"
       isLoading={pending}
       startContent={!pending && <CartIconX />}>

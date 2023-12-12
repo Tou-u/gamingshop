@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 import Data from './data'
 import Loading from '@/components/ui/Loading'
 
-export default async function CategoryPage({
+export default function CategoryPage({
   params,
   searchParams
 }: {

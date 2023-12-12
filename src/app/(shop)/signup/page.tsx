@@ -2,7 +2,7 @@ import { getPageSession } from '@/auth/lucia'
 import { redirect } from 'next/navigation'
 import Form from './form'
 
-const Page = async () => {
+export default async function Signup() {
   const session = await getPageSession()
   if (session) redirect('/')
   return (
@@ -12,5 +12,3 @@ const Page = async () => {
     </section>
   )
 }
-
-export default Page

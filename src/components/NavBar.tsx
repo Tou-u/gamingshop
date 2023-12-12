@@ -147,7 +147,7 @@ export const NavBar = ({
         {categories.map((category) => (
           <NavbarMenuItem key={category.path}>
             <Link
-              className="w-full capitalize"
+              className="w-full capitalize font-bold"
               as={NextLink}
               href={`/category/${category.path}`}
               size="lg"
