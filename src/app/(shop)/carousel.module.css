@@ -1,0 +1,26 @@
+.slide {
+  width: auto;
+  padding-right: 10px;
+  padding-top: 17px;
+}
+
+.pagination {
+  top: -5px !important;
+  bottom: auto !important;
+}
+
+.bullet {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  opacity: 0.8;
+  margin: 2px;
+}
+
+.active {
+  background: #0070f0;
+  opacity: 1;
+}
