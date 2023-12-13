@@ -10,7 +10,7 @@ export default async function Data({ searchParams }: Props) {
   const products = await api.getProductsByName(searchParams.q)
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-5 place-items-center gap-4">
+    <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] place-items-center gap-2">
       {products.map((product) => (
         <Fragment key={product.slug}>
           <ProductCard product={product} />
