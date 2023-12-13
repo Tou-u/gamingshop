@@ -103,6 +103,7 @@ export default function Form({
             autoComplete="off"
           />
           <Autocomplete
+            key={product ? selectedCategory : null}
             disableAnimation={true}
             label="Category"
             defaultItems={categories}
@@ -111,6 +112,7 @@ export default function Form({
             {(item) => <AutocompleteItem key={item.id!}>{item.name}</AutocompleteItem>}
           </Autocomplete>
           <Autocomplete
+            key={product ? selectedBrand : null}
             disableAnimation={true}
             label="Brand"
             defaultItems={brands}
@@ -127,7 +129,6 @@ export default function Form({
                   accept="image/*"
                   type="file"
                   name="imageFile"
-                  placeholder="asd"
                 />
               </div>
               <Switch isSelected={isPublished} onValueChange={setIsPublished}>
@@ -136,7 +137,10 @@ export default function Form({
             </>
           ) : (
             <div className="flex items-center justify-between">
-              <Switch isSelected={isPublished} onValueChange={setIsPublished}>
+              <Switch
+                key={product ? String(isPublished) : null}
+                isSelected={isPublished}
+                onValueChange={setIsPublished}>
                 Publish product
               </Switch>
               <div>
