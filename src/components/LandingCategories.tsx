@@ -7,7 +7,7 @@ export default function LandingCategories() {
     <>
       <Card isPressable className="h-[200px]" as={NextLink} href="/category/graphics_cards">
         <CardHeader className="z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex-col p-0 w-auto">
-          <p className="text-center text-3xl text-white/90 drop-shadow-lg uppercase font-bold [text-shadow:_0_2px_4px_rgb(0_0_0_/_100%)]">
+          <p className="text-center text-xl sm:text-3xl text-white/90 drop-shadow-lg uppercase font-bold [text-shadow:_0_2px_4px_rgb(0_0_0_/_100%)]">
             graphics cards
           </p>
         </CardHeader>
@@ -21,7 +21,7 @@ export default function LandingCategories() {
       </Card>
       <Card isPressable className="h-[200px]" as={NextLink} href="/category/processors">
         <CardHeader className="z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex-col p-0 w-auto">
-          <p className="text-center text-3xl text-white/90 drop-shadow-lg uppercase font-bold [text-shadow:_0_2px_4px_rgb(0_0_0_/_100%)]">
+          <p className="text-center text-xl sm:text-3xl text-white/90 drop-shadow-lg uppercase font-bold [text-shadow:_0_2px_4px_rgb(0_0_0_/_100%)]">
             processors
           </p>
         </CardHeader>
@@ -35,7 +35,7 @@ export default function LandingCategories() {
       </Card>
       <Card isPressable className="h-[200px]" as={NextLink} href="/category/hard_drives">
         <CardHeader className="z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex-col p-0 w-auto">
-          <p className="text-center text-3xl text-white/90 drop-shadow-lg uppercase font-bold [text-shadow:_0_2px_4px_rgb(0_0_0_/_100%)]">
+          <p className="text-center text-xl sm:text-3xl text-white/90 drop-shadow-lg uppercase font-bold [text-shadow:_0_2px_4px_rgb(0_0_0_/_100%)]">
             hard drives
           </p>
         </CardHeader>
@@ -49,7 +49,7 @@ export default function LandingCategories() {
       </Card>
       <Card isPressable className="h-[200px]" as={NextLink} href="/category/ram">
         <CardHeader className="z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex-col p-0 w-auto">
-          <p className="text-center text-3xl text-white/90 drop-shadow-lg uppercase font-bold [text-shadow:_0_2px_4px_rgb(0_0_0_/_100%)]">
+          <p className="text-center text-xl sm:text-3xl text-white/90 drop-shadow-lg uppercase font-bold [text-shadow:_0_2px_4px_rgb(0_0_0_/_100%)]">
             ram
           </p>
         </CardHeader>
@@ -67,7 +67,7 @@ export default function LandingCategories() {
         as={NextLink}
         href="/category/motherboards">
         <CardHeader className="z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex-col p-0 w-auto">
-          <p className="text-center text-3xl text-white/90 drop-shadow-lg uppercase font-bold [text-shadow:_0_2px_4px_rgb(0_0_0_/_100%)]">
+          <p className="text-center text-xl sm:text-3xl text-white/90 drop-shadow-lg uppercase font-bold [text-shadow:_0_2px_4px_rgb(0_0_0_/_100%)]">
             motherboards
           </p>
         </CardHeader>

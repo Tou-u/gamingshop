@@ -1,7 +1,6 @@
 import CartIcon from '@/components/ui/icons/CartIcon'
 import { Fragment, useState } from 'react'
 import { Popover, PopoverTrigger, PopoverContent } from '@nextui-org/popover'
-import { Button } from '@nextui-org/button'
 import { Card, CardHeader, CardBody, CardFooter } from '@nextui-org/card'
 import { Link } from '@nextui-org/link'
 import { UserCart } from '@/types'
@@ -24,14 +23,12 @@ export default function CartPopover({ usercart }: { usercart: UserCart[] }) {
       isOpen={isOpen}
       onOpenChange={(open) => setIsOpen(open)}>
       <PopoverTrigger>
-        <Button isIconOnly variant="light" radius="full">
-          <div className="static">
-            <p className="absolute bottom-1 right-1 text-xs text-primary-500 font-semibold">
-              {usercart.length}
-            </p>
-            <CartIcon />
-          </div>
-        </Button>
+        <span className="relative cursor-pointer">
+          <p className="absolute -bottom-2 -right-2 text-xs bg-primary-400 h-[16px] w-[16px] text-center rounded-full">
+            {usercart.length}
+          </p>
+          <CartIcon size={24} />
+        </span>
       </PopoverTrigger>
       <PopoverContent className="p-1">
         <Card shadow="none" className="max-w-[300px] max-h-[400px] border-none bg-transparent">

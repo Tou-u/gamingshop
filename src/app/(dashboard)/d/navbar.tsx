@@ -1,5 +1,5 @@
 'use client'
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@nextui-org/navbar'
+import { Navbar, NavbarContent, NavbarItem } from '@nextui-org/navbar'
 import { Link } from '@nextui-org/link'
 import { Button } from '@nextui-org/button'
 import { usePathname } from 'next/navigation'
@@ -20,13 +20,8 @@ export default function NavBar({ user }: { user: User | undefined }) {
     }
   ]
   return (
-    <Navbar isBordered>
-      <NavbarBrand>
-        <Link as={NextLink} href="/d/products" className="font-bold text-inherit">
-          Dashboard
-        </Link>
-      </NavbarBrand>
-      <NavbarContent className="flex gap-4" justify="center">
+    <Navbar isBordered classNames={{ wrapper: 'px-0 gap-0' }}>
+      <NavbarContent className="flex gap-3 sm:gap-4" justify="center">
         {paths.map((p) => (
           <NavbarItem key={p.path} isActive={p.path === pathname}>
             <Link
@@ -47,7 +42,7 @@ export default function NavBar({ user }: { user: User | undefined }) {
         {user && (
           <NavbarItem>
             <form action={Logout}>
-              <Button type="submit" color="danger" variant="flat">
+              <Button type="submit" color="danger" variant="flat" size="sm">
                 Log out
               </Button>
             </form>

@@ -66,9 +66,9 @@ export default function TableComponent({ orders }: { orders: Order[] }) {
     switch (columnKey) {
       case 'products':
         return (
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1 min-w-[200px]">
             {products.map((product) => (
-              <div key={product.id} className="flex gap-1 items-center">
+              <div key={product.id} className="flex gap-1">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   alt={product.name}
@@ -181,7 +181,8 @@ export default function TableComponent({ orders }: { orders: Order[] }) {
         classNames={{
           th: ['bg-transparent', 'border-b', 'border-divider'],
           td: ['border-b', 'border-divider']
-        }}>
+        }}
+        className="overflow-auto">
         <TableHeader columns={columns}>
           {(column) => (
             <TableColumn key={column.uid} className="text-center p-0">

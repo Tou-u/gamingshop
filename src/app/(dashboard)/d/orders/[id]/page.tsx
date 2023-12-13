@@ -79,18 +79,18 @@ const renderAddress = (address: Address) => {
 const renderProducts = (products: Product[]) => {
   const total = CurrencyToUSD(products.reduce((acc, p) => acc + p.price, 0))
   return (
-    <div className="grid grid-cols-6 w-full">
+    <div className="grid grid-cols-6 w-full gap-x-2">
       {products.map((product) => (
         <Fragment key={product.id}>
-          <Link href={`/${product.slug}`} className="col-span-5">
+          <Link href={`/${product.slug}`} className="col-span-4">
             {product.name}
           </Link>
           <p>{CurrencyToUSD(product.price)}</p>
           <p className="col-span-6 text-sm">ID: {product.id}</p>
         </Fragment>
       ))}
-      <span className="col-span-4" />
-      <p>TOTAL:</p>
+      <span className="col-span-3" />
+      <p className="text-end">TOTAL:</p>
       <p>{total}</p>
     </div>
   )

@@ -67,12 +67,20 @@ export const NavBar = ({
   }
 
   return (
-    <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen} disableAnimation>
-      <NavbarContent className="sm:hidden" justify="start">
+    <Navbar
+      isBordered
+      isMenuOpen={isMenuOpen}
+      onMenuOpenChange={setIsMenuOpen}
+      disableAnimation
+      classNames={{ wrapper: 'px-0 gap-0' }}>
+      <NavbarContent className="sm:hidden gap-3" justify="start">
         <NavbarMenuToggle aria-label={isMenuOpen ? 'Close menu' : 'Open menu'} />
         <NavbarBrand>
-          <Link href="/" as={NextLink} className="font-bold text-inherit">
+          <Link href="/" as={NextLink} className="hidden min-[400px]:block font-bold text-inherit">
             GamingShop
+          </Link>
+          <Link href="/" as={NextLink} className="min-[400px]:hidden font-bold text-inherit">
+            GS
           </Link>
         </NavbarBrand>
       </NavbarContent>
@@ -111,35 +119,39 @@ export const NavBar = ({
         </Dropdown>
       </NavbarContent>
 
-      <NavbarContent justify="end">
-        <div className="flex-1"></div>
-        <form onSubmit={handleSubmit}>
-          <Input
-            autoComplete="off"
-            classNames={{
-              base: 'w-[160px] h-10',
-              mainWrapper: 'h-full',
-              input: 'text-small',
-              inputWrapper:
-                'h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20'
-            }}
-            placeholder="Type to search..."
-            size="sm"
-            name="search"
-            startContent={<SearchIcon />}
-          />
-        </form>
+      <NavbarContent justify="end" className="gap-1">
         <NavbarItem>
-          <div className="flex gap-3 w-[92px]">
-            {usercart === undefined ? null : <CartPopover usercart={usercart} />}
-            {session === undefined ? null : session === null ? (
-              <Button as={Link} color="warning" href="/login" variant="flat">
-                Login
-              </Button>
-            ) : (
-              <UserDropdown user={session.user} />
-            )}
-          </div>
+          <form onSubmit={handleSubmit}>
+            <Input
+              autoComplete="off"
+              classNames={{
+                base: 'w-[160px] h-10',
+                mainWrapper: 'h-full',
+                input: 'text-small',
+                inputWrapper:
+                  'h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20'
+              }}
+              placeholder="Type to search..."
+              size="sm"
+              name="search"
+              startContent={<SearchIcon />}
+            />
+          </form>
+        </NavbarItem>
+        <NavbarItem className="flex items-center gap-4 min-w-[72px]">
+          {usercart === undefined ? null : <CartPopover usercart={usercart} />}
+          {session === undefined ? null : session === null ? (
+            <Button
+              as={Link}
+              color="warning"
+              href="/login"
+              variant="flat"
+              className="h-[40px] min-w-0">
+              Login
+            </Button>
+          ) : (
+            <UserDropdown user={session.user} />
+          )}
         </NavbarItem>
       </NavbarContent>
 

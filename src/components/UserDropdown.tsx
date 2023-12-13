@@ -21,7 +21,7 @@ export default function UserDropdown({ user }: { user: LuciaUser }) {
     <div className="cursor-pointer">
       <Dropdown placement="bottom-start">
         <DropdownTrigger>
-          <Avatar isBordered color="primary" name={user.username} />
+          <Avatar color="primary" name={user.username} isBordered size="sm" />
         </DropdownTrigger>
         <DropdownMenu aria-label="User Actions" variant="flat">
           {user.role === 'admin' ? (

@@ -202,7 +202,7 @@ export default function TableComponent({ products }: { products: Product[] }) {
         </ModalContent>
       </Modal>
       <div className="flex flex-col gap-2">
-        <div className="flex justify-between gap-3 items-end">
+        <div className="flex flex-col sm:flex-row sm:justify-between gap-3 sm:items-end items-center justify-center">
           <Input
             size="sm"
             variant="bordered"
@@ -210,7 +210,7 @@ export default function TableComponent({ products }: { products: Product[] }) {
             classNames={{
               base: 'w-[49%] sm:max-w-[30%]'
             }}
-            placeholder="Search by name or id..."
+            placeholder="Name or id..."
             startContent={<SearchIcon className="text-default-300" />}
             value={filterValue}
             onClear={() => setFilterValue('')}
@@ -253,7 +253,8 @@ export default function TableComponent({ products }: { products: Product[] }) {
         isCompact
         removeWrapper
         aria-label="Table with products of gaming shop"
-        classNames={{ th: ['bg-transparent', 'text-default-500', 'border-b', 'border-divider'] }}>
+        classNames={{ th: ['bg-transparent', 'text-default-500', 'border-b', 'border-divider'] }}
+        className="overflow-auto">
         <TableHeader columns={columns}>
           {(column) => (
             <TableColumn key={column.uid} align={column.uid === 'actions' ? 'center' : 'start'}>

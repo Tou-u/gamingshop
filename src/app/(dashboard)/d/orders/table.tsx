@@ -120,7 +120,8 @@ export default function TableComponent({ orders, pages }: Props) {
         isCompact
         removeWrapper
         aria-label="Orders table"
-        classNames={{ th: ['bg-transparent', 'text-default-500', 'border-b', 'border-divider'] }}>
+        classNames={{ th: ['bg-transparent', 'text-default-500', 'border-b', 'border-divider'] }}
+        className="overflow-auto">
         <TableHeader>
           <TableColumn>CLIENT</TableColumn>
           <TableColumn>DATE</TableColumn>
