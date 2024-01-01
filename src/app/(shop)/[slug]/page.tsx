@@ -44,34 +44,40 @@ export default async function ProductPage({ params }: Props) {
   return (
     <>
       {product && (
-        <section className="py-2">
-          <h1 className="text-lg font-bold text-center pb-2 text-primary-400">{product.name}</h1>
+        <section className="py-4">
           <div className="grid grid-cols-2">
-            <Image isZoomed width={350} src={`${PUBLIC_URL}/${product.image}`} alt={product.name} />
-            <div className="m-auto text-center w-[90%]">
-              <p className="text-lg font-bold">{CurrencyToUSD(product.price)}</p>
-              <Divider />
-              <p className="pb-4">Stock: {product.stock}</p>
-              {!session ? (
-                <Button
-                  as={NextLink}
-                  variant="shadow"
-                  color="primary"
-                  startContent={<CartIconPlus />}
-                  href={`/login?callbackUrl=${params.slug}`}>
-                  Add to cart
-                </Button>
-              ) : product.stock === 0 ? (
-                <Button variant="shadow" color="danger" isDisabled startContent={<CartIconX />}>
-                  Out of stock
-                </Button>
-              ) : (
-                <Form product={product} user={session.user} cart={usercart} />
-              )}
+            <Image isZoomed width={500} src={`${PUBLIC_URL}/${product.image}`} alt={product.name} />
+            <div className="m-auto w-[90%]">
+              <h1 className="text-xl sm:text-4xl font-bold pb-2 text-primary-400">
+                {product.name}
+              </h1>
+              <p>{product.description}</p>
+              <p className="text-2xl font-bold ">{CurrencyToUSD(product.price)}</p>
+              <div className="flex flex-col gap-2">
+                <p className="sm:w-1/4">
+                  Stock <span className="font-semibold">{product.stock}</span>
+                </p>
+                {!session ? (
+                  <Button
+                    fullWidth
+                    as={NextLink}
+                    variant="shadow"
+                    color="primary"
+                    startContent={<CartIconPlus />}
+                    href={`/login?callbackUrl=${params.slug}`}>
+                    Add to cart
+                  </Button>
+                ) : product.stock === 0 ? (
+                  <Button variant="shadow" color="danger" isDisabled startContent={<CartIconX />}>
+                    Out of stock
+                  </Button>
+                ) : (
+                  <Form product={product} user={session.user} cart={usercart} />
+                )}
+              </div>
             </div>
           </div>
-          <p className="pt-4">{product.description}</p>
-          <ul className="list-disc list-inside">
+          <ul className="list-disc list-inside pt-4">
             <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
             <li>Cras vel odio imperdiet, pellentesque neque ac, consequat elit.</li>
             <li>Aenean in mauris gravida, maximus augue ut, dapibus ligula.</li>
