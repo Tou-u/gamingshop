@@ -47,6 +47,7 @@ function AddToCartButton() {
       type="submit"
       variant="shadow"
       color="primary"
+      fullWidth
       isLoading={pending}
       startContent={!pending && <CartIconPlus />}>
       Add to cart
@@ -61,6 +62,7 @@ function RemoveFromCartButton() {
       type="submit"
       variant="shadow"
       color="danger"
+      fullWidth
       isLoading={pending}
       startContent={!pending && <CartIconX />}>
       Remove product
