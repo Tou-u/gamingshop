@@ -1,6 +1,6 @@
 import { S3Client } from '@aws-sdk/client-s3'
 
-export const PUBLIC_URL = 'https://pub-6c68c522d75b4c9a8c5f083c276e124f.r2.dev'
+export const PUBLIC_URL = 'https://img.rodrigort.com'
 
 export const r2 = new S3Client({
   region: 'auto',
